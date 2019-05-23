@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("org.bewerbermanagement")
+@ComponentScan("de.hfu.bewerbermanagement")
 public class WebMvcConfig {
 	
 	@Bean

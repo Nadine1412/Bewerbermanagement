@@ -1,5 +1,7 @@
 package de.hfu.bewerbermanagement.dao;
 
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -45,24 +47,28 @@ public class UserDaoImpl implements UserDao{
 		return 0;
 	}
 	@Override
-	public String loginUser(User user) {
+	public int loginUser(User user) {
 		// TODO Auto-generated method stub
 
-		//String sql = "SELECT user_id FROM user_data WHERE user_id=? AND user_pass=?";
-		String sql = "SELECT user_id FROM user_data WHERE email=? AND user_pass=?";
-		
+		String sql = "SELECT user_id FROM user_data WHERE user_id=? AND user_pass=?";
+		//String sql = "SELECT user_id FROM user_data WHERE email='" + user.getEmail() +"' AND user_pass='"+ user.getPassword()+"'";
+			
 		try {
-
-			String userId = jdbcTemplate.queryForObject(sql, new Object[] {
-					user.getUserId(), user.getPassword() }, String.class);
-
+	
+		//	int userId = jdbcTemplate.query(sql,new Object[] {
+			//		user.getEmail(), user.getPassword() }, Integer.class);
+			
+			//int userId = jdbcTemplate.query(sql,(ResultSet rs,int rowNum),new User(rs.ge))
+			int result = jdbcTemplate.queryForObject(
+				    "SELECT COUNT(*) FROM user_data", Integer.class);
+			System.out.println(result);
 			//Session Variable UserId setzen
 			//session.setAttribute("userId", userId);
 
-			return userId;
+			return result;
 			
 		} catch (Exception e) {
-			return null;
+			return 0;
 		}
 	}
 //@ToDo

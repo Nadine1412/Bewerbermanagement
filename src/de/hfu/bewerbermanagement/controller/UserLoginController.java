@@ -3,6 +3,7 @@ package de.hfu.bewerbermanagement.controller;
 import javax.servlet.http.HttpSession;
 
 import de.hfu.bewerbermanagement.dao.UserDao;
+import de.hfu.bewerbermanagement.dao.UserDaoImpl;
 import de.hfu.bewerbermanagement.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,15 +28,15 @@ public class UserLoginController {
 		//user.setUserId(userId);
 		user.setPassword(password);
 
-		String name = userDao.loginUser(user);
+		int name = userDao.loginUser(user);
 
 		//session Variable setzen
 		//session.setAttribute("userId", userId);
-	
-		if(name != null) {
+
+		if(name != 0) {
 			mv.addObject("msg", "Welcome " + name + ", You have successfully logged in.");
 		//	mv.setViewName("welcome");
-			mv.setViewName("overviewBewerber");
+			mv.setViewName("overviewBewerber.jsp");
 		} else {
 			mv.addObject("msg", "Invalid user id or password.");
 			mv.setViewName("login");
