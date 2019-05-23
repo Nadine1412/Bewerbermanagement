@@ -36,7 +36,7 @@ public class UserLoginController {
 		if(name != 0) {
 			mv.addObject("msg", "Welcome " + name + ", You have successfully logged in.");
 		//	mv.setViewName("welcome");
-			mv.setViewName("overviewBewerber.jsp");
+			mv.setViewName("overviewBewerber");
 		} else {
 			mv.addObject("msg", "Invalid user id or password.");
 			mv.setViewName("login");
