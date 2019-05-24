@@ -1,4 +1,4 @@
-<%@ page isELIgnored="false" %>
+<%@ page isELIgnored="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,7 +15,8 @@
 			
 			<strong>Bereits angemeldet? 
 			-direkt zum Login
-			<a href="login.jsp">Click here to Login</a></strong>
+			<a href="login.jsp">Click here to Login</a>
+			</strong>
 		</pre>
 	</form>
 </body>
