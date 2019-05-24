@@ -3,8 +3,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<!-- <link href="bootstrap.css" rel="stylesheet" type="text/css"> -->
-<link href="login.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/login.css" rel="stylesheet" type="text/css">
 <title>Bewerbermanagement Login</title>
 </head>
 <body class="text-centre">
