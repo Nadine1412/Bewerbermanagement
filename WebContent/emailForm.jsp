@@ -4,18 +4,24 @@
 <html>
 	<head>
     	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Spring MVC Email Example</title>
+        <title>E-Mail versenden</title>
         <style type="text/css">
             #sendEmailBtn {
                 float: left;
                 margin-top: 22px;
+            }
+            body{
+                color: rgba(255, 255, 255, 0.16);
+                position: relative;
+                background: #f5f5f5 ;
+                background-size:cover;     
             }
         </style>
 	</head>
 	
 	<body>
  		<center>
-            <h2>E-Mail</h2>
+            <h2>E-Mail versenden</h2>
             <form id="sendEmailForm" method="post" action="sendEmail" enctype="multipart/form-data">
                 <table id="emailFormBeanTable" border="0" width="80%">
                     <tr>
@@ -23,15 +29,15 @@
                         <td><input id="receiverMail" type="text" name="mailTo" size="65" /></td>
                     </tr>
                     <tr>
-                        <td>Subject: </td>
+                        <td>Betreff: </td>
                         <td><input id="mailSubject" type="text" name="subject" size="65" /></td>
                     </tr>
                     <tr>
-                        <td>Message: </td>
+                        <td>Nachricht: </td>
                         <td><textarea id="mailMessage" cols="50" rows="10" name="message"></textarea></td>
                     </tr>
                     <tr>
-                        <td>Attachment: </td>
+                        <td>Anhänge: </td>
                         <td><input id="mailAttachment" type="file" name="attachFileObj" size="60" /></td>
                     </tr>
                     <tr>

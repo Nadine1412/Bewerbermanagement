@@ -4,6 +4,26 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Bewerbermanagement Registration</title>
+<style type="text/css">
+html, body {
+				height: 100%;
+			}
+
+			body {
+				display: -ms-flexbox;
+				display: -webkit-box;
+				display: flex;
+				-ms-flex-align: center;
+				-ms-flex-pack: center;
+				-webkit-box-align: center;
+				align-items: center;
+				-webkit-box-pack: center;
+				justify-content: center;
+				padding-top: 40px;
+				padding-bottom: 40px;
+				background-color: #f5f5f5;
+			}
+</style>
 </head>
 <body>
 	<form action="register" method="post">
