@@ -17,13 +17,13 @@ public class UserRegistrationController {
 	private UserDao userDao;
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public ModelAndView userRegistration(@RequestParam("userId") String userId,
+	public ModelAndView userRegistration(
+//			@RequestParam("userId") String userId,
 			@RequestParam("password") String password, @RequestParam("email") String email,
 			@RequestParam("userName") String userName, @RequestParam("userSurname") String userSurname,
-			@RequestParam("enterprise") String enterprise, @RequestParam("position") String position,
+//			@RequestParam("enterprise") String enterprise, @RequestParam("position") String position,
 			@RequestParam("entryDate") String entryDate, @RequestParam("subject") String subject,
 			@RequestParam("specialization") String specialization, @RequestParam("sallery") String sallery) {
-
 		ModelAndView mv = new ModelAndView();
 
 //		//if (enterprise =="") {
@@ -52,7 +52,7 @@ public class UserRegistrationController {
 ////		} else {
 		
 		Bewerber bewerber = new Bewerber();
-		bewerber.setUserId(userId);
+//		bewerber.setUserId(userId);
 		bewerber.setPassword(password);
 		bewerber.setEmail(email);
 		bewerber.setUserName(userName);
