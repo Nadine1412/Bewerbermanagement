@@ -1,5 +1,7 @@
 package de.hfu.bewerbermanagement.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import de.hfu.bewerbermanagement.dao.UserDao;
@@ -19,7 +21,7 @@ public class UserLoginController {
 	private UserDao userDao;
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ModelAndView userLogin(@RequestParam("inputEmail") String email, @RequestParam("inputPassword") String password) {
+	public ModelAndView userLogin(@RequestParam("inputEmail") String email, @RequestParam("inputPassword") String password, HttpSession session) {
 				
 		ModelAndView mv = new ModelAndView();
 		
@@ -31,11 +33,10 @@ public class UserLoginController {
 		int name = userDao.loginUser(user);
 
 		//session Variable setzen
-		//session.setAttribute("userId", userId);
+		session.setAttribute("userEmail", email);
 
 		if(name != 0) {
 			mv.addObject("msg", "Welcome " + name + ", You have successfully logged in.");
-		//	mv.setViewName("welcome");
 			mv.setViewName("overviewBewerber");
 		} else {
 			mv.addObject("msg", "Invalid user id or password.");

@@ -12,7 +12,7 @@ public interface UserDao {
 	public int loginUser(User user);
 	
 	// Profil anzeigen
-	public Bewerber showProfil();
+	public Bewerber showProfil(HttpSession session);
 
 	
 	// Profil ändern

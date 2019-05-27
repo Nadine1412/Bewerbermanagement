@@ -35,7 +35,6 @@ html, body {
 			Vertiefung: <input type="text" name="specialization" />
 			Gehaltsvorstellung: <input type="text" name="sallery" />
 			E-Mail: <input type="text" name="email" />
-			User Id: <input type="text" name="userId" />
 			Password: <input type="password" name="password" />
 			<input type="submit" value="Register" />
 		</pre>

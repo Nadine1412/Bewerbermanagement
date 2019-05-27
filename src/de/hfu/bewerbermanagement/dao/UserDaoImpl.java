@@ -1,6 +1,7 @@
 package de.hfu.bewerbermanagement.dao;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,7 @@ import javax.sql.DataSource;
 import de.hfu.bewerbermanagement.model.Bewerber;
 import de.hfu.bewerbermanagement.model.User;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 
 public class UserDaoImpl implements UserDao{
 	
@@ -36,10 +38,13 @@ public class UserDaoImpl implements UserDao{
 
 	public int registerBewerber(Bewerber bewerber) {
 		// TODO Auto-generated method stub
-		String sql = "INSERT INTO bewerber_data (user_id,user_pass,userName,userSurname,email,userEntrydate,userSubject,userSpecialization,userSallery) VALUES(?,?,?,?,?,?,?,?)";
-		
+//		String sql = "INSERT INTO bewerber_data (user_id,user_pass,userName,userSurname,email,userEntrydate,userSubject,userSpecialization,userSallery) VALUES(?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO bewerber_data (user_pass,userName,userSurname,email,userEntrydate,userSubject,userSpecialization,userSallery) VALUES(?,?,?,?,?,?,?,?)";
+
 		try {
-			int counter = jdbcTemplate.update(sql, new Object[] {bewerber.getUserId(), bewerber.getPassword(), bewerber.getUserName(), bewerber.getUserSurname(), bewerber.getEmail(),bewerber.getEntryDate(),bewerber.getSubject(),bewerber.getSpecialization(),bewerber.getSallery()});
+//			int counter = jdbcTemplate.update(sql, new Object[] {bewerber.getUserId(), bewerber.getPassword(), bewerber.getUserName(), bewerber.getUserSurname(), bewerber.getEmail(),bewerber.getEntryDate(),bewerber.getSubject(),bewerber.getSpecialization(),bewerber.getSallery()});
+			int counter = jdbcTemplate.update(sql, new Object[] { bewerber.getPassword(), bewerber.getUserName(), bewerber.getUserSurname(), bewerber.getEmail(),bewerber.getEntryDate(),bewerber.getSubject(),bewerber.getSpecialization(),bewerber.getSallery()});
+
 			return counter;
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -64,18 +69,40 @@ public class UserDaoImpl implements UserDao{
 			System.out.println(result);
 			//Session Variable UserId setzen
 			//session.setAttribute("userId", userId);
-
+			
 			return result;
 			
 		} catch (Exception e) {
 			return 0;
 		}
 	}
-//@ToDo
-	public Bewerber showProfil() {
-		// TODO Auto-generated method stub
-		//String id = (String) session.getAttribute("userId");
-		return null;
+
+
+	public Bewerber showProfil(HttpSession session) {
+		String sql = "SELECT * FROM bewerber_data WHERE email=?";			
+		try {
+			String email = session.getAttribute("userEmail").toString();
+			
+			Bewerber result = jdbcTemplate.queryForObject(sql, new Object[] {email}, new RowMapper<Bewerber>() {
+				@Override
+				public Bewerber mapRow(ResultSet rs, int rowNum) throws SQLException {
+					Bewerber bewerber = new Bewerber();
+					bewerber.setEmail(rs.getString("email"));
+					bewerber.setEntryDate(rs.getDate("userEntrydate").toString());
+					bewerber.setSallery(rs.getString("userSallery"));
+					bewerber.setPassword(rs.getString("user_pass"));
+					bewerber.setSpecialization(rs.getString("userSpecialization"));
+					bewerber.setSubject(rs.getString("userSubject"));
+					bewerber.setUserId(rs.getString("user_id"));
+					bewerber.setUserName(rs.getString("userName"));
+					bewerber.setUserSurname(rs.getString("UserSurname"));
+					return bewerber;
+				}
+			} );	
+			return result;		
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	@Override
