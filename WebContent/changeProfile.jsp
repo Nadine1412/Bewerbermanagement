@@ -4,8 +4,8 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<style>
-			<%@include file="css/navigation.css"%>
 			<%@include file="css/backgroundTemplate.css"%>
+			<%@include file="css/navigation.css"%>
 		</style>
 		<title>Profilübersicht</title>
 		</head>
@@ -30,11 +30,11 @@
 					
 					<li><a href="decision.jsp">Logout</a></li>
 				</ul>
+
 			</div>
 			<div class="page">
 				<div class="form">
-					<br><br><br><br>
-					<table> 
+				<table> 
 						<tr> <td class="header">Vorname:</td> <td>${bewerber.userName}</td> </tr> 
 						<tr> <td class="header">Nachname:</td> <td>${bewerber.userSurname}</td> </tr>
 						<tr> <td class="header">E-Mail:</td> <td>${bewerber.email}</td> </tr>
@@ -44,9 +44,9 @@
 						<tr> <td class="header">Vertiefung: </td> <td>${bewerber.specialization}</td> </tr>
 						<tr> <td class="header">Gehaltsvorstellung: </td> <td>${bewerber.sallery}</td> </tr>
 					</table>
-				</div>
 			</div>
-			<!-- <center>	
+			</div>
+			<!-- 	<center>	
       				<div class="container">
 					<br><br><br><br>
 					<table> 
@@ -61,6 +61,6 @@
 					</table>					
 				</div>
 			</center> -->
-			
+		
 	</body>
 </html>

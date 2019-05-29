@@ -67,8 +67,6 @@ public class UserDaoImpl implements UserDao{
 			int result = jdbcTemplate.queryForObject(
 				    "SELECT COUNT(*) FROM user_data", Integer.class);
 			System.out.println(result);
-			//Session Variable UserId setzen
-			//session.setAttribute("userId", userId);
 			
 			return result;
 			
