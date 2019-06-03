@@ -95,7 +95,7 @@ public class UserDaoImpl implements UserDao{
 					bewerber.setSubject(rs.getString("userSubject"));
 					bewerber.setUserId(rs.getString("user_id"));
 					bewerber.setUserName(rs.getString("userName"));
-					bewerber.setUserSurname(rs.getString("UserSurname"));
+					bewerber.setUserSurname(rs.getString("userSurname"));
 					return bewerber;
 				}
 			} );	
@@ -106,9 +106,20 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
-	public Bewerber changeProfil() {
+	public int changeProfil(Bewerber bewerber) {
 		// TODO Auto-generated method stub
-		return null;
+		String userId = bewerber.getUserId();
+		
+		try {
+		String updateSql = "UPDATE bewerber_data SET userName=?, userSurname=?, email=?, userEntrydate=?, userSubject=?, userSpecialization=?, userSallery=?, user_pass=? WHERE user_id=?";
+
+		int counter = jdbcTemplate.update(updateSql, new Object[] {bewerber.getUserName(), bewerber.getUserSurname(), bewerber.getEmail(), bewerber.getEntryDate(), bewerber.getSubject(), bewerber.getSpecialization(), bewerber.getSallery(), bewerber.getPassword(), bewerber.getUserId()});
+		
+		return counter;
+		}
+		catch (Exception e) {
+			return 0;
+		}
 	}
 
 }

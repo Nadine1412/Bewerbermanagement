@@ -25,6 +25,7 @@ html, body {
 			}
 </style>
 </head>
+
 <body>
 	<form action="register" method="post">
 		<pre>

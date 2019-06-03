@@ -24,6 +24,7 @@ public class UserRegistrationController {
 //			@RequestParam("enterprise") String enterprise, @RequestParam("position") String position,
 			@RequestParam("entryDate") String entryDate, @RequestParam("subject") String subject,
 			@RequestParam("specialization") String specialization, @RequestParam("sallery") String sallery) {
+		
 		ModelAndView mv = new ModelAndView();
 
 //		//if (enterprise =="") {
