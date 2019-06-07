@@ -29,14 +29,15 @@ public class UserLoginController {
 		user.setEmail(email);
 		//user.setUserId(userId);
 		user.setPassword(password);
-
-		int name = userDao.loginUser(user);
+		
+		//Selektierung des Nachnamens (Nadine Jakob 07.06.2019)
+		String name = userDao.loginUser(user);
 
 		//session Variable setzen
 		session.setAttribute("userEmail", email);
 
-		if(name != 0) {
-			mv.addObject("msg", "Welcome " + name + ", You have successfully logged in.");
+		if(name != null) {
+			mv.addObject("msg", "Willkommen Herr / Frau " + name + ", Sie haben sich erfolgreich eingeloggt.");
 			mv.setViewName("overviewBewerber");
 		} else {
 			mv.addObject("msg", "Invalid user id or password.");

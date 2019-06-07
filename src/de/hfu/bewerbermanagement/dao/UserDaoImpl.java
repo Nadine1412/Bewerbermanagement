@@ -38,11 +38,10 @@ public class UserDaoImpl implements UserDao{
 
 	public int registerBewerber(Bewerber bewerber) {
 		// TODO Auto-generated method stub
-//		String sql = "INSERT INTO bewerber_data (user_id,user_pass,userName,userSurname,email,userEntrydate,userSubject,userSpecialization,userSallery) VALUES(?,?,?,?,?,?,?,?)";
+
 		String sql = "INSERT INTO bewerber_data (user_pass,userName,userSurname,email,userEntrydate,userSubject,userSpecialization,userSallery) VALUES(?,?,?,?,?,?,?,?)";
 
 		try {
-//			int counter = jdbcTemplate.update(sql, new Object[] {bewerber.getUserId(), bewerber.getPassword(), bewerber.getUserName(), bewerber.getUserSurname(), bewerber.getEmail(),bewerber.getEntryDate(),bewerber.getSubject(),bewerber.getSpecialization(),bewerber.getSallery()});
 			int counter = jdbcTemplate.update(sql, new Object[] { bewerber.getPassword(), bewerber.getUserName(), bewerber.getUserSurname(), bewerber.getEmail(),bewerber.getEntryDate(),bewerber.getSubject(),bewerber.getSpecialization(),bewerber.getSallery()});
 
 			return counter;
@@ -51,27 +50,22 @@ public class UserDaoImpl implements UserDao{
 		}
 		return 0;
 	}
+	
 	@Override
-	public int loginUser(User user) {
+	public String loginUser(User user) {
 		// TODO Auto-generated method stub
 
-		String sql = "SELECT user_id FROM user_data WHERE user_id=? AND user_pass=?";
-		//String sql = "SELECT user_id FROM user_data WHERE email='" + user.getEmail() +"' AND user_pass='"+ user.getPassword()+"'";
-			
+		String sql = "SELECT userSurname FROM user_data WHERE email=? AND user_pass=?";
+		
 		try {
 	
-		//	int userId = jdbcTemplate.query(sql,new Object[] {
-			//		user.getEmail(), user.getPassword() }, Integer.class);
+			String resultName = jdbcTemplate.queryForObject(sql, new Object[] {user.getEmail(), user.getPassword()}, String.class);
+			System.out.println(resultName);
 			
-			//int userId = jdbcTemplate.query(sql,(ResultSet rs,int rowNum),new User(rs.ge))
-			int result = jdbcTemplate.queryForObject(
-				    "SELECT COUNT(*) FROM user_data", Integer.class);
-			System.out.println(result);
-			
-			return result;
+			return resultName;
 			
 		} catch (Exception e) {
-			return 0;
+			return null;
 		}
 	}
 
