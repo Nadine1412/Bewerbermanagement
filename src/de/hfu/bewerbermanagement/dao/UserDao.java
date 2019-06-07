@@ -9,7 +9,7 @@ public interface UserDao {
 	
 	public int registerBewerber(Bewerber bewerber);
 
-	public int loginUser(User user);
+	public String loginUser(User user);
 	
 	// Profil anzeigen
 	public Bewerber showProfil(HttpSession session);
