@@ -4,29 +4,27 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Bewerbermanagement Registration</title>
-<style type="text/css">
-html, body {
-				height: 100%;
-			}
-
-			body {
-				display: -ms-flexbox;
-				display: -webkit-box;
-				display: flex;
-				-ms-flex-align: center;
-				-ms-flex-pack: center;
-				-webkit-box-align: center;
-				align-items: center;
-				-webkit-box-pack: center;
-				justify-content: center;
-				padding-top: 40px;
-				padding-bottom: 40px;
-				background-color: #f5f5f5;
-			}
+<style >
+	<%@include file="css/registration.css"%>
 </style>
 </head>
 <body>
-	<form action="register" method="post">
+	<div class="page">
+		<div class="form">
+			<form action="register" method="post" class="register-form">
+				<input type="text" placeholder="Vorname" name="userName" />
+				<input type="text" placeholder="Nachname" name="userSurname" />
+				<input type="text" placeholder="Fr. Eintrittsdatum" name="entryDate" />
+				<input type="text" placeholder="Fachrichtung" name="subject" />
+				<input type="text" placeholder="Vertiefung" name="specialization" />
+				<input type="text" placeholder="Gehaltsvorstellung" name="sallery" />
+				<input type="text" placeholder="Email" name="email" />
+			    <input type="text" placeholder="UserId" name="userId" />
+				<input type="password" placeholder="Passwort" name="password" />
+				<button type="submit">registrieren</button>
+				<p class="message">${msg}</p>
+				</form>
+				<!-- <form action="register" method="post">
 		<pre>
 			Name: <input type="text" name="userName" />
 			Nachname: <input type="text" name="userSurname" />
@@ -38,7 +36,8 @@ html, body {
 			Password: <input type="password" name="password" />
 			<input type="submit" value="Register" />
 		</pre>
-	</form>
+	</form> -->
+	
 
 	${msg}
 </body>

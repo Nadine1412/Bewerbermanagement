@@ -3,7 +3,10 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<style><%@include file="showProfile.css"%></style>
+		<style>
+			<%@include file="css/navigation.css"%>
+			<%@include file="css/backgroundTemplate.css"%>
+		</style>
 		<title>Profilübersicht</title>
 	</head>
 		<body>
@@ -27,9 +30,23 @@
 					
 					<li><a href="decision.jsp">Logout</a></li>
 				</ul>
-				<!-- <input type="button" value="Logout" onClick="window.location.href='Anmeldung kaue.html'"> -->
 			</div>
-			<center>	
+			<div class="page">
+				<div class="form">
+					<br><br><br><br>
+					<table> 
+						<tr> <td class="header">Vorname:</td> <td>${bewerber.userName}</td> </tr> 
+						<tr> <td class="header">Nachname:</td> <td>${bewerber.userSurname}</td> </tr>
+						<tr> <td class="header">E-Mail:</td> <td>${bewerber.email}</td> </tr>
+						<tr> <td class="header">User ID:</td> <td>${bewerber.userId}</td> </tr>
+						<tr> <td class="header">Fr.Eintrittsdatum: </td> <td>${bewerber.entryDate}</td> </tr>
+						<tr> <td class="header">Fachrichtung: </td> <td>${bewerber.subject}</td> </tr>
+						<tr> <td class="header">Vertiefung: </td> <td>${bewerber.specialization}</td> </tr>
+						<tr> <td class="header">Gehaltsvorstellung: </td> <td>${bewerber.sallery}</td> </tr>
+					</table>
+				</div>
+			</div>
+			<!-- <center>	
       				<div class="container">
 					<br><br><br><br>
 					<table> 
@@ -67,6 +84,7 @@
 						</tr>
 					</table>					
 				</div>
-			</center>
+			</center> -->
+			
 	</body>
 </html>

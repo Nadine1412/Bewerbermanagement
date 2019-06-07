@@ -3,13 +3,14 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
 		<style><%@include file="changeProfile.css"%></style>
-		<title>Profil ändern</title>
+		<title>Profil Ã¤ndern</title>
 	</head>
 	<body>
 		<div class="navbar">
 			<ul>
-				<li><a href="overviewBewerber.jsp">Übersicht</a></li>
+				<li><a href="overviewBewerber.jsp">Ãœbersicht</a></li>
 				<li>
 					<a href="">Profil</a>
 					<ul>
@@ -72,7 +73,7 @@
 					<td> <input type="password" value="${bewerber.password}" name="password" /> </td> 
 				</tr>
 				<tr> 
-					<td class="header"> <input type="submit" value="Ändern" /> </td> 
+					<td class="header"> <input type="submit" value="Ã„ndern" /> </td> 
 					<td> ${msg} </td>
 				</tr>
 			</table>					
@@ -81,6 +82,7 @@
 			</center>	
 		</form> 
 		
+
 		
 	</body>
 </html>
