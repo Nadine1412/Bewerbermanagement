@@ -16,6 +16,6 @@ public interface UserDao {
 
 	
 	// Profil ändern
-	public Bewerber changeProfil();
+	public int changeProfil(Bewerber bewerber);
 
 }
