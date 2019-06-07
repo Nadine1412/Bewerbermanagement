@@ -31,7 +31,7 @@
 						<a href="">Profil</a>
 						<ul>
 							<li><a href="getProfile">Profil anzeigen</a></li>
-							<li><a href="">Profil bearbeiten</a></li>
+							<li><a href="getOldProfile"> Profil bearbeiten</a></li>
 						</ul>
 					</li>
 					<li>

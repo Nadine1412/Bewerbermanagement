@@ -8,7 +8,7 @@
 			<%@include file="css/backgroundTemplate.css"%>
 		</style>
 		<title>Profilübersicht</title>
-		</head>
+	</head>
 		<body>
 			<div class="navbar">
 				<ul>
@@ -17,7 +17,7 @@
 						<a href="">Profil</a>
 						<ul>
 							<li><a class="active" href="getProfile">Profil anzeigen</a></li>
-							<li><a href="">Profil bearbeiten</a></li>
+							<li><a href="getOldProfile">Profil bearbeiten</a></li>
 						</ul>
 					</li>
 					<li>
@@ -50,14 +50,38 @@
       				<div class="container">
 					<br><br><br><br>
 					<table> 
-						<tr> <td class="header">Vorname:</td> <td>${bewerber.userName}</td> </tr> 
-						<tr> <td class="header">Nachname:</td> <td>${bewerber.userSurname}</td> </tr>
-						<tr> <td class="header">E-Mail:</td> <td>${bewerber.email}</td> </tr>
-						<tr> <td class="header">User ID:</td> <td>${bewerber.userId}</td> </tr>
-						<tr> <td class="header">Fr.Eintrittsdatum: </td> <td>${bewerber.entryDate}</td> </tr>
-						<tr> <td class="header">Fachrichtung: </td> <td>${bewerber.subject}</td> </tr>
-						<tr> <td class="header">Vertiefung: </td> <td>${bewerber.specialization}</td> </tr>
-						<tr> <td class="header">Gehaltsvorstellung: </td> <td>${bewerber.sallery}</td> </tr>
+						<tr> 
+							<td class="header"> User ID: </td> 
+							<td> ${bewerber.userId} </td> 
+						</tr>
+						<tr> 
+							<td class="header"> Vorname: </td>
+							<td> ${bewerber.userName} </td> 
+						</tr> 
+						<tr> 
+							<td class="header"> Nachname: </td>
+							<td> ${bewerber.userSurname} </td> 
+						</tr>
+						<tr> 
+							<td class="header"> E-Mail: </td> 
+							<td>${bewerber.email}</td> 
+						</tr>
+						<tr> 
+							<td class="header"> Fr.Eintrittsdatum: </td> 
+							<td> ${bewerber.entryDate} </td> 
+						</tr>
+						<tr> 
+							<td class="header"> Fachrichtung: </td> 
+							<td> ${bewerber.subject} </td> 
+						</tr>
+						<tr> 
+							<td class="header"> Vertiefung: </td> 
+							<td> ${bewerber.specialization} </td> 
+						</tr>
+						<tr> 
+							<td class="header"> Gehaltsvorstellung: </td> 
+							<td> ${bewerber.sallery} </td> 
+						</tr>
 					</table>					
 				</div>
 			</center> -->
