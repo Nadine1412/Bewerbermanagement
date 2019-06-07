@@ -39,5 +39,7 @@ public class WebMvcConfig {
 		return new UserDaoImpl(getDataSource());
 		
 	}
-
+	
+	//Properties für mail adapter hier setzen
+	
 }

@@ -79,7 +79,7 @@ public class UserDaoImpl implements UserDao{
 	public Bewerber showProfil(HttpSession session) {
 		String sql = "SELECT * FROM bewerber_data WHERE email=?";			
 		try {
-			String email = session.getAttribute("userEmail").toString();
+			String email = session.getAttribute("userEmail").toString(); //kommt in Präsentationslogik
 			
 			Bewerber result = jdbcTemplate.queryForObject(sql, new Object[] {email}, new RowMapper<Bewerber>() {
 				@Override

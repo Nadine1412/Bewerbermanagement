@@ -3,18 +3,19 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	
-	<!-- <parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.0.RELEASE</version>
-	</parent> -->
-	
 	<groupId>de.hfu.bewerbermanagement</groupId>
 	<artifactId>BewerbermanagementV2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<dependencies>
+	
+		<!-- spring Boot -->
+		<dependency>
+    		<groupId>org.springframework.boot</groupId>
+    		<artifactId>spring-boot-starter-mail</artifactId>
+    		<version>2.1.5.RELEASE</version>
+		</dependency>
 
 		<!-- spring mvc dependency -->
 		<dependency>
@@ -63,16 +64,19 @@
 			<version>4.11</version>
 		</dependency>
 
-		<!-- Email versenden 
+		<!-- Email versenden -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-mail</artifactId>
+    		<groupId>org.springframework</groupId>
+    		<artifactId>spring-context-support</artifactId>
+    		<version>5.1.7.RELEASE</version>
 		</dependency>
+		
+		<!-- Email über sendgrid (Jakob 06062019) -->
 		<dependency>
-			<groupId>org.subethamail</groupId>
-			<artifactId>subethasmtp</artifactId>
-			<version>3.1.7</version>
-		</dependency>-->
+			<groupId>com.sendgrid</groupId>
+			<artifactId>sendgrid-java</artifactId>
+			<version>4.4.1</version>
+		</dependency>
 		
 	</dependencies>
 	<build>
