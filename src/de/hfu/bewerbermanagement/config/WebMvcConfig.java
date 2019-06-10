@@ -48,13 +48,11 @@ public class WebMvcConfig {
 		
 	}
 	
-	// als bean ausgelagert
 	@Bean
 	public JsonNode getJsonNode() {
 		ObjectMapper objectMapper = new ObjectMapper();
-		//String json = "SqlStatement.json";
-		String json = "C:\\Users\\Nadine\\git\\Bewerbermanagement\\src\\resources\\sqlStatements.json";
-		//@ToDo relativer Pfad
+		//String json = "de\\hfu\\bewerbermanagement\\dao\\sqlStatements.json";
+		String json = "C:\\Users\\Nadine\\git\\Bewerbermanagement\\src\\de\\hfu\\bewerbermanagement\\dao\\sqlStatements.json";
 
 		try {
 			JsonNode jsonNode = objectMapper.readTree(new File(json));
