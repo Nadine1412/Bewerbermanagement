@@ -27,7 +27,6 @@ public class UserLoginController {
 		
 		User user = new User();
 		user.setEmail(email);
-		//user.setUserId(userId);
 		user.setPassword(password);
 		
 		//Selektierung des Nachnamens (Nadine Jakob 07.06.2019)

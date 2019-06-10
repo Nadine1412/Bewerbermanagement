@@ -4,13 +4,16 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-		<style><%@include file="changeProfile.css"%></style>
-		<title>Profil Ã¤ndern</title>
+		<style>
+			<%@include file="css/navigation.css"%>
+			<%@include file="css/backgroundTemplate.css"%>
+		</style>
+		<title>Profil ändern</title>
 	</head>
 	<body>
 		<div class="navbar">
 			<ul>
-				<li><a href="overviewBewerber.jsp">Ãœbersicht</a></li>
+				<li><a href="overviewBewerber.jsp">Übersicht</a></li>
 				<li>
 					<a href="">Profil</a>
 					<ul>
@@ -28,18 +31,16 @@
 				
 				<li><a href="decision.jsp">Logout</a></li>
 			</ul>
-			<!-- <input type="button" value="Logout" onClick="window.location.href='Anmeldung kaue.html'"> -->
 		</div>
-			
-		<form action="updateProfile" method="post">		
-			<center>	
-	    	<div class="container">
-			<br><br><br><br>
-			<table> 
-				<tr> 
-				<td class="header"> User ID: </td> 
+		
+		<div class="page">
+			<div class="form">
+				<form action="updateProfile" method="post">
+					<table> 
+				 
+				<!-- <tr> <td class="header"> User ID: </td> 
 				<td> <input type="text" value="${bewerber.userId}" name="userId" readonly /> </td>
-				</tr>
+				</tr> -->
 				<tr> 
 					<td class="header"> Vorname: </td> 
 					<td> <input type="text" value="${bewerber.userName}" name="userName" /> </td> 
@@ -72,17 +73,13 @@
 					<td class="header"> Passwort: </td> 
 					<td> <input type="password" value="${bewerber.password}" name="password" /> </td> 
 				</tr>
-				<tr> 
-					<td class="header"> <input type="submit" value="Ã„ndern" /> </td> 
-					<td> ${msg} </td>
-				</tr>
-			</table>					
+			</table>	
+			<button type="submit">Ändern</button>	
+				</form>
+				<p class="message">${msg}</p>
 			</div>
-							
-			</center>	
-		</form> 
 		
-
+		</div>
 		
 	</body>
 </html>
