@@ -19,7 +19,6 @@
 				<input type="text" placeholder="Vertiefung" name="specialization" />
 				<input type="text" placeholder="Gehaltsvorstellung" name="sallery" />
 				<input type="text" placeholder="Email" name="email" />
-			    <input type="text" placeholder="UserId" name="userId" />
 				<input type="password" placeholder="Passwort" name="password" />
 				<button type="submit">registrieren</button>
 				<p class="message">${msg}</p>

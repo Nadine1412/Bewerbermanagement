@@ -1,0 +1,6 @@
+{
+	"login": "SELECT userSurname FROM user_data WHERE email=? AND user_pass=?",
+	"showProfile": "SELECT * FROM bewerber_data WHERE email=?",
+	"changeProfile": "UPDATE bewerber_data SET userName=?, userSurname=?, email=?, userEntrydate=?, userSubject=?, userSpecialization=?, userSallery=?, user_pass=? WHERE user_id=?",
+	"registerBewerber": "INSERT INTO bewerber_data (user_pass,userName,userSurname,email,userEntrydate,userSubject,userSpecialization,userSallery) VALUES(?,?,?,?,?,?,?,?)"
+}

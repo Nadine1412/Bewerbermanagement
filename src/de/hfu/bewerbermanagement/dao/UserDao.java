@@ -3,9 +3,10 @@ package de.hfu.bewerbermanagement.dao;
 import javax.servlet.http.HttpSession;
 
 import de.hfu.bewerbermanagement.model.Bewerber;
-import de.hfu.bewerbermanagement.model.Personaler;
 import de.hfu.bewerbermanagement.model.User;
 public interface UserDao {
+	
+	//public String readSQLStatement(String key);
 	
 	public int registerBewerber(Bewerber bewerber);
 

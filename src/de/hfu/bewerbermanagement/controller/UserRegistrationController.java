@@ -18,7 +18,6 @@ public class UserRegistrationController {
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ModelAndView userRegistration(
-//			@RequestParam("userId") String userId,
 			@RequestParam("password") String password, @RequestParam("email") String email,
 			@RequestParam("userName") String userName, @RequestParam("userSurname") String userSurname,
 //			@RequestParam("enterprise") String enterprise, @RequestParam("position") String position,
@@ -67,12 +66,13 @@ public class UserRegistrationController {
 
 		if (counter > 0) {
 			mv.addObject("msg", "User registration successful.");
-
+			mv.setViewName("login");
 		} else {
 			mv.addObject("msg", "Error - check the console log");
+			mv.setViewName("registration");
 		}
 
-		mv.setViewName("registration");
+		
 		return mv;
 	}
 

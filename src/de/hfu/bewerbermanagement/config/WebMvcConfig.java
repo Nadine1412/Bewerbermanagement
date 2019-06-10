@@ -2,12 +2,20 @@ package de.hfu.bewerbermanagement.config;
 
 import de.hfu.bewerbermanagement.dao.UserDao;
 import de.hfu.bewerbermanagement.dao.UserDaoImpl;
+
+import java.io.File;
+import java.io.IOException;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Configuration
 @EnableWebMvc
@@ -40,6 +48,24 @@ public class WebMvcConfig {
 		
 	}
 	
+	@Bean
+	public JsonNode getJsonNode() {
+		ObjectMapper objectMapper = new ObjectMapper();
+		//String json = "de\\hfu\\bewerbermanagement\\dao\\sqlStatements.json";
+		String json = "C:\\Users\\Nadine\\git\\Bewerbermanagement\\src\\de\\hfu\\bewerbermanagement\\dao\\sqlStatements.json";
+
+		try {
+			JsonNode jsonNode = objectMapper.readTree(new File(json));
+			return jsonNode;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}	
+	}
+	
 	//Properties für mail adapter hier setzen
+	
+
+	
 	
 }
