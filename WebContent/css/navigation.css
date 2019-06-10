@@ -21,7 +21,8 @@
 	            position:relative;
 	            padding: 25px 20px;
 	            /*background: #555758;*/
-	            background:#FAFAFA;
+	            /*background:#FAFAFA;*/
+	            background: white;
 	            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2), 0 2.5px 2.5px 0 rgba(0, 0, 0, 0.24);
 	           
         	}
@@ -50,7 +51,8 @@
 
         	ul li ul li{
             	/*background: #9fa1a1;*/
-            	background:#FAFAFA;
+            	/*background:#FAFAFA;*/
+	            background: white;
             	display: block;
            
         	}

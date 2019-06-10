@@ -38,9 +38,9 @@
 				<form action="updateProfile" method="post">
 					<table> 
 				 
-				<!-- <tr> <td class="header"> User ID: </td> 
+				<tr> <td class="header"> User ID: </td> 
 				<td> <input type="text" value="${bewerber.userId}" name="userId" readonly /> </td>
-				</tr> -->
+				</tr>
 				<tr> 
 					<td class="header"> Vorname: </td> 
 					<td> <input type="text" value="${bewerber.userName}" name="userName" /> </td> 
