@@ -5,22 +5,9 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<style>
    			<%@include file="css/navigation.css"%>
-   			<%@include file="css/registration.css"%>
+   			<%@include file="css/backgroundTemplate.css"%>
 		</style>
-		<!-- <style type="text/css">
- 			/* body{
-                color: rgba(255, 255, 255, 0.16);
-                position: relative;
-                background: #f5f5f5 ;
-                background-size:cover;     
-            }
-			
-	        .container{            
-                color: black;
-                z-index: 1;
-            }              
-} */
-		</style> -->
+
 		<title>Übersicht</title>
 		</head>
 		<body>

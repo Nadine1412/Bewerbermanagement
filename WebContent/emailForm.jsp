@@ -7,7 +7,7 @@
         <title>E-Mail versenden</title>
         <style>
         	<%@include file="css/navigation.css"%>
-   			<%@include file="css/email.css"%>
+   			<%@include file="css/backgroundTemplate.css"%>
 		</style>
 	</head>
 	

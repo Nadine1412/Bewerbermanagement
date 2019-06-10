@@ -5,23 +5,11 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<!-- <link href="bootstrap.css" rel="stylesheet" type="text/css">  -->
    		<style>
-   			<%@include file="css/login.css"%>
+   			<%@include file="css/backgroundTemplate.css"%>
 		</style>
     </head>
 	<body>
-		
-		<!-- <form action="login" method="post" class="register-form">
-			<h1 class="h3 mb-3 font-weight-normal">Bitte einloggen!</h1>
-			<label for="inputEmail" class="sr-only">Email Adresse:</label> 
-			<input type="email" id="inputEmail" name="inputEmail" class="form-control" required autofocus>
-			<br> 
-			<label for="inputPassword" class="sr-only">Passwort:</label>
-			<input type="password" id="inputPassword" name="inputPassword" class="form-control" required>
-			<div class="checkbox mb-3"></div>
-			<button class="btn btn-lg btn-primary btn-block" type="submit" value="login">Sign in</button>
-			<p class="mt-5 mb-3 text-muted">© Siebenhaar, Möhrle, Jakob</p>
-		</form> -->
-		<div class="login-page">
+		<div class="page">
   			<div class="form">
    				<form action="login" method="post" class="login-form">
       				<input type="text" placeholder="Email" name="inputEmail"/>
