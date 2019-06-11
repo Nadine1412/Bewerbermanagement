@@ -31,18 +31,20 @@ public class UserLoginController {
 		
 		//Selektierung des Nachnamens (Nadine Jakob 07.06.2019)
 		String name = userDao.loginUser(user);
+		//Überprüfung des UserTyps(Applicant oder Recruiter
+		Boolean isApplicant = userDao.isApplicant(email);
 
 		//session Variable setzen
 		session.setAttribute("userEmail", email);
+		session.setAttribute("isApplicant", isApplicant);
 
 		if(name != null) {
 			mv.addObject("msg", "Willkommen Herr / Frau " + name + ", Sie haben sich erfolgreich eingeloggt.");
-			mv.setViewName("overviewApplicant");
+			mv.setViewName("overviewUser");
 		} else {
 			mv.addObject("msg", "Invalid user id or password.");
 			mv.setViewName("login");
 		}
 		return mv;
-		
 	}
 }

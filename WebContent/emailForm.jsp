@@ -14,12 +14,12 @@
 	<body>
 		<div class="navbar">
 			<ul>
-				<li><a href="overviewBewerber.jsp">Übersicht</a></li>
+				<li><a href="overviewUser.jsp">Übersicht</a></li>
 				<li>
 					<a href="">Profil</a>
 					<ul>
 						<li><a class="active" href="getProfile">Profil anzeigen</a></li>
-						<li><a href="">Profil bearbeiten</a></li>
+						<li><a href="getOldProfile">Profil bearbeiten</a></li>
 					</ul>
 				</li>
 				<li>

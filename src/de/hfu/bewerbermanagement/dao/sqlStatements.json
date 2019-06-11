@@ -1,6 +1,8 @@
 {
 	"login": "SELECT surname FROM user WHERE email=? AND password=?",
-	"showProfile": "SELECT * FROM applicant WHERE email=?",
+	"isApplicant": "SELECT a_id FROM applicant WHERE u_id=(SELECT u_id FROM user WHERE email=?)",
+	"showApplicantProfile": "SELECT * FROM user JOIN applicant ON user.u_id = applicant.u_id WHERE email=?",
+	"showRecruiterProfile": "SELECT * FROM user JOIN recruiter ON user.u_id = recruiter.u_id WHERE email=?",
 	"registerUser": "INSERT INTO user (password,name,surname,email,birthday) VALUES(?,?,?,?,?)",
 	"registerApplicant": "INSERT INTO applicant (entrydate,subject,specialization,sallery,u_id) VALUES(?,?,?,?,(SELECT u_id FROM user WHERE email=?))",
 	"registerRecruiter": "INSERT INTO recruiter (position,enterprise, u_id) VALUES(?,?,(SELECT u_id FROM user WHERE email=?))",

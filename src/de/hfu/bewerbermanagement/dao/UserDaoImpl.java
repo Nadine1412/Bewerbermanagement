@@ -13,6 +13,7 @@ import de.hfu.bewerbermanagement.model.Recruiter;
 import de.hfu.bewerbermanagement.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -103,10 +104,11 @@ public class UserDaoImpl implements UserDao{
 		}
 	}
 
-
-	public Applicant showProfil(HttpSession session) {
+	// Applicant Profil anzeigen
+	@Override
+	public Applicant showApplicantProfile(HttpSession session) {
 		// get SQL Statement (Nadine Jakob 10.06.2019)
-		String key = "showProfile";
+		String key = "showApplicantProfile";
 		String statement = jsonNode.get(key).asText();
 		
 		if(statement != null) {
@@ -118,15 +120,15 @@ public class UserDaoImpl implements UserDao{
 					public Applicant mapRow(ResultSet rs, int rowNum) throws SQLException {
 						Applicant applicant = new Applicant();
 						applicant.setEmail(rs.getString("email"));
-						applicant.setEntryDate(rs.getDate("userEntrydate").toString());
-						applicant.setSallery(rs.getString("userSallery"));
-						applicant.setPassword(rs.getString("user_pass"));
+						applicant.setEntryDate(rs.getDate("entrydate").toString());
+						applicant.setSallery(rs.getString("sallery"));
+						applicant.setPassword(rs.getString("password"));
 						applicant.setBirthday(rs.getString("birthday"));
-						applicant.setSpecialization(rs.getString("userSpecialization"));
-						applicant.setSubject(rs.getString("userSubject"));
-						applicant.setUserId(rs.getString("user_id"));
-						applicant.setUserName(rs.getString("userName"));
-						applicant.setUserSurname(rs.getString("userSurname"));
+						applicant.setSpecialization(rs.getString("specialization"));
+						applicant.setSubject(rs.getString("subject"));
+						applicant.setUserId(rs.getString("u_id"));
+						applicant.setUserName(rs.getString("name"));
+						applicant.setUserSurname(rs.getString("surname"));
 						return applicant;
 					}
 				} );	
@@ -139,6 +141,41 @@ public class UserDaoImpl implements UserDao{
 		}
 	}
 
+	// Recruiter Profil anzeigen
+	@Override
+		public Recruiter showRecruiterProfile(HttpSession session) {
+			// get SQL Statement (Nadine Jakob 10.06.2019)
+			String key = "showRecruiterProfile";
+			String statement = jsonNode.get(key).asText();
+			
+			if(statement != null) {
+				try {
+					String email = session.getAttribute("userEmail").toString(); //kommt in Präsentationslogik
+					
+					Recruiter result = jdbcTemplate.queryForObject(statement, new Object[] {email}, new RowMapper<Recruiter>() {
+						@Override
+						public Recruiter mapRow(ResultSet rs, int rowNum) throws SQLException {
+							Recruiter recruiter = new Recruiter();
+							recruiter.setEmail(rs.getString("email"));
+							recruiter.setPassword(rs.getString("password"));
+							recruiter.setBirthday(rs.getString("birthday"));
+							recruiter.setPosition(rs.getString("position"));
+							recruiter.setEnterprise(rs.getString("enterprise"));
+							recruiter.setUserId(rs.getString("u_id"));
+							recruiter.setUserName(rs.getString("name"));
+							recruiter.setUserSurname(rs.getString("surname"));
+							return recruiter;
+						}
+					} );	
+					return result;		
+				} catch (Exception e) {
+					return null;
+				}
+			} else {
+				return null;
+			}
+		}
+	
 	@Override
 	public int changeProfil(Applicant applicant) {
 		String userId = applicant.getUserId();
@@ -161,6 +198,31 @@ public class UserDaoImpl implements UserDao{
 			return 0;
 		}
 	}
+
+
+	@Override
+	public Boolean isApplicant(String email) {
+		String key = "isApplicant";
+		String statement = jsonNode.get(key).asText();
+		
+		if(statement  != null) {
+			try {
+				int resultAid = jdbcTemplate.queryForObject(statement, new Object[] {email}, int.class);
+//				System.out.println(resultAid);
+//				if(resultAid != 0) {
+					return true;
+//				}
+				
+			} catch (EmptyResultDataAccessException e) {
+				return false;
+			} catch (Exception e) {
+				return null;
+			}
+		} else {
+			return null;
+		}
+	}
+
 
 }
 

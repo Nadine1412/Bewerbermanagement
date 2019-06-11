@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import de.hfu.bewerbermanagement.dao.UserDao;
 import de.hfu.bewerbermanagement.model.Applicant;
+import de.hfu.bewerbermanagement.model.Recruiter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,24 +16,38 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class UserProfilController {
+public class UserProfileController {
 	
 	//private ArrayList<Bewerber> bewerberList = new ArrayList<Bewerber>();
 	
 	@Autowired
 	private UserDao userDao;
 	
+	//Profildaten von der Datenbank(dao) an den View weitergeben
 	@RequestMapping(value = {"getProfile"}, method = RequestMethod.GET)
-	public ModelAndView showProfil(HttpSession session) {
+	public ModelAndView showApplicantProfile(HttpSession session) {
 		
 		ModelAndView mv = new ModelAndView();
-		Applicant bewerber = userDao.showProfil(session);
-		if(bewerber != null) {
-			mv.addObject("bewerber", bewerber);
-			mv.setViewName("showProfile");
-		} else {
-			mv.addObject("msg", "Invalid user id or password.");
-			mv.setViewName("login");
+		if((boolean) session.getAttribute("isApplicant"))
+		{
+			Applicant applicant = userDao.showApplicantProfile(session);
+			if(applicant != null) {
+				mv.addObject("applicant", applicant);
+				mv.setViewName("showApplicantProfile");
+			} else {
+				mv.addObject("msg", "Invalid user id or password.");
+				mv.setViewName("login");
+			}
+		}
+		else {
+			Recruiter recruiter = userDao.showRecruiterProfile(session);
+			if(recruiter != null) {
+				mv.addObject("recruiter", recruiter);
+				mv.setViewName("showRecruiterProfile");
+			} else {
+				mv.addObject("msg", "Invalid user id or password.");
+				mv.setViewName("login");
+			}
 		}
 		return mv;		
 	}
@@ -41,9 +56,9 @@ public class UserProfilController {
 	public ModelAndView showOldProfil(HttpSession session) {
 		
 		ModelAndView mv = new ModelAndView();
-		Applicant bewerber = userDao.showProfil(session);
-		if(bewerber != null) {
-			mv.addObject("bewerber", bewerber);
+		Applicant applicant = userDao.showApplicantProfile(session);
+		if(applicant != null) {
+			mv.addObject("applicant", applicant);
 			mv.setViewName("changeProfile");
 		} else {
 			mv.addObject("msg", "Invalid user id or password.");

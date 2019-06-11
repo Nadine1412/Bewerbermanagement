@@ -15,11 +15,15 @@ public interface UserDao {
 	public String loginUser(User user);
 	
 	
-	// Profil anzeigen
-	public Applicant showProfil(HttpSession session);
+	//Profil anzeigen
+	public Applicant showApplicantProfile(HttpSession session);
+	public Recruiter showRecruiterProfile(HttpSession session);
 
 	
 	// Profil ändern
 	public int changeProfil(Applicant applicant);
+	
+	// Prüfen ob Bewerber oder Personaler
+	public Boolean isApplicant(String email);
 
 }
