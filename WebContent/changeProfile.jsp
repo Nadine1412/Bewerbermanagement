@@ -36,45 +36,18 @@
 		<div class="page">
 			<div class="form">
 				<form action="updateProfile" method="post">
-					<table> 
-				 
-				<tr> <td class="header"> User ID: </td> 
-				<td> <input type="text" value="${applicant.userId}" name="userId" readonly /> </td>
-				</tr>
-				<tr> 
-					<td class="header"> Vorname: </td> 
-					<td> <input type="text" value="${applicant.userName}" name="userName" /> </td> 
-				</tr> 
-				<tr> 
-					<td class="header"> Nachname: </td> 
-					<td> <input type="text" value="${applicant.userSurname}" name="userSurname" /> </td> 
-				</tr>
-				<tr> 
-					<td class="header"> E-Mail: </td> <td> 
-					<input type="text" value="${applicant.email}" name="email" /> </td> 
-				</tr>
-				<tr> 
-					<td class="header"> Fr.Eintrittsdatum: </td> 
-					<td> <input type="text" value="${applicant.entryDate}" name="entryDate" /> </td> 
-				</tr>
-				<tr> 
-					<td class="header"> Fachrichtung: </td> 
-					<td> <input type="text" value="${applicant.subject}" name="subject" /> </td> 
-				</tr>
-				<tr> 
-					<td class="header"> Vertiefung: </td> 
-					<td> <input type="text" value="${applicant.specialization}" name="specialization" /> </td> 
-				</tr>
-				<tr> 
-					<td class="header"> Gehaltsvorstellung: </td> 
-					<td> <input type="text" value="${applicant.sallery}" name="sallery" /> </td> 
-				</tr>
-				<tr> 
-					<td class="header"> Passwort: </td> 
-					<td> <input type="password" value="${applicant.password}" name="password" /> </td> 
-				</tr>
-			</table>	
-			<button type="submit">Ändern</button>	
+					<table>  
+						<tr> <td class="header-change"> User ID: </td> 			<td> <input type="text" value="${applicant.userId}" 	name="userId" readonly /> </td> </tr>
+						<tr> <td class="header-change"> Vorname: </td> 			<td> <input type="text" value="${applicant.userName}" 	name="userName" /> </td> </tr> 
+						<tr> <td class="header-change"> Nachname: </td> 			<td> <input type="text" value="${applicant.userSurname}" name="userSurname" /> </td> </tr>
+						<tr> <td class="header-change"> E-Mail: </td> 				<td> <input type="text" value="${applicant.email}" 		name="email" /> </td> </tr>
+						<tr> <td class="header-change"> Fr.Eintrittsdatum: </td> 	<td> <input type="text" value="${applicant.entryDate}" 	name="entryDate" /> </td> </tr>
+						<tr> <td class="header-change"> Fachrichtung: </td> 		<td> <input type="text" value="${applicant.subject}" 	name="subject" /> </td> </tr>
+						<tr> <td class="header-change"> Vertiefung: </td> 			<td> <input type="text" value="${applicant.specialization}" name="specialization" /> </td> </tr>
+						<tr> <td class="header-change"> Gehaltsvorstellung: </td> 	<td> <input type="text" value="${applicant.sallery}" 	name="sallery" /> </td> </tr>
+						<tr> <td class="header-change"> Passwort: </td> 			<td> <input type="password" value="${applicant.password}" name="password" /> </td> </tr>
+					</table>	
+					<button type="submit">Ändern</button>	
 				</form>
 				<p class="message">${msg}</p>
 			</div>

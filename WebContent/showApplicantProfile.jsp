@@ -33,7 +33,6 @@
 			</div>
 			<div class="page">
 				<div class="form">
-					<br><br><br><br>
 					<table> 
 						<tr> <td class="header">User ID:</td> <td>${applicant.userId}</td> </tr>
 						<tr> <td class="header">Vorname:</td> <td>${applicant.userName}</td> </tr> 
