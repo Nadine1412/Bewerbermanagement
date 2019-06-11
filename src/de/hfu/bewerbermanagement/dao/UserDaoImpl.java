@@ -71,8 +71,6 @@ public class UserDaoImpl implements UserDao{
 						//"registerRecruiter": "INSERT INTO recruiter (position,enterprise, u_id) VALUES(?,?,(SELECT u_id FROM user WHERE email=?))",
 						if(statementRecruiter != null && counterUser != 0) {
 							int counterRecruiter = jdbcTemplate.update(statementRecruiter, new Object[] {recruiter.getPosition(), recruiter.getEnterprise(), recruiter.getEmail()});
-							System.out.println(counterUser);
-							System.out.println(counterRecruiter);
 							return counterRecruiter;
 						}
 					} catch(Exception e) {
