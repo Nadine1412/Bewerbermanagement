@@ -1,7 +1,9 @@
 package de.hfu.bewerbermanagement.controller;
 
 import de.hfu.bewerbermanagement.dao.UserDao;
-import de.hfu.bewerbermanagement.model.Bewerber;
+import de.hfu.bewerbermanagement.model.Applicant;
+import de.hfu.bewerbermanagement.model.Recruiter;
+
 //import org.bewerbermanagement.model.Personaler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,64 +18,74 @@ public class UserRegistrationController {
 	@Autowired
 	private UserDao userDao;
 
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public ModelAndView userRegistration(
+	@RequestMapping(value = "/registerRecruiter", method = RequestMethod.POST)
+	public ModelAndView recruiterRegistration(
 			@RequestParam("password") String password, @RequestParam("email") String email,
-			@RequestParam("userName") String userName, @RequestParam("userSurname") String userSurname,
-//			@RequestParam("enterprise") String enterprise, @RequestParam("position") String position,
-			@RequestParam("entryDate") String entryDate, @RequestParam("subject") String subject,
-			@RequestParam("specialization") String specialization, @RequestParam("sallery") String sallery) {
+			@RequestParam("userName") String userName, @RequestParam("userSurname") String userSurname, 
+			@RequestParam("birthday") String birthday, @RequestParam("enterprise") String enterprise, 
+			@RequestParam("position") String position) {
 		
 		ModelAndView mv = new ModelAndView();
 
-//		//if (enterprise =="") {
-//
-//			Personaler personaler = new Personaler();
-//			personaler.setUserId(userId);
-//			personaler.setPassword(password);
-//			personaler.setEmail(email);
-//			personaler.setUserName(userName);
-//			personaler.setUserSurname(userSurname);
-//			personaler.setEnterprise(enterprise);
-//			personaler.setEnterprise(enterprise);
-//		
-//			int counter = userDao.registerPersonaler(personaler);
-//
-//			if (counter > 0) {
-//				mv.addObject("msg", "User registration successful.");
-//
-//			} else {
-//				mv.addObject("msg", "Error - check the console log");
-//			}
-//
-//			mv.setViewName("registration");
-//			return mv;
-//		
-////		} else {
+				Recruiter recruiter = new Recruiter();
+				//recruiter.setUserId(userId);
+				recruiter.setPassword(password);
+				recruiter.setEmail(email);
+				recruiter.setUserName(userName);
+				recruiter.setUserSurname(userSurname);
+				recruiter.setBirthday(birthday);
+				recruiter.setEnterprise(enterprise);
+				recruiter.setPosition(position);
+			
+				int counter = userDao.registerRecruiter(recruiter);
+	
+				if (counter > 0) {
+					mv.addObject("msg", "User registration successful.");
+					mv.setViewName("login");
+					
+				} else {
+					mv.addObject("msg", "Error - check the console log");
+					mv.setViewName("registrationRecruiter");
+				}
+	
+				return mv;
+	}
+	
+	@RequestMapping(value = "/registerApplicant", method = RequestMethod.POST)
+	public ModelAndView candidateRegistration(
+			@RequestParam("password") String password, @RequestParam("email") String email,
+			@RequestParam("userName") String userName, @RequestParam("userSurname") String userSurname, 
+			@RequestParam("birthday") String birthday, @RequestParam("entryDate") String entryDate, 
+			@RequestParam("subject") String subject, @RequestParam("specialization") String specialization, 
+			@RequestParam("sallery") String sallery) {
 		
-		Bewerber bewerber = new Bewerber();
+		ModelAndView mv = new ModelAndView();
+		
+		Applicant applicant = new Applicant();
 //		bewerber.setUserId(userId);
-		bewerber.setPassword(password);
-		bewerber.setEmail(email);
-		bewerber.setUserName(userName);
-		bewerber.setUserSurname(userSurname);
-		bewerber.setEntryDate(entryDate);
-		bewerber.setSubject(subject);
-		bewerber.setSpecialization(specialization);
-		bewerber.setSallery(sallery);
+		applicant.setPassword(password);
+		applicant.setEmail(email);
+		applicant.setUserName(userName);
+		applicant.setUserSurname(userSurname);
+		applicant.setBirthday(birthday);
+		applicant.setEntryDate(entryDate);
+		applicant.setSubject(subject);
+		applicant.setSpecialization(specialization);
+		applicant.setSallery(sallery);
 
-		int counter = userDao.registerBewerber(bewerber);
+		int counter = userDao.registerApplicant(applicant);
 
 		if (counter > 0) {
 			mv.addObject("msg", "User registration successful.");
 			mv.setViewName("login");
 		} else {
 			mv.addObject("msg", "Error - check the console log");
-			mv.setViewName("registration");
+			mv.setViewName("registrationApplicant");
 		}
 
 		
 		return mv;
 	}
 
+	
 }

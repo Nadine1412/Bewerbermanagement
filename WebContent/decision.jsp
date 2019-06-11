@@ -12,8 +12,8 @@
 		<div class="page">
 			<div class="form">
 			<p>Registrierung</p>
-				<p class="message">Sind Sie ein Bewerber? <a href="registrationBewerber.jsp">Bewerber Registration</a></p>
-				<p class="message">Sind Sie ein Personaler? <a href="registration.jsp">Personaler Registration</a></p>
+				<p class="message">Sind Sie ein Bewerber? <a href="registrationApplicant.jsp">Bewerber Registration</a></p>
+				<p class="message">Sind Sie ein Personaler? <a href="registrationRecruiter.jsp">Personaler Registration</a></p>
 			<p class="message">Bereits registriert? <a href="login.jsp">Login</a></p>
 			</div>
 		</div>

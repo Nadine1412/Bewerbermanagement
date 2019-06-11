@@ -13,7 +13,7 @@
 	<body>
 		<div class="navbar">
 			<ul>
-				<li><a href="overviewBewerber.jsp">Übersicht</a></li>
+				<li><a href="overviewApplicant.jsp">Übersicht</a></li>
 				<li>
 					<a href="">Profil</a>
 					<ul>
@@ -39,39 +39,39 @@
 					<table> 
 				 
 				<tr> <td class="header"> User ID: </td> 
-				<td> <input type="text" value="${bewerber.userId}" name="userId" readonly /> </td>
+				<td> <input type="text" value="${applicant.userId}" name="userId" readonly /> </td>
 				</tr>
 				<tr> 
 					<td class="header"> Vorname: </td> 
-					<td> <input type="text" value="${bewerber.userName}" name="userName" /> </td> 
+					<td> <input type="text" value="${applicant.userName}" name="userName" /> </td> 
 				</tr> 
 				<tr> 
 					<td class="header"> Nachname: </td> 
-					<td> <input type="text" value="${bewerber.userSurname}" name="userSurname" /> </td> 
+					<td> <input type="text" value="${applicant.userSurname}" name="userSurname" /> </td> 
 				</tr>
 				<tr> 
 					<td class="header"> E-Mail: </td> <td> 
-					<input type="text" value="${bewerber.email}" name="email" /> </td> 
+					<input type="text" value="${applicant.email}" name="email" /> </td> 
 				</tr>
 				<tr> 
 					<td class="header"> Fr.Eintrittsdatum: </td> 
-					<td> <input type="text" value="${bewerber.entryDate}" name="entryDate" /> </td> 
+					<td> <input type="text" value="${applicant.entryDate}" name="entryDate" /> </td> 
 				</tr>
 				<tr> 
 					<td class="header"> Fachrichtung: </td> 
-					<td> <input type="text" value="${bewerber.subject}" name="subject" /> </td> 
+					<td> <input type="text" value="${applicant.subject}" name="subject" /> </td> 
 				</tr>
 				<tr> 
 					<td class="header"> Vertiefung: </td> 
-					<td> <input type="text" value="${bewerber.specialization}" name="specialization" /> </td> 
+					<td> <input type="text" value="${applicant.specialization}" name="specialization" /> </td> 
 				</tr>
 				<tr> 
 					<td class="header"> Gehaltsvorstellung: </td> 
-					<td> <input type="text" value="${bewerber.sallery}" name="sallery" /> </td> 
+					<td> <input type="text" value="${applicant.sallery}" name="sallery" /> </td> 
 				</tr>
 				<tr> 
 					<td class="header"> Passwort: </td> 
-					<td> <input type="password" value="${bewerber.password}" name="password" /> </td> 
+					<td> <input type="password" value="${applicant.password}" name="password" /> </td> 
 				</tr>
 			</table>	
 			<button type="submit">Ändern</button>	

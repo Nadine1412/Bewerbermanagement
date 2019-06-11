@@ -5,6 +5,7 @@ import de.hfu.bewerbermanagement.dao.UserDaoImpl;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -52,10 +53,11 @@ public class WebMvcConfig {
 	public JsonNode getJsonNode() {
 		ObjectMapper objectMapper = new ObjectMapper();
 		//String json = "de\\hfu\\bewerbermanagement\\dao\\sqlStatements.json";
-		String json = "C:\\Users\\Nadine\\git\\Bewerbermanagement\\src\\de\\hfu\\bewerbermanagement\\dao\\sqlStatements.json";
+//		String json = "C:\\Users\\Nadine\\git\\Bewerbermanagement\\src\\de\\hfu\\bewerbermanagement\\dao\\sqlStatements.json";
+		URL sqlUrl = WebMvcConfig.class.getResource("/de/hfu/bewerbermanagement/dao/sqlStatements.json");
 
 		try {
-			JsonNode jsonNode = objectMapper.readTree(new File(json));
+			JsonNode jsonNode = objectMapper.readTree(new File(sqlUrl.getPath()));
 			return jsonNode;
 		} catch (IOException e) {
 			e.printStackTrace();

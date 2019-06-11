@@ -8,7 +8,8 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
-import de.hfu.bewerbermanagement.model.Bewerber;
+import de.hfu.bewerbermanagement.model.Applicant;
+import de.hfu.bewerbermanagement.model.Recruiter;
 import de.hfu.bewerbermanagement.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,25 +31,57 @@ public class UserDaoImpl implements UserDao{
 	}
 
 
-	public int registerBewerber(Bewerber bewerber) {
+	public int registerApplicant(Applicant applicant) {
 		// SQL Statement aus json lesen (Nadine Jakob 07.06.2019)
-		String key = "registerBewerber";
-		String statement = jsonNode.get(key).asText();
+		String keyUser = "registerUser";
+		String keyApplicant = "registerApplicant";
+		String statementUser = jsonNode.get(keyUser).asText();
+		String statementApplicant = jsonNode.get(keyApplicant).asText();
 
-		//String sql = "INSERT INTO bewerber_data (user_pass,userName,userSurname,email,userEntrydate,userSubject,userSpecialization,userSallery) VALUES(?,?,?,?,?,?,?,?)";
-		if(statement != null) {
+		//"registerUser": "INSERT INTO user (password,name,surname,email,birthday VALUES(?,?,?,?,?)"
+		if(statementUser != null) {
 			try {
-				int counter = jdbcTemplate.update(statement, new Object[] { bewerber.getPassword(), bewerber.getUserName(), bewerber.getUserSurname(), bewerber.getEmail(),bewerber.getEntryDate(),bewerber.getSubject(),bewerber.getSpecialization(),bewerber.getSallery()});
-
-				return counter;
+				int counterUser = jdbcTemplate.update(statementUser, new Object[] { applicant.getPassword(), applicant.getUserName(), applicant.getUserSurname(), applicant.getEmail(),applicant.getBirthday()});
+				//"registerApplicant": "INSERT INTO applicant (entrydate,subject,specialization,sallery,u_id) VALUES(?,?,?,?,(SELECT u_id FROM user WHERE email=?)"
+				if(statementApplicant != null && counterUser != 0) {
+					int counterApplicant = jdbcTemplate.update(statementApplicant, new Object[] {applicant.getEntryDate(), applicant.getSubject(), applicant.getSpecialization(), applicant.getSallery(), applicant.getEmail()});
+					return counterApplicant;
+				}
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
 			return 0;
 		} else {
 			return 0;
-		}
-		
+		}	
+	}
+	
+	@Override
+	public int registerRecruiter(Recruiter recruiter) {
+		// SQL Statement aus json lesen (Nadine Jakob 07.06.2019)
+				String keyUser = "registerUser";
+				String keyRecruiter = "registerRecruiter";
+				String statementUser = jsonNode.get(keyUser).asText();
+				String statementRecruiter = jsonNode.get(keyRecruiter).asText();
+
+				//"registerUser": "INSERT INTO user (password,name,surname,email,birthday VALUES(?,?,?,?,?)"
+				if(statementUser != null) {
+					try {
+						int counterUser = jdbcTemplate.update(statementUser, new Object[] { recruiter.getPassword(), recruiter.getUserName(), recruiter.getUserSurname(), recruiter.getEmail(),recruiter.getBirthday()});
+						//"registerRecruiter": "INSERT INTO recruiter (position,enterprise, u_id) VALUES(?,?,(SELECT u_id FROM user WHERE email=?))",
+						if(statementRecruiter != null && counterUser != 0) {
+							int counterRecruiter = jdbcTemplate.update(statementRecruiter, new Object[] {recruiter.getPosition(), recruiter.getEnterprise(), recruiter.getEmail()});
+							System.out.println(counterUser);
+							System.out.println(counterRecruiter);
+							return counterRecruiter;
+						}
+					} catch(Exception e) {
+						e.printStackTrace();
+					}
+					return 0;
+				} else {
+					return 0;
+				}
 	}
 	
 	@Override
@@ -73,7 +106,7 @@ public class UserDaoImpl implements UserDao{
 	}
 
 
-	public Bewerber showProfil(HttpSession session) {
+	public Applicant showProfil(HttpSession session) {
 		// get SQL Statement (Nadine Jakob 10.06.2019)
 		String key = "showProfile";
 		String statement = jsonNode.get(key).asText();
@@ -82,20 +115,21 @@ public class UserDaoImpl implements UserDao{
 			try {
 				String email = session.getAttribute("userEmail").toString(); //kommt in Präsentationslogik
 				
-				Bewerber result = jdbcTemplate.queryForObject(statement, new Object[] {email}, new RowMapper<Bewerber>() {
+				Applicant result = jdbcTemplate.queryForObject(statement, new Object[] {email}, new RowMapper<Applicant>() {
 					@Override
-					public Bewerber mapRow(ResultSet rs, int rowNum) throws SQLException {
-						Bewerber bewerber = new Bewerber();
-						bewerber.setEmail(rs.getString("email"));
-						bewerber.setEntryDate(rs.getDate("userEntrydate").toString());
-						bewerber.setSallery(rs.getString("userSallery"));
-						bewerber.setPassword(rs.getString("user_pass"));
-						bewerber.setSpecialization(rs.getString("userSpecialization"));
-						bewerber.setSubject(rs.getString("userSubject"));
-						bewerber.setUserId(rs.getString("user_id"));
-						bewerber.setUserName(rs.getString("userName"));
-						bewerber.setUserSurname(rs.getString("userSurname"));
-						return bewerber;
+					public Applicant mapRow(ResultSet rs, int rowNum) throws SQLException {
+						Applicant applicant = new Applicant();
+						applicant.setEmail(rs.getString("email"));
+						applicant.setEntryDate(rs.getDate("userEntrydate").toString());
+						applicant.setSallery(rs.getString("userSallery"));
+						applicant.setPassword(rs.getString("user_pass"));
+						applicant.setBirthday(rs.getString("birthday"));
+						applicant.setSpecialization(rs.getString("userSpecialization"));
+						applicant.setSubject(rs.getString("userSubject"));
+						applicant.setUserId(rs.getString("user_id"));
+						applicant.setUserName(rs.getString("userName"));
+						applicant.setUserSurname(rs.getString("userSurname"));
+						return applicant;
 					}
 				} );	
 				return result;		
@@ -108,8 +142,8 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
-	public int changeProfil(Bewerber bewerber) {
-		String userId = bewerber.getUserId();
+	public int changeProfil(Applicant applicant) {
+		String userId = applicant.getUserId();
 		
 		// get SQL Statement (Nadine Jakob 10.06.2019)
 		String key = "changeProfile";
@@ -117,8 +151,8 @@ public class UserDaoImpl implements UserDao{
 
 		if(statement != null) {
 			try {
-				int counter = jdbcTemplate.update(statement, new Object[] {bewerber.getUserName(), bewerber.getUserSurname(), bewerber.getEmail(), bewerber.getEntryDate(), 
-						bewerber.getSubject(), bewerber.getSpecialization(), bewerber.getSallery(), bewerber.getPassword(), bewerber.getUserId()});
+				int counter = jdbcTemplate.update(statement, new Object[] {applicant.getUserName(), applicant.getUserSurname(), applicant.getEmail(), applicant.getBirthday(), applicant.getEntryDate(), 
+						applicant.getSubject(), applicant.getSpecialization(), applicant.getSallery(), applicant.getPassword(), applicant.getUserId()});
 				
 				return counter;
 				}

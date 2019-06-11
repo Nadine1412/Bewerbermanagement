@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpSession;
 
 import de.hfu.bewerbermanagement.dao.UserDao;
-import de.hfu.bewerbermanagement.model.Bewerber;
+import de.hfu.bewerbermanagement.model.Applicant;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +26,7 @@ public class UserProfilController {
 	public ModelAndView showProfil(HttpSession session) {
 		
 		ModelAndView mv = new ModelAndView();
-		Bewerber bewerber = userDao.showProfil(session);
+		Applicant bewerber = userDao.showProfil(session);
 		if(bewerber != null) {
 			mv.addObject("bewerber", bewerber);
 			mv.setViewName("showProfile");
@@ -41,7 +41,7 @@ public class UserProfilController {
 	public ModelAndView showOldProfil(HttpSession session) {
 		
 		ModelAndView mv = new ModelAndView();
-		Bewerber bewerber = userDao.showProfil(session);
+		Applicant bewerber = userDao.showProfil(session);
 		if(bewerber != null) {
 			mv.addObject("bewerber", bewerber);
 			mv.setViewName("changeProfile");
@@ -63,7 +63,7 @@ public class UserProfilController {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		Bewerber bewerber = new Bewerber();
+		Applicant bewerber = new Applicant();
 		bewerber.setUserId(userId);
 		bewerber.setPassword(password);
 		bewerber.setEmail(email);

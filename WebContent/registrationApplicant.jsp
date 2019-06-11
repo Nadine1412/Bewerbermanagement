@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Bewerbermanagement Registration</title>
+<title>Registration Bewerber</title>
 <style >
 	<%@include file="css/backgroundTemplate.css"%>
 </style>
@@ -11,9 +11,10 @@
 <body>
 	<div class="page">
 		<div class="form">
-			<form action="register" method="post" class="register-form">
+			<form action="registerApplicant" method="post" class="register-form">
 				<input type="text" placeholder="Vorname" name="userName" />
 				<input type="text" placeholder="Nachname" name="userSurname" />
+				<input type="text" placeholder="Geburtsdatum" name="birthday" />
 				<input type="text" placeholder="Fr. Eintrittsdatum" name="entryDate" />
 				<input type="text" placeholder="Fachrichtung" name="subject" />
 				<input type="text" placeholder="Vertiefung" name="specialization" />
@@ -22,22 +23,9 @@
 				<input type="password" placeholder="Passwort" name="password" />
 				<button type="submit">registrieren</button>
 				<p class="message">${msg}</p>
-				</form>
-				<!-- <form action="register" method="post">
-		<pre>
-			Name: <input type="text" name="userName" />
-			Nachname: <input type="text" name="userSurname" />
-			Fr.Eintrittsdatum: <input type="text" name="entryDate" />
-			Fachrichtung: <input type="text" name="subject" />
-			Vertiefung: <input type="text" name="specialization" />
-			Gehaltsvorstellung: <input type="text" name="sallery" />
-			E-Mail: <input type="text" name="email" />
-			Password: <input type="password" name="password" />
-			<input type="submit" value="Register" />
-		</pre>
-	</form> -->
-	
-
-	${msg}
+			</form>
+		${msg}
+		</div>
+	</div>
 </body>
 </html>

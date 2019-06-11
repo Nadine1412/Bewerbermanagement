@@ -1,6 +1,6 @@
 package de.hfu.bewerbermanagement.model;
 
-public class Personaler extends User {
+public class Recruiter extends User {
 
 	private String enterprise;
 	private String position;
@@ -9,8 +9,8 @@ public class Personaler extends User {
 		return enterprise;
 	}
 
-	public void setEnterprise(String enterprise2) {
-		this.enterprise = enterprise2;
+	public void setEnterprise(String enterprise) {
+		this.enterprise = enterprise;
 	}
 
 	public String getPosition() {
@@ -21,7 +21,7 @@ public class Personaler extends User {
 		this.position = position;
 	}
 
-	public Personaler() {
+	public Recruiter() {
 		// TODO Auto-generated constructor stub
 	}
 

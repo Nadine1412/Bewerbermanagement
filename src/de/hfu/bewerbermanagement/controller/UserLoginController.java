@@ -37,7 +37,7 @@ public class UserLoginController {
 
 		if(name != null) {
 			mv.addObject("msg", "Willkommen Herr / Frau " + name + ", Sie haben sich erfolgreich eingeloggt.");
-			mv.setViewName("overviewBewerber");
+			mv.setViewName("overviewApplicant");
 		} else {
 			mv.addObject("msg", "Invalid user id or password.");
 			mv.setViewName("login");

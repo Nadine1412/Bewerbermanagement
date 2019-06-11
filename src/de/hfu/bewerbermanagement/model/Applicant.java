@@ -1,6 +1,6 @@
 package de.hfu.bewerbermanagement.model;
 
-public class Bewerber extends User {
+public class Applicant extends User {
 	private String entryDate;
 	private String subject;
 	private String specialization;
@@ -38,7 +38,7 @@ public class Bewerber extends User {
 		this.entryDate = entryDate;
 	}
 
-	public Bewerber() {
+	public Applicant() {
 		// TODO Auto-generated constructor stub
 	}
 

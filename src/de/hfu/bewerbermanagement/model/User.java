@@ -6,6 +6,7 @@ public class User {
 	private String userName;
 	private String userSurname;
 	private String email;
+	private String birthday;
 	
 	//getter & setter
 	public String getUserName() {
@@ -39,7 +40,12 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	public String getBirthday() {
+		return birthday;
+	}
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
 	
 	
 

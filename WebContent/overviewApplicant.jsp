@@ -13,7 +13,7 @@
 		<body>
 			<div class="navbar">
 				<ul>
-					<li><a class="active" href="overviewBewerber.jsp">Übersicht</a></li>
+					<li><a class="active" href="overviewApplicant.jsp">Übersicht</a></li>
 					<li>
 						<a href="">Profil</a>
 						<ul>

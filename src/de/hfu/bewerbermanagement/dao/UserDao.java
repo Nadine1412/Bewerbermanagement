@@ -2,21 +2,24 @@ package de.hfu.bewerbermanagement.dao;
 
 import javax.servlet.http.HttpSession;
 
-import de.hfu.bewerbermanagement.model.Bewerber;
+import de.hfu.bewerbermanagement.model.Applicant;
+import de.hfu.bewerbermanagement.model.Recruiter;
 import de.hfu.bewerbermanagement.model.User;
 public interface UserDao {
 	
 	//public String readSQLStatement(String key);
 	
-	public int registerBewerber(Bewerber bewerber);
+	public int registerApplicant(Applicant applicant);
+	public int registerRecruiter(Recruiter recruiter);
 
 	public String loginUser(User user);
 	
+	
 	// Profil anzeigen
-	public Bewerber showProfil(HttpSession session);
+	public Applicant showProfil(HttpSession session);
 
 	
 	// Profil ändern
-	public int changeProfil(Bewerber bewerber);
+	public int changeProfil(Applicant applicant);
 
 }

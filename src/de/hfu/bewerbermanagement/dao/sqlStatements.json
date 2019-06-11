@@ -1,6 +1,8 @@
 {
-	"login": "SELECT userSurname FROM user_data WHERE email=? AND user_pass=?",
-	"showProfile": "SELECT * FROM bewerber_data WHERE email=?",
-	"changeProfile": "UPDATE bewerber_data SET userName=?, userSurname=?, email=?, userEntrydate=?, userSubject=?, userSpecialization=?, userSallery=?, user_pass=? WHERE user_id=?",
-	"registerBewerber": "INSERT INTO bewerber_data (user_pass,userName,userSurname,email,userEntrydate,userSubject,userSpecialization,userSallery) VALUES(?,?,?,?,?,?,?,?)"
+	"login": "SELECT surname FROM user WHERE email=? AND password=?",
+	"showProfile": "SELECT * FROM applicant WHERE email=?",
+	"registerUser": "INSERT INTO user (password,name,surname,email,birthday) VALUES(?,?,?,?,?)",
+	"registerApplicant": "INSERT INTO applicant (entrydate,subject,specialization,sallery,u_id) VALUES(?,?,?,?,(SELECT u_id FROM user WHERE email=?))",
+	"registerRecruiter": "INSERT INTO recruiter (position,enterprise, u_id) VALUES(?,?,(SELECT u_id FROM user WHERE email=?))",
+	"changeProfile": "UPDATE bewerber_data SET userName=?, userSurname=?, email=?, userEntrydate=?, userSubject=?, userSpecialization=?, userSallery=?, user_pass=? WHERE user_id=?"	
 }
