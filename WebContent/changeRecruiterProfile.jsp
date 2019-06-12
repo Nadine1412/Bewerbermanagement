@@ -37,14 +37,14 @@
 			<div class="form">
 				<form action="updateRecruiterProfile" method="post">
 					<table>  
-						<tr> <td class="header-change"> User ID: </td> 		<td> <input type="text" value="${recruiter.userId}" 		name="userId" readonly /> </td> </tr>
-						<tr> <td class="header-change"> Vorname: </td> 		<td> <input type="text" value="${recruiter.userName}" 		name="userName" /> </td> </tr> 
-						<tr> <td class="header-change"> Nachname: </td> 	<td> <input type="text" value="${recruiter.userSurname}"	name="userSurname" /> </td> </tr>
-						<tr> <td class="header-change"> E-Mail: </td> 		<td> <input type="text" value="${recruiter.email}" 			name="email" /> </td> </tr>
-						<tr> <td class="header-change"> Geburtstag: </td> 	<td> <input type="text" value="${recruiter.birthday}" 		name="birthday" /> </td> </tr>
-						<tr> <td class="header-change"> Unternehmen: </td> 	<td> <input type="text" value="${recruiter.enterprise}" 	name="enterprise" /> </td> </tr>
-						<tr> <td class="header-change"> Position: </td> 	<td> <input type="text" value="${recruiter.position}"		name="position" /> </td> </tr>
-						<tr> <td class="header-change"> Passwort: </td> 	<td> <input type="password" value="${recruiter.password}" 	name="password" /> </td> </tr>
+						<tr> <td class="header-change"> User ID: </td> 		<td> <input class="profile" type="text" value="${recruiter.userId}" 		name="userId" readonly /> </td> </tr>
+						<tr> <td class="header-change"> Vorname: </td> 		<td> <input class="profile" type="text" value="${recruiter.userName}" 		name="userName" /> </td> </tr> 
+						<tr> <td class="header-change"> Nachname: </td> 	<td> <input class="profile" type="text" value="${recruiter.userSurname}"	name="userSurname" /> </td> </tr>
+						<tr> <td class="header-change"> E-Mail: </td> 		<td> <input class="profile" type="text" value="${recruiter.email}" 			name="email" /> </td> </tr>
+						<tr> <td class="header-change"> Geburtstag: </td> 	<td> <input class="profile" type="text" value="${recruiter.birthday}" 		name="birthday" /> </td> </tr>
+						<tr> <td class="header-change"> Unternehmen: </td> 	<td> <input class="profile" type="text" value="${recruiter.enterprise}" 	name="enterprise" /> </td> </tr>
+						<tr> <td class="header-change"> Position: </td> 	<td> <input class="profile" type="text" value="${recruiter.position}"		name="position" /> </td> </tr>
+						<tr> <td class="header-change"> Passwort: </td> 	<td> <input class="profile" type="password" value="${recruiter.password}" 	name="password" /> </td> </tr>
 					</table>	
 					<button type="submit">Ändern</button>	
 				</form>
