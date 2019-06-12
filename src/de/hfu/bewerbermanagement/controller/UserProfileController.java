@@ -52,53 +52,105 @@ public class UserProfileController {
 		return mv;		
 	}
 	
+	//Alte Profildaten von der Datenbank(dao) an den View weitergeben
 	@RequestMapping(value = {"getOldProfile"}, method = RequestMethod.GET)
 	public ModelAndView showOldProfil(HttpSession session) {
 		
 		ModelAndView mv = new ModelAndView();
-		Applicant applicant = userDao.showApplicantProfile(session);
-		if(applicant != null) {
-			mv.addObject("applicant", applicant);
-			mv.setViewName("changeProfile");
-		} else {
-			mv.addObject("msg", "Invalid user id or password.");
-			mv.setViewName("login");
+		if((boolean) session.getAttribute("isApplicant"))
+		{
+			Applicant applicant = userDao.showApplicantProfile(session);
+			if(applicant != null) {
+				mv.addObject("applicant", applicant);
+				mv.setViewName("changeApplicantProfile");
+			} else {
+				mv.addObject("msg", "Invalid user id or password.");
+				mv.setViewName("login");
+			}
+		}
+		else {
+			Recruiter recruiter = userDao.showRecruiterProfile(session);
+			if(recruiter != null) {
+				mv.addObject("recruiter", recruiter);
+				mv.setViewName("changeRecruiterProfile");
+			} else {
+				mv.addObject("msg", "Invalid user id or password.");
+				mv.setViewName("login");
+			}
 		}
 		return mv;		
 	}
 	
-	@RequestMapping(value = {"/updateProfile"}, method = RequestMethod.POST)
-	public ModelAndView changeProfil(
+	// Aktualisiertes Bewerber-Profil vom View an die Datenbank (dao) posten
+	@RequestMapping(value = {"/updateApplicantProfile"}, method = RequestMethod.POST)
+	public ModelAndView changeApplicantProfil(
 			@RequestParam("userId") String userId,
 			@RequestParam("password") String password, @RequestParam("email") String email,
 			@RequestParam("userName") String userName, @RequestParam("userSurname") String userSurname,
-//			@RequestParam("enterprise") String enterprise, @RequestParam("position") String position,
-			@RequestParam("entryDate") String entryDate, @RequestParam("subject") String subject,
-			@RequestParam("specialization") String specialization, @RequestParam("sallery") String sallery) {
+			@RequestParam("birthday") String birthday, @RequestParam("entryDate") String entryDate, 
+			@RequestParam("subject") String subject, @RequestParam("specialization") String specialization, 
+			@RequestParam("sallery") String sallery) {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		Applicant bewerber = new Applicant();
-		bewerber.setUserId(userId);
-		bewerber.setPassword(password);
-		bewerber.setEmail(email);
-		bewerber.setUserName(userName);
-		bewerber.setUserSurname(userSurname);
-		bewerber.setEntryDate(entryDate);
-		bewerber.setSubject(subject);
-		bewerber.setSpecialization(specialization);
-		bewerber.setSallery(sallery);
+		Applicant applicant = new Applicant();
+		applicant.setUserId(userId);
+		applicant.setPassword(password);
+		applicant.setEmail(email);
+		applicant.setBirthday(birthday);
+		applicant.setUserName(userName);
+		applicant.setUserSurname(userSurname);
+		applicant.setEntryDate(entryDate);
+		applicant.setSubject(subject);
+		applicant.setSpecialization(specialization);
+		applicant.setSallery(sallery);
 		
-		int counter = userDao.changeProfil(bewerber);
+		int counter = userDao.changeApplicantProfile(applicant);
 		
 		if(counter != 0) {
-			mv.addObject("bewerber", bewerber);
-			mv.setViewName("showProfile");
+			mv.addObject("applicant", applicant);
+			mv.setViewName("showApplicantProfile");
 			
 		} else {
 			mv.addObject("msg", "Invalid update.");
-			mv.setViewName("changeProfile");
+			mv.setViewName("changeApplicantProfile");
 		}
 		return mv;		
 	}
+	
+	// Aktualisiertes Personaler-Profil vom View an die Datenbank(dao) posten
+	@RequestMapping(value = {"/updateRecruiterProfile"}, method = RequestMethod.POST)
+	public ModelAndView changeRecruiterProfil(
+			@RequestParam("userId") String userId,
+			@RequestParam("password") String password, @RequestParam("email") String email,
+			@RequestParam("userName") String userName, @RequestParam("userSurname") String userSurname,
+			@RequestParam("enterprise") String enterprise, @RequestParam("position") String position,
+			@RequestParam("birthday") String birthday) {
+		
+		ModelAndView mv = new ModelAndView();
+		
+		Recruiter recruiter = new Recruiter();
+		recruiter.setUserId(userId);
+		recruiter.setPassword(password);
+		recruiter.setEmail(email);
+		recruiter.setUserName(userName);
+		recruiter.setUserSurname(userSurname);
+		recruiter.setBirthday(birthday);
+		recruiter.setEnterprise(enterprise);
+		recruiter.setPosition(position);
+
+		
+		int counter = userDao.changeRecruiterProfile(recruiter);
+		
+		if(counter != 0) {
+			mv.addObject("recruiter", recruiter);
+			mv.setViewName("showRecruiterProfile");
+			
+		} else {
+			mv.addObject("msg", "Invalid update.");
+			mv.setViewName("changeRecruiterProfile");
+		}
+		return mv;		
+	}
+	
 }

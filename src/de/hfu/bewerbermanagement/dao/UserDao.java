@@ -21,7 +21,8 @@ public interface UserDao {
 
 	
 	// Profil ändern
-	public int changeProfil(Applicant applicant);
+	public int changeApplicantProfile(Applicant applicant);
+	public int changeRecruiterProfile(Recruiter recruiter);
 	
 	// Prüfen ob Bewerber oder Personaler
 	public Boolean isApplicant(String email);

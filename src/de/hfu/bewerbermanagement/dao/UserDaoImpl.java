@@ -103,6 +103,31 @@ public class UserDaoImpl implements UserDao{
 			//@ToDo error Message ausgeben
 		}
 	}
+	
+	//Prüfen ob Applicant oder Recruiter
+	@Override
+	public Boolean isApplicant(String email) {
+		String key = "isApplicant";
+		String statement = jsonNode.get(key).asText();
+		
+		if(statement  != null) {
+			try {
+				int resultAid = jdbcTemplate.queryForObject(statement, new Object[] {email}, int.class);
+				// Ist ein Applicant
+					return true;
+//				}
+				
+			} catch (EmptyResultDataAccessException e) {
+				// Ist ein Recruiter
+				return false;
+			} catch (Exception e) {
+				return null;
+			}
+		} else {
+			return null;
+		}
+	}
+
 
 	// Applicant Profil anzeigen
 	@Override
@@ -176,12 +201,13 @@ public class UserDaoImpl implements UserDao{
 			}
 		}
 	
+	// Applicant Profil ändern
 	@Override
-	public int changeProfil(Applicant applicant) {
+	public int changeApplicantProfile(Applicant applicant) {
 		String userId = applicant.getUserId();
 		
 		// get SQL Statement (Nadine Jakob 10.06.2019)
-		String key = "changeProfile";
+		String key = "changeApplicantProfile";
 		String statement = jsonNode.get(key).asText();
 
 		if(statement != null) {
@@ -200,30 +226,26 @@ public class UserDaoImpl implements UserDao{
 	}
 
 
+	// Recruiter Profil ändern
 	@Override
-	public Boolean isApplicant(String email) {
-		String key = "isApplicant";
-		String statement = jsonNode.get(key).asText();
+	public int changeRecruiterProfile(Recruiter recruiter) {
 		
-		if(statement  != null) {
+		String key = "changeRecruiterProfile";
+		String statement = jsonNode.get(key).asText();
+
+		if(statement != null) {
 			try {
-				int resultAid = jdbcTemplate.queryForObject(statement, new Object[] {email}, int.class);
-//				System.out.println(resultAid);
-//				if(resultAid != 0) {
-					return true;
-//				}
+				int counter = jdbcTemplate.update(statement, new Object[] {recruiter.getUserName(), recruiter.getUserSurname(), recruiter.getEmail(), recruiter.getBirthday(), recruiter.getEnterprise(), 
+						recruiter.getPosition(), recruiter.getPassword(), recruiter.getUserId()});
 				
-			} catch (EmptyResultDataAccessException e) {
-				return false;
-			} catch (Exception e) {
-				return null;
-			}
+				return counter;
+				}
+				catch (Exception e) {
+					return 0;
+				}
 		} else {
-			return null;
+			return 0;
 		}
 	}
-
-
 }
-
 
