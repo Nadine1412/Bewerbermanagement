@@ -7,6 +7,14 @@
 <style >
 	<%@include file="css/backgroundTemplate.css"%>
 </style>
+<script>
+	function handleClick()
+	{
+		var checkBoxDSGVO = document.getElementById("checkBoxDSGVO");
+		document.getElementById("submitButtonId").disabled= !checkBoxDSGVO.checked;
+	
+	}
+</script>
 </head>
 <body>
 	<div class="page">
@@ -20,8 +28,10 @@
 				<input type="text" placeholder="Vertiefung" name="specialization" />
 				<input type="text" placeholder="Gehaltsvorstellung" name="sallery" />
 				<input type="text" placeholder="Email" name="email" />
-				<input type="password" placeholder="Passwort" name="password" />
-				<button type="submit">registrieren</button>
+				<input type="password" placeholder="Passwort" name="password" /> 
+				<br> Ich stimme der <a href="dsgvo.jsp" target="_blank"> DSGVO </a>zu: <input type="checkbox" id="checkBoxDSGVO" onclick="handleClick(this)" name="DSGVO" value="true"> <br>
+				<input type="submit"  id="submitButtonId" class="submitButton" value="registrieren" disabled="disabled">
+				<!-- -  <button type="submit" >registrieren</button> --> 
 				<p class="message">${msg}</p>
 			</form>
 		${msg}
