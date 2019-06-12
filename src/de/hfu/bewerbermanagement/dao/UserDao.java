@@ -3,6 +3,7 @@ package de.hfu.bewerbermanagement.dao;
 import javax.servlet.http.HttpSession;
 
 import de.hfu.bewerbermanagement.model.Applicant;
+import de.hfu.bewerbermanagement.model.PDF;
 import de.hfu.bewerbermanagement.model.Recruiter;
 import de.hfu.bewerbermanagement.model.User;
 public interface UserDao {
@@ -20,10 +21,12 @@ public interface UserDao {
 	public Recruiter showRecruiterProfile(HttpSession session);
 
 	
-	// Profil ändern
+	// Profil ï¿½ndern
 	public int changeProfil(Applicant applicant);
 	
-	// Prüfen ob Bewerber oder Personaler
+	// Prï¿½fen ob Bewerber oder Personaler
 	public Boolean isApplicant(String email);
-
+	
+	//fileUpload
+	public int fileUpload(PDF upload);
 }

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import de.hfu.bewerbermanagement.model.Applicant;
+import de.hfu.bewerbermanagement.model.PDF;
 import de.hfu.bewerbermanagement.model.Recruiter;
 import de.hfu.bewerbermanagement.model.User;
 
@@ -113,7 +114,7 @@ public class UserDaoImpl implements UserDao{
 		
 		if(statement != null) {
 			try {
-				String email = session.getAttribute("userEmail").toString(); //kommt in Präsentationslogik
+				String email = session.getAttribute("userEmail").toString(); //kommt in Prï¿½sentationslogik
 				
 				Applicant result = jdbcTemplate.queryForObject(statement, new Object[] {email}, new RowMapper<Applicant>() {
 					@Override
@@ -150,7 +151,7 @@ public class UserDaoImpl implements UserDao{
 			
 			if(statement != null) {
 				try {
-					String email = session.getAttribute("userEmail").toString(); //kommt in Präsentationslogik
+					String email = session.getAttribute("userEmail").toString(); //kommt in Prï¿½sentationslogik
 					
 					Recruiter result = jdbcTemplate.queryForObject(statement, new Object[] {email}, new RowMapper<Recruiter>() {
 						@Override
@@ -224,6 +225,28 @@ public class UserDaoImpl implements UserDao{
 	}
 
 
-}
+	@Override
+	public int fileUpload(PDF upload) {
+		// TODO Auto-generated method stub
+		// SQL Statement aus json lesen
+				String keyFile = "fileUpload";
+				String statementFile = jsonNode.get(keyFile).asText();
+
+				//"registerUser": "INSERT INTO user (password,name,surname,email,birthday VALUES(?,?,?,?,?)"
+				if(statementFile != null) {
+					try {
+						int counterFile = jdbcTemplate.update(statementFile, new Object[] { upload.getData_id(), upload.getPdf()});
+						
+						
+					} catch(Exception e) {
+						e.printStackTrace();
+					}
+					return 0;
+	
+	}
+				return 0;
+
+
+	}}
 
 
