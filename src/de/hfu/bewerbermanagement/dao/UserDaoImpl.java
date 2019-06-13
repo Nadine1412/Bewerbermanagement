@@ -239,42 +239,4 @@ public class UserDaoImpl implements UserDao {
 		}
 	}
 
-	@Override
-	public int fileUpload(PDF upload) {
-		// TODO Auto-generated method stub
-		// SQL Statement aus json lesen
-		String keyFile = "fileUpload";
-		String statementFile = jsonNode.get(keyFile).asText();
-
-		// "fileUpload": "INSERT INTO data (data_id, file VALUES(?,?)"
-		if (statementFile != null) {
-			try {
-				int counterFile = jdbcTemplate.update(statementFile,
-						new Object[] { upload.getData_id(), upload.getPdf() });
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return 0;
-
-		}
-		return 0;
-
-	}
-
-	@Override
-	public int userSkills(Skills skills) {
-
-		String keySkills = "userSkills";
-		String statementSkills = jsonNode.get(keySkills).asText();
-
-		try {
-			jdbcTemplate.update(statementSkills, new Object[] { skills.getJava(), skills.getJavascript() });
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return 0;
-
-	}
 }

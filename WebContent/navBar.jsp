@@ -14,6 +14,7 @@
 						<li><a href="getProfile">Profil anzeigen</a></li>
 						<li><a class="active" href="getOldProfile">Profil bearbeiten</a></li>
 						<li><a class="active" href="fileUpload.jsp">Anhänge hochladen</a></li>
+						<li><a class="active" href="fileUploadView.jsp">Anhänge anzeigen</a></li>
 						<li><a class="active" href="userSkills.jsp">Fähigkeiten hinzufügen</a></li>
 					</ul>
 				</li>

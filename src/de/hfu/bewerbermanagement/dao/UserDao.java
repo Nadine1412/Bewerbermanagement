@@ -28,11 +28,6 @@ public interface UserDao {
 	// Pr�fen ob Bewerber oder Personaler
 	public Boolean isApplicant(String email);
 	
-	//fileUpload
-	public int fileUpload(PDF upload);
-	
-	//userSkills
-	public int userSkills(Skills skills);
 	
 	
 }
