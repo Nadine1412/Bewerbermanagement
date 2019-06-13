@@ -35,12 +35,12 @@ public class UserUploadController {
 		int counter = userDao.fileUpload(upload);
 		
 		if (counter > 0) {
-			mv.addObject("msg", "User registration successful.");
+			mv.addObject("msg", "File Upload successful.");
 			mv.setViewName("login");
 			
 		} else {
 			mv.addObject("msg", "Error - check the console log");
-			mv.setViewName("registrationRecruiter");
+			mv.setViewName("fileUpload");
 		}
 		
 		return mv;

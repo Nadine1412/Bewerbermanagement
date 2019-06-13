@@ -38,14 +38,6 @@
 <input type="file" name="file" multiple/>
 <input type="submit">
 <p class="message">${msg}</p>
-
-  <select name="item">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-  </select>
-  <input type="submit" value="Submit">
-
 </form>
 ${msg}
 </body>

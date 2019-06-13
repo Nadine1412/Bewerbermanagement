@@ -36,13 +36,22 @@
 <h2>Fähigkeiten angeben</h2>
 <p>
         <h3>Programmiersprachen</h3>
-    <form name="skilss" method="get" action="#">
+    <form name="skills" method="get" action="#">
        <select name="sklz">
            <option>Java</option>
            <option>JavaScript</option>   
            <option>Sql</option>
        </select>
      <input type="submit" name="submit" value="Select Skills"/>
+     <h3>EDV-Kenntnisse</h3>
+    <form name="skills2" method="get" action="#">
+       <select name="sklz">
+           <option>Word</option>
+           <option>Excel</option>   
+           <option>Powerpoint</option>
+       </select>
+     <input type="submit" name="submit" value="Select Skills"/>
+ 
     </form>
 
 ${msg}
