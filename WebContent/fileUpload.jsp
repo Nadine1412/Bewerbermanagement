@@ -36,7 +36,7 @@
 <h2>Anhänge hochladen</h2>
 <form action="fileUpload" method="post" enctype="multipart/form-data">
 <input type="file" name="file" multiple/>
-<input type="submit">
+<button type="submit">Hochladen</button>
 <p class="message">${msg}</p>
 </form>
 ${msg}

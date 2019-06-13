@@ -45,13 +45,12 @@
      <input type="submit" name="submit" value="Select Skills"/>
      <h3>EDV-Kenntnisse</h3>
     <form name="skills2" method="get" action="#">
-       <select name="sklz">
+       <select name="sklz2">
            <option>Word</option>
            <option>Excel</option>   
            <option>Powerpoint</option>
        </select>
      <input type="submit" name="submit" value="Select Skills"/>
- 
     </form>
 
 ${msg}

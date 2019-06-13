@@ -232,7 +232,7 @@ public class UserDaoImpl implements UserDao{
 				String keyFile = "fileUpload";
 				String statementFile = jsonNode.get(keyFile).asText();
 
-				//"registerUser": "INSERT INTO user (password,name,surname,email,birthday VALUES(?,?,?,?,?)"
+				//"fileUpload": "INSERT INTO data (data_id, file VALUES(?,?)"
 				if(statementFile != null) {
 					try {
 						int counterFile = jdbcTemplate.update(statementFile, new Object[] { upload.getData_id(), upload.getPdf()});
