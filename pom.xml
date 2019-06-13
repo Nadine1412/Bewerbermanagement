@@ -85,6 +85,19 @@
        		<version>2.9.9</version>
 		</dependency>
 		
+		<!-- Dependency für File Upload (Florian Möhrle 13.07.2019) -->
+		<dependency>
+    		<groupId>commons-fileupload</groupId>
+    		<artifactId>commons-fileupload</artifactId>
+       		<version>1.2</version>
+		</dependency>
+		
+		<dependency>
+    		<groupId>commons-io</groupId>
+    		<artifactId>commons-io</artifactId>
+       		<version>2.4</version>
+		</dependency>
+		
 	</dependencies>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
