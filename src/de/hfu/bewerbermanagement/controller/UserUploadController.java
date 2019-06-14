@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+//Controller für den Upload der File (Florian Möhrle 14.06.2019)
 @Controller
 public class UserUploadController {
 

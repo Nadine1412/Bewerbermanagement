@@ -24,7 +24,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @EnableWebMvc
 @ComponentScan("de.hfu.bewerbermanagement")
 public class WebMvcConfig {
-	
+
 	@Bean
 	InternalResourceViewResolver viewResolver() {
 		InternalResourceViewResolver vr = new InternalResourceViewResolver();
@@ -33,7 +33,7 @@ public class WebMvcConfig {
 		vr.setSuffix(".jsp");
 		return vr;
 	}
-	
+
 	@Bean
 	DriverManagerDataSource getDataSource() {
 		DriverManagerDataSource ds = new DriverManagerDataSource();
@@ -44,17 +44,17 @@ public class WebMvcConfig {
 
 		return ds;
 	}
-	
+
 	@Bean
 	public UserDao getUserDao() {
 		return new UserDaoImpl(getDataSource());
-		
+
 	}
-	
+
 	@Bean
 	public JsonNode getJsonNode() {
 		ObjectMapper objectMapper = new ObjectMapper();
-		//String json = "de\\hfu\\bewerbermanagement\\dao\\sqlStatements.json";
+		// String json = "de\\hfu\\bewerbermanagement\\dao\\sqlStatements.json";
 //		String json = "C:\\Users\\Nadine\\git\\Bewerbermanagement\\src\\de\\hfu\\bewerbermanagement\\dao\\sqlStatements.json";
 		URL sqlUrl = WebMvcConfig.class.getResource("/de/hfu/bewerbermanagement/dao/sqlStatements.json");
 
@@ -64,21 +64,17 @@ public class WebMvcConfig {
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
-		}	
+		}
 	}
-	
-	//Properties f�r mail adapter hier setzen
-	
 
-	
+	// Properties f�r mail adapter hier setzen
+
 	// Beans für den File Upload (Florian Möhrle 13.06.2019)
-	
 	@Bean(name = "multipartResolver")
 	public CommonsMultipartResolver multipartResolver() {
-	    CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-	    multipartResolver.setMaxUploadSize(1000000000);
-	    return multipartResolver;
+		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+		multipartResolver.setMaxUploadSize(1000000000);
+		return multipartResolver;
 	}
-	
-	
+
 }
