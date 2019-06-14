@@ -8,5 +8,4 @@
 		<welcome-file>decision.jsp</welcome-file>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
-
 </web-app>

@@ -3,9 +3,7 @@ package de.hfu.bewerbermanagement.dao;
 import javax.servlet.http.HttpSession;
 
 import de.hfu.bewerbermanagement.model.Applicant;
-import de.hfu.bewerbermanagement.model.PDF;
 import de.hfu.bewerbermanagement.model.Recruiter;
-import de.hfu.bewerbermanagement.model.Skills;
 import de.hfu.bewerbermanagement.model.User;
 public interface UserDao {
 	
