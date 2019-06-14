@@ -1,9 +1,12 @@
 package de.hfu.bewerbermanagement.controller;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import de.hfu.bewerbermanagement.business.ApplicantManager;
+import de.hfu.bewerbermanagement.business.RecruiterManager;
 import de.hfu.bewerbermanagement.dao.UserDao;
 import de.hfu.bewerbermanagement.model.Applicant;
 import de.hfu.bewerbermanagement.model.Recruiter;
@@ -105,18 +108,60 @@ public class UserProfileController {
 		applicant.setSpecialization(specialization);
 		applicant.setSallery(sallery);
 		
-		int counter = userDao.changeApplicantProfile(applicant);
-		
-		if(counter != 0) {
-			mv.addObject("applicant", applicant);
-			mv.setViewName("showApplicantProfile");
-			
-		} else {
-			mv.addObject("msg", "Invalid update.");
-			mv.setViewName("changeApplicantProfile");
+		//Aufruf der Methode ExpressionApplicant
+				ApplicantManager am = new ApplicantManager();
+				Map<String, Boolean> map = am.expressionApplicant(applicant);
+				
+				if(map.get("name") && map.get("surname") && map.get("birthday") && map.get("entrydate") && map.get("subject") && map.get("specialization") && map.get("sallery") && map.get("email") && map.get("password"))
+				{
+					System.out.println("Richtige Eingabe." + "Name" + map.get("name") + "Nachname: " + map.get("surname") + "Geburtstag: " + map.get("birthday") + "Entrydate: " + map.get("entrydate") + "Fachrichtung: " + map.get("subject") + "Vertiefung: " + map.get("specialization") + "Sallery" + map.get("sallery") + "EMail: " + map.get("email") + "Passwort: " + map.get("password"));
+					
+					int counter = userDao.changeApplicantProfile(applicant);
+
+						if (counter > 0) {
+							mv.addObject("msg", "Profil-ƒnderung erfolgreich.");
+							mv.addObject("applicant", applicant);
+							mv.setViewName("showApplicantProfile");
+						} else {
+							mv.addObject("msg", "Error - check the console log");
+							mv.setViewName("changeApplicantProfile");
+						}
+				} else {
+					System.out.println("Falsche Eingabe." + "Name" + map.get("name") + "Nachname: " + map.get("surname") + "Geburtstag: " + map.get("birthday") + "Entrydate: " + map.get("entrydate") + "Fachrichtung: " + map.get("subject") + "Vertiefung: " + map.get("specialization") + "Sallery" + map.get("sallery") + "EMail: " + map.get("email") + "Passwort: " + map.get("password"));
+				
+					if(!map.get("name")) {
+						mv.addObject("errorName", "Falsche Eingabe. Bitte mit einem Groﬂbuchstaben beginnen.");
+					}
+					if(!map.get("surname")) {
+						mv.addObject("errorSurname", "Falsche Eingabe. Bitte mit einem Groﬂbuchstaben beginnen.");
+					}
+					if(!map.get("birthday")) {
+						mv.addObject("errorBirthday", "Bitte geben Sie ein Datum ein.");
+					}
+					if(!map.get("entrydate")) {
+						mv.addObject("errorEntrydate", "Bitte geben Sie ein Datum ein.");
+					}
+					if(!map.get("subject")) {
+						mv.addObject("errorSubject", "Falsche Eingabe. Bitte mit einem Groﬂbuchstaben beginnen.");
+					}
+					if(!map.get("specialization")) {
+						mv.addObject("errorSpecialization", "Falsche Eingabe. Bitte mit einem Groﬂbuchstaben beginnen.");
+					} 
+					if(!map.get("sallery")) {
+						mv.addObject("errorSallery", "Bitte eine mind. drei-stellige Zahl eingeben.");
+					}
+					if(!map.get("email")) {
+						mv.addObject("errorEmail", "Bitte eine richtige E-Mailadresse eingeben.");
+					}
+					if(!map.get("password")) {
+						mv.addObject("errorPassword", "Das Passwort muss mind. 4 Zeichen enthalten.");
+					}
+					mv.addObject("applicant", applicant);
+					mv.setViewName("changeApplicantProfile");
+				}
+				
+				return mv;
 		}
-		return mv;		
-	}
 	
 	// Aktualisiertes Personaler-Profil vom View an die Datenbank(dao) posten
 	@RequestMapping(value = {"/updateRecruiterProfile"}, method = RequestMethod.POST)
@@ -140,17 +185,55 @@ public class UserProfileController {
 		recruiter.setPosition(position);
 
 		
-		int counter = userDao.changeRecruiterProfile(recruiter);
+		//Aufruf der Methode ExpressionApplicant
+		RecruiterManager rm = new RecruiterManager();
+		Map<String, Boolean> map = rm.expressionRecruiter(recruiter);
 		
-		if(counter != 0) {
-			mv.addObject("recruiter", recruiter);
-			mv.setViewName("showRecruiterProfile");
+		if(map.get("name") && map.get("surname") && map.get("birthday") && map.get("enterprise") && map.get("position") && map.get("email") && map.get("password"))
+		{
+			System.out.println("Richtige Eingabe." + " Name: " + map.get("name") + " Nachname: " + map.get("surname") + " Geburtstag: " + map.get("birthday") + " Unternehmen: " + map.get("enterprise") + " Position: " + map.get("position") + " EMail: " + map.get("email") + " Passwort: " + map.get("password"));
 			
+			int counter = userDao.changeRecruiterProfile(recruiter);
+
+				if (counter > 0) {
+					mv.addObject("msg", "Profil-ƒnderung erfolgreich.");
+					mv.addObject("recruiter", recruiter);
+					mv.setViewName("showRecruiterProfile");
+				} else {
+					mv.addObject("msg", "Error - check the console log");
+					mv.setViewName("changeRecruiterProfile");
+				}
 		} else {
-			mv.addObject("msg", "Invalid update.");
+			System.out.println("Falsche Eingabe." + " Name: " + map.get("name") + " Nachname: " + map.get("surname") + " Geburtstag: " + map.get("birthday") + " Unternehmen: " + map.get("enterprise") + " Position: " + map.get("position") + " EMail: " + map.get("email") + " Passwort: " + map.get("password"));
+
+			if(!map.get("name")) {
+				mv.addObject("errorName", "Falsche Eingabe. Bitte mit einem Groﬂbuchstaben beginnen.");
+			}
+			if(!map.get("surname")) {
+				mv.addObject("errorSurname", "Falsche Eingabe. Bitte mit einem Groﬂbuchstaben beginnen.");
+			}
+			if(!map.get("birthday")) {
+				mv.addObject("errorBirthday", "Bitte geben Sie ein Datum ein.");
+			}
+			if(!map.get("enterprise")) {
+				mv.addObject("errorEnterprise", "Falsche Eingabe. Bitte ein Unternehmen eintragen.");
+			}
+			if(!map.get("position")) {
+				mv.addObject("errorPosition", "Falsche Eingabe. Bitte mit einem Groﬂbuchstaben beginnen.");
+			}
+			if(!map.get("email")) {
+				mv.addObject("errorEmail", "Bitte eine richtige E-Mailadresse eingeben.");
+			}
+			if(!map.get("password")) {
+				mv.addObject("errorPassword", "Das Passwort muss mind. 4 Zeichen enthalten.");
+			}
+			
+			mv.addObject("recruiter",recruiter);
 			mv.setViewName("changeRecruiterProfile");
+					
 		}
-		return mv;		
-	}
+		
+		return mv;
+}
 	
 }

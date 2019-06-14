@@ -62,19 +62,19 @@ public class UserRegistrationController {
 					System.out.println("Falsche Eingabe." + " Name: " + map.get("name") + " Nachname: " + map.get("surname") + " Geburtstag: " + map.get("birthday") + " Unternehmen: " + map.get("enterprise") + " Position: " + map.get("position") + " EMail: " + map.get("email") + " Passwort: " + map.get("password"));
 
 					if(!map.get("name")) {
-						mv.addObject("errorName", "Falsche Eingabe.");
+						mv.addObject("errorName", "Falsche Eingabe. Bitte mit einem Groﬂbuchstaben beginnen.");
 					}
 					if(!map.get("surname")) {
-						mv.addObject("errorSurname", "Falsche Eingabe.");
+						mv.addObject("errorSurname", "Falsche Eingabe. Bitte mit einem Groﬂbuchstaben beginnen.");
 					}
 					if(!map.get("birthday")) {
 						mv.addObject("errorBirthday", "Bitte geben Sie ein Datum ein.");
 					}
 					if(!map.get("enterprise")) {
-						mv.addObject("errorEnterprise", "Falsche Eingabe.");
+						mv.addObject("errorEnterprise", "Falsche Eingabe. Bitte ein Unternehmen eintragen.");
 					}
 					if(!map.get("position")) {
-						mv.addObject("errorPosition", "Falsche Eingabe.");
+						mv.addObject("errorPosition", "Falsche Eingabe. Bitte mit einem Groﬂbuchstaben beginnen.");
 					}
 					if(!map.get("email")) {
 						mv.addObject("errorEmail", "Bitte eine richtige E-Mailadresse eingeben.");
@@ -135,10 +135,10 @@ public class UserRegistrationController {
 			System.out.println("Falsche Eingabe." + "Name" + map.get("name") + "Nachname: " + map.get("surname") + "Geburtstag: " + map.get("birthday") + "Entrydate: " + map.get("entrydate") + "Fachrichtung: " + map.get("subject") + "Vertiefung: " + map.get("specialization") + "Sallery" + map.get("sallery") + "EMail: " + map.get("email") + "Passwort: " + map.get("password"));
 		
 			if(!map.get("name")) {
-				mv.addObject("errorName", "Falsche Eingabe.");
+				mv.addObject("errorName", "Falsche Eingabe. Bitte mit einem Groﬂbuchstaben beginnen.");
 			}
 			if(!map.get("surname")) {
-				mv.addObject("errorSurname", "Falsche Eingabe.");
+				mv.addObject("errorSurname", "Falsche Eingabe. Bitte mit einem Groﬂbuchstaben beginnen.");
 			}
 			if(!map.get("birthday")) {
 				mv.addObject("errorBirthday", "Bitte geben Sie ein Datum ein.");
@@ -147,10 +147,10 @@ public class UserRegistrationController {
 				mv.addObject("errorEntrydate", "Bitte geben Sie ein Datum ein.");
 			}
 			if(!map.get("subject")) {
-				mv.addObject("errorSubject", "Falsche Eingabe.");
+				mv.addObject("errorSubject", "Falsche Eingabe. Bitte mit einem Groﬂbuchstaben beginnen.");
 			}
 			if(!map.get("specialization")) {
-				mv.addObject("errorSpecialization", "Falsche Eingabe.");
+				mv.addObject("errorSpecialization", "Falsche Eingabe. Bitte mit einem Groﬂbuchstaben beginnen.");
 			}
 			if(!map.get("sallery")) {
 				mv.addObject("errorSallery", "Bitte eine mind. drei-stellige Zahl eingeben.");
