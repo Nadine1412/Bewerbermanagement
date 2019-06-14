@@ -1,8 +1,13 @@
 package de.hfu.bewerbermanagement.controller;
 
+import de.hfu.bewerbermanagement.business.ApplicantManager;
+import de.hfu.bewerbermanagement.business.RecruiterManager;
 import de.hfu.bewerbermanagement.dao.UserDao;
 import de.hfu.bewerbermanagement.model.Applicant;
 import de.hfu.bewerbermanagement.model.Recruiter;
+
+import java.util.HashMap;
+import java.util.Map;
 
 //import org.bewerbermanagement.model.Personaler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,22 +42,58 @@ public class UserRegistrationController {
 				recruiter.setEnterprise(enterprise);
 				recruiter.setPosition(position);
 			
-				int counter = userDao.registerRecruiter(recruiter);
-	
-				if (counter > 0) {
-					mv.addObject("msg", "User registration successful.");
-					mv.setViewName("login");
-					
+				//Aufruf der Methode ExpressionApplicant
+				RecruiterManager rm = new RecruiterManager();
+				Map<String, Boolean> map = rm.expressionRecruiter(recruiter);
+				
+				if(map.get("name") && map.get("surname") && map.get("birthday") && map.get("enterprise") && map.get("position") && map.get("email") && map.get("password"))
+				{
+					System.out.println("Richtige Eingabe." + " Name: " + map.get("name") + " Nachname: " + map.get("surname") + " Geburtstag: " + map.get("birthday") + " Unternehmen: " + map.get("enterprise") + " Position: " + map.get("position") + " EMail: " + map.get("email") + " Passwort: " + map.get("password"));
+					int counter = userDao.registerRecruiter(recruiter);
+		
+						if (counter > 0) {
+							mv.addObject("msg", "User registration successful.");
+							mv.setViewName("login");
+						} else {
+							mv.addObject("msg", "Error - check the console log");
+							mv.setViewName("registrationRecruiter");
+						}
 				} else {
-					mv.addObject("msg", "Error - check the console log");
+					System.out.println("Falsche Eingabe." + " Name: " + map.get("name") + " Nachname: " + map.get("surname") + " Geburtstag: " + map.get("birthday") + " Unternehmen: " + map.get("enterprise") + " Position: " + map.get("position") + " EMail: " + map.get("email") + " Passwort: " + map.get("password"));
+
+					if(!map.get("name")) {
+						mv.addObject("errorName", "Falsche Eingabe.");
+					}
+					if(!map.get("surname")) {
+						mv.addObject("errorSurname", "Falsche Eingabe.");
+					}
+					if(!map.get("birthday")) {
+						mv.addObject("errorBirthday", "Bitte geben Sie ein Datum ein.");
+					}
+					if(!map.get("enterprise")) {
+						mv.addObject("errorEnterprise", "Falsche Eingabe.");
+					}
+					if(!map.get("position")) {
+						mv.addObject("errorPosition", "Falsche Eingabe.");
+					}
+					if(!map.get("email")) {
+						mv.addObject("errorEmail", "Bitte eine richtige E-Mailadresse eingeben.");
+					}
+					if(!map.get("password")) {
+						mv.addObject("errorPassword", "Das Passwort muss mind. 4 Zeichen enthalten.");
+					}
+					
+					mv.addObject("recruiter",recruiter);
 					mv.setViewName("registrationRecruiter");
+							
 				}
-	
+				
 				return mv;
 	}
 	
+	
 	@RequestMapping(value = "/registerApplicant", method = RequestMethod.POST)
-	public ModelAndView candidateRegistration(
+	public ModelAndView applicantRegistration(
 			@RequestParam("password") String password, @RequestParam("email") String email,
 			@RequestParam("userName") String userName, @RequestParam("userSurname") String userSurname, 
 			@RequestParam("birthday") String birthday, @RequestParam("entryDate") String entryDate, 
@@ -73,16 +114,56 @@ public class UserRegistrationController {
 		applicant.setSpecialization(specialization);
 		applicant.setSallery(sallery);
 
-		int counter = userDao.registerApplicant(applicant);
+		//Aufruf der Methode ExpressionApplicant
+		ApplicantManager am = new ApplicantManager();
+		Map<String, Boolean> map = am.expressionApplicant(applicant);
+		
+		if(map.get("name") && map.get("surname") && map.get("birthday") && map.get("entrydate") && map.get("subject") && map.get("specialization") && map.get("sallery") && map.get("email") && map.get("password"))
+		{
+			System.out.println("Richtige Eingabe." + "Name" + map.get("name") + "Nachname: " + map.get("surname") + "Geburtstag: " + map.get("birthday") + "Entrydate: " + map.get("entrydate") + "Fachrichtung: " + map.get("subject") + "Vertiefung: " + map.get("specialization") + "Sallery" + map.get("sallery") + "EMail: " + map.get("email") + "Passwort: " + map.get("password"));
+			
+			int counter = userDao.registerApplicant(applicant);
 
-		if (counter > 0) {
-			mv.addObject("msg", "User registration successful.");
-			mv.setViewName("login");
+				if (counter > 0) {
+					mv.addObject("msg", "User registration successful.");
+					mv.setViewName("login");
+				} else {
+					mv.addObject("msg", "Error - check the console log");
+					mv.setViewName("registrationApplicant");
+				}
 		} else {
-			mv.addObject("msg", "Error - check the console log");
+			System.out.println("Falsche Eingabe." + "Name" + map.get("name") + "Nachname: " + map.get("surname") + "Geburtstag: " + map.get("birthday") + "Entrydate: " + map.get("entrydate") + "Fachrichtung: " + map.get("subject") + "Vertiefung: " + map.get("specialization") + "Sallery" + map.get("sallery") + "EMail: " + map.get("email") + "Passwort: " + map.get("password"));
+		
+			if(!map.get("name")) {
+				mv.addObject("errorName", "Falsche Eingabe.");
+			}
+			if(!map.get("surname")) {
+				mv.addObject("errorSurname", "Falsche Eingabe.");
+			}
+			if(!map.get("birthday")) {
+				mv.addObject("errorBirthday", "Bitte geben Sie ein Datum ein.");
+			}
+			if(!map.get("entrydate")) {
+				mv.addObject("errorEntrydate", "Bitte geben Sie ein Datum ein.");
+			}
+			if(!map.get("subject")) {
+				mv.addObject("errorSubject", "Falsche Eingabe.");
+			}
+			if(!map.get("specialization")) {
+				mv.addObject("errorSpecialization", "Falsche Eingabe.");
+			}
+			if(!map.get("sallery")) {
+				mv.addObject("errorSallery", "Bitte eine mind. drei-stellige Zahl eingeben.");
+			}
+			if(!map.get("email")) {
+				mv.addObject("errorEmail", "Bitte eine richtige E-Mailadresse eingeben.");
+			}
+			if(!map.get("password")) {
+				mv.addObject("errorPassword", "Das Passwort muss mind. 4 Zeichen enthalten.");
+			}
+			mv.addObject("applicant", applicant);
 			mv.setViewName("registrationApplicant");
 		}
-
 		
 		return mv;
 	}

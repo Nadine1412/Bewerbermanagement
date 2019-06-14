@@ -30,6 +30,8 @@
 
 .form .profile {
 	  width: 100%; 
+	  margin-bottom: 0px;
+	  margin-top: 10px;
 }
 .form button {
   font-family: "Roboto", sans-serif;
@@ -79,6 +81,14 @@
   color: #b3b3b3;
   font-size: 12px;
 }
+
+.form .errorMsg {
+  margin-top: 0px ;
+  margin-bottom: 10px;
+  color: red;
+  font-size: 12px;
+}
+
 .form .message a {
   color: #4CAF50;
   text-decoration: none;
@@ -133,7 +143,7 @@ body {
  .header-change {
    	font-weight: bolder;
    	padding: 10px;
-   	padding-bottom:25px;	
+   	padding-bottom:0px;	
 } 
 
  .header {

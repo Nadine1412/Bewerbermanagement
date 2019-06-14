@@ -41,8 +41,8 @@
 						<tr> <td class="header-change"> Vorname: </td> 				<td> <input class="profile" type="text" value="${applicant.userName}" 		name="userName" /> </td> </tr> 
 						<tr> <td class="header-change"> Nachname: </td> 			<td> <input class="profile" type="text" value="${applicant.userSurname}"	name="userSurname" /> </td> </tr>
 						<tr> <td class="header-change"> E-Mail: </td> 				<td> <input class="profile" type="text" value="${applicant.email}" 			name="email" /> </td> </tr>
-						<tr> <td class="header-change"> Geburtstag: </td> 			<td> <input class="profile" type="text" value="${applicant.birthday}" 		name="birthday" /> </td> </tr>
-						<tr> <td class="header-change"> Fr.Eintrittsdatum: </td> 	<td> <input class="profile" type="text" value="${applicant.entryDate}" 		name="entryDate" /> </td> </tr>
+						<tr> <td class="header-change"> Geburtstag: </td> 			<td> <input class="profile" type="date" value="${applicant.birthday}" 		name="birthday" /> </td> </tr>
+						<tr> <td class="header-change"> Fr.Eintrittsdatum: </td> 	<td> <input class="profile" type="date" value="${applicant.entryDate}" 		name="entryDate" /> </td> </tr>
 						<tr> <td class="header-change"> Fachrichtung: </td> 		<td> <input class="profile" type="text" value="${applicant.subject}" 		name="subject" /> </td> </tr>
 						<tr> <td class="header-change"> Vertiefung: </td> 			<td> <input class="profile" type="text" value="${applicant.specialization}" name="specialization" /> </td> </tr>
 						<tr> <td class="header-change"> Gehaltsvorstellung: </td> 	<td> <input class="profile" type="text" value="${applicant.sallery}" 		name="sallery" /> </td> </tr>

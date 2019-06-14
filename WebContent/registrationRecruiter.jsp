@@ -21,16 +21,25 @@ function handleClick()
 	<div class="page">
 		<div class="form">
 			<form action="registerRecruiter" method="post" class="register-form">
-				<input type="text" placeholder="Vorname" name="userName" />
-				<input type="text" placeholder="Nachname" name="userSurname" />
-				<input type="text" placeholder="Geburtstag" name="birthday" />
-				<input type="text" placeholder="Email" name="email" />
-				<input type="text" placeholder="Unternehmen" name="enterprise" />
-				<input type="text" placeholder="Position" name="position" />
-				<input type="password" placeholder="Passwort" name="password" />
-				<br> Ich stimme der <a href="dsgvo.jsp" target="_blank"> DSGVO </a>zu: <input type="checkbox" id="checkBoxDSGVO" onclick="handleClick(this)" name="DSGVO" value="true"> <br>
+				<table>
+					<tr> <td class="header-change"> Vorname: </td> 		<td> <input class="profile" type="text" placeholder="Vorname" name="userName" value="${recruiter.userName}"> </td> </tr>
+						<tr> <td> </td> <td class="errorMsg"> ${errorName} </td> </tr>
+					<tr> <td class="header-change"> Nachname: </td> 	<td> <input class="profile" type="text" placeholder="Nachname" name="userSurname" value="${recruiter.userSurname}"> </td> </tr> 
+						<tr> <td> </td> <td class="errorMsg"> ${errorSurname} </td> </tr>
+					<tr> <td class="header-change"> Geburtsdatum: </td> <td> <input class="profile" type="date" name="birthday" value="${recruiter.birthday}"> </td> </tr>
+						<tr> <td> </td> <td class="errorMsg"> ${errorBirthday} </td> </tr>
+					<tr> <td class="header-change"> Unternehmen: </td> 	<td> <input class="profile" type="text" placeholder="Unternehmen" name="enterprise" value="${recruiter.enterprise}"> </td> </tr>
+						<tr> <td> </td> <td class="errorMsg"> ${errorEnterprise} </td> </tr>
+					<tr> <td class="header-change"> Position: </td> 	<td> <input class="profile" type="text" placeholder="Position" name="position" value="${recruiter.position}"> </td> </tr>
+						<tr> <td> </td> <td class="errorMsg"> ${errorPosition} </td> </tr>
+					<tr> <td class="header-change"> E-Mail: </td> 		<td> <input class="profile" type="text" placeholder="Email" name="email" value="${recruiter.email}"> </td> </tr>
+						<tr> <td> </td> <td class="errorMsg"> ${errorEmail} </td> </tr>
+					<tr> <td class="header-change"> Passwort: </td> 	<td> <input class="profile" type="password" placeholder="Passwort" name="password" value="${recruiter.password}"> </td> </tr> 
+						<tr> <td> </td> <td class="errorMsg"> ${errorPassword} </td> </tr>
+				</table>
+				<br> Ich stimme der <a href="dsgvo.jsp" target="_blank"> DSGVO </a>zu: <input type="checkbox" id="checkBoxDSGVO" onclick="handleClick(this)" name="DSGVO" value="true">
 				<input type="submit"  id="submitButtonId" class="submitButton" value="registrieren" disabled="disabled">
-				<!-- -  <button type="submit" >registrieren</button> --> 
+				<p class="message"> Zurück zur Auswahl? <a href="decision.jsp"> Zurück </a></p>
 				<p class="message">${msg}</p>
 			</form>	
 		</div>
