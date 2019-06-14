@@ -15,14 +15,21 @@
 <h2>Fähigkeiten angeben</h2>
 <p>
         <h3>Programmiersprachen</h3>
-   <form action="skills" method="post" class="skills-form">
-       	<select name="sklz">
-           <option value="Java">Java</option>
-           <option value="JavaScript">JavaScript</option>   
-       </select>
-     <button type="submit" name="submit" value="">Auswählen</button>
-     <p class="message">${msg}</p>
+   <form action="skills" method="post">
+   <table>
+       <tr>
+       <td><input type="checkbox" name="chkSelect" value="Java"/>Java<td>
+       </tr>
+       <tr>
+       <td><input type="checkbox" name="chkSelect" value="JavaScript"/>JavaScript<td>
+       </tr>
+       <tr>
+       <td><input type="checkbox" name="chkSelect" value="C++"/>C++<td>
+       </tr>
+       <tr>
+       <td><input type="submit" value="Bestätigen"/><td>
+       </tr>
+       </table>
      </form>
-${msg}
 </body>
 </html>
