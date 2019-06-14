@@ -67,7 +67,7 @@ public class WebMvcConfig {
 		}
 	}
 
-	// Properties f�r mail adapter hier setzen
+	// Properties für mail adapter hier setzen
 
 	// Beans für den File Upload (Florian Möhrle 13.06.2019)
 	@Bean(name = "multipartResolver")
