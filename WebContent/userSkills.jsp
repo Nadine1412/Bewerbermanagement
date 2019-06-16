@@ -11,6 +11,7 @@
 </style>
 </head>
 <body>
+//Florian Möhrle (16.06.2019)
 <jsp:include page="navBar.jsp"></jsp:include>
 <h2>Fähigkeiten angeben</h2>
 <p>

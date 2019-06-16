@@ -5,6 +5,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+//Navbar ausgelagert (Florian Möhrle 13.06.2019)
 <div class="navbar">
 			<ul>
 				<li><a href="overviewUser.jsp">Ãœbersicht</a></li>
