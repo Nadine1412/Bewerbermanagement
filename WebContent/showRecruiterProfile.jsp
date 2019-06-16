@@ -13,7 +13,6 @@
 			<jsp:include page="navBar.jsp"></jsp:include>
 			<div class="page">
 				<div class="form">
-					<br><br><br><br>
 					<table> 
 						<tr> <td class="header">User ID:</td> <td>${recruiter.userId}</td> </tr>
 						<tr> <td class="header">Vorname:</td> <td>${recruiter.userName}</td> </tr> 
@@ -24,8 +23,6 @@
 						<tr> <td class="header">Position: </td> <td>${recruiter.position}</td> </tr>
 					</table>
 				</div>
-			</div>
-		
-			
+			</div>			
 	</body>
 </html>

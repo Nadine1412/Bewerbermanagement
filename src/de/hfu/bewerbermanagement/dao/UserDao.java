@@ -20,12 +20,11 @@ public interface UserDao {
 	public Recruiter showRecruiterProfile(HttpSession session);
 
 	
-	// Profil ï¿½ndern
-	public int changeProfil(Applicant applicant);
+	// Profil ändern
+	public int changeApplicantProfile(Applicant applicant);
+	public int changeRecruiterProfile(Recruiter recruiter);
 	
-	// Prï¿½fen ob Bewerber oder Personaler
+	// Prüfen ob Bewerber oder Personaler
 	public Boolean isApplicant(String email);
-	
-	
-	
+
 }
