@@ -12,6 +12,7 @@
 		</head>
 		<body>
 			<jsp:include page="navBar.jsp"></jsp:include>
+			
 			<div class="page">
 				<div class="form">
 					<p>${msg}</p>

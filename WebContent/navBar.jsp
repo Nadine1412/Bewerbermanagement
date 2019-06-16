@@ -7,7 +7,7 @@
 <body>
 <div class="navbar">
 			<ul>
-				<li><a href="overviewUser.jsp">Übersicht</a></li>
+				<li><a href="overviewUser.jsp">Startseite</a></li>
 				<li>
 					<a href="">Profil</a>
 					<ul>
