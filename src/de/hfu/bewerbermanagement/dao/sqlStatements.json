@@ -7,5 +7,9 @@
 	"registerApplicant": "INSERT INTO applicant (entrydate,subject,specialization,sallery,u_id) VALUES(?,?,?,?,(SELECT u_id FROM user WHERE email=?))",
 	"registerRecruiter": "INSERT INTO recruiter (position,enterprise, u_id) VALUES(?,?,(SELECT u_id FROM user WHERE email=?))",
 	"changeApplicantProfile": "UPDATE user JOIN applicant ON user.u_id = applicant.u_id SET name=?, surname=?, email=?, birthday=?, entrydate=?, subject=?, specialization=?, sallery=?, password=? WHERE user.u_id=?",	
-	"changeRecruiterProfile": "UPDATE user JOIN recruiter ON user.u_id = recruiter.u_id SET name=?, surname=?, email=?, birthday=?, enterprise=?, position=?, password=? WHERE user.u_id=?"	
+	"changeRecruiterProfile": "UPDATE user JOIN recruiter ON user.u_id = recruiter.u_id SET name=?, surname=?, email=?, birthday=?, enterprise=?, position=?, password=? WHERE user.u_id=?",
+	"insertSkills": "INSERT INTO skills (programmingLanguage,office,language,a_id) VALUES(?,?,?,?)",
+	"isSkillAvailable": "SELECT a_id FROM skills WHERE a_id=?",
+	"updateSkills": "UPDATE skills JOIN applicant ON applicant.a_id = skills.a_id SET programmingLanguage=?, language=?, office=? WHERE applicant.a_id=?",
+	"showSkills": "SELECT programmingLanguage,office,language FROM skills JOIN applicant ON applicant.a_id = skills.a_id WHERE a_id=?"
 }

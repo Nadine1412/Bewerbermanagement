@@ -1,6 +1,6 @@
 .page {
   width: 360px;
-  padding: 8% 0 0;
+  padding: 4% 0 0;
   margin: auto;
 }
 .form {
@@ -140,7 +140,20 @@ body {
   -moz-osx-font-smoothing: grayscale;      
 }
 
- .header-change {
+.header-skills {
+   	font-weight: bolder;
+   	text-align: left;
+   	padding-left: 30px;
+   	padding-bottom:10px;
+} 
+
+.skills {
+   	text-align: left;
+   	padding-left: 50px;
+   	padding-bottom: 0px;
+} 
+
+.header-change {
    	font-weight: bolder;
    	padding: 10px;
    	padding-bottom:0px;	

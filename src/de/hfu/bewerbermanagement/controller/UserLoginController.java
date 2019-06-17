@@ -21,7 +21,8 @@ public class UserLoginController {
 	private UserDao userDao;
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ModelAndView userLogin(@RequestParam("inputEmail") String email, @RequestParam("inputPassword") String password, HttpSession session) {
+	public ModelAndView userLogin(
+			@RequestParam("inputEmail") String email, @RequestParam("inputPassword") String password, HttpSession session) {
 				
 		ModelAndView mv = new ModelAndView();
 		
@@ -31,12 +32,20 @@ public class UserLoginController {
 		
 		//Selektierung des Nachnamens (Nadine Jakob 07.06.2019)
 		String name = userDao.loginUser(user);
+		// Setzen der A_ID
+		int a_id = userDao.isApplicant(email);
 		//Überprüfung des UserTyps(Applicant oder Recruiter
-		Boolean isApplicant = userDao.isApplicant(email);
+		boolean isApplicant;
+		if(a_id > 0) {
+			isApplicant = true;
+		} else {
+			isApplicant = false;
+		}
 
 		//session Variable setzen
 		session.setAttribute("userEmail", email);
 		session.setAttribute("isApplicant", isApplicant);
+		session.setAttribute("a_id", a_id);
 
 		if(name != null) {
 			mv.addObject("msg", "Willkommen Herr / Frau " + name + ", Sie haben sich erfolgreich eingeloggt.");

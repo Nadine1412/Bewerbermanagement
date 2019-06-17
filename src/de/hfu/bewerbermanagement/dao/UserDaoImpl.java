@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
@@ -106,7 +107,7 @@ public class UserDaoImpl implements UserDao{
 	
 	//Prüfen ob Applicant oder Recruiter
 	@Override
-	public Boolean isApplicant(String email) {
+	public int isApplicant(String email) {
 		String key = "isApplicant";
 		String statement = jsonNode.get(key).asText();
 		
@@ -114,17 +115,16 @@ public class UserDaoImpl implements UserDao{
 			try {
 				int resultAid = jdbcTemplate.queryForObject(statement, new Object[] {email}, int.class);
 				// Ist ein Applicant
-					return true;
-//				}
+					return resultAid;
 				
 			} catch (EmptyResultDataAccessException e) {
 				// Ist ein Recruiter
-				return false;
+				return 0;
 			} catch (Exception e) {
-				return null;
+				return -1;
 			}
 		} else {
-			return null;
+			return -1;
 		}
 	}
 
@@ -246,6 +246,82 @@ public class UserDaoImpl implements UserDao{
 		} else {
 			return 0;
 		}
+	}
+
+
+	@Override
+	public int addSkills(Map<String, String> skills, int a_id) {
+		boolean isSkillAvailable = isSkillAvailable(a_id);
+		String keyUpdateSkills;
+		String keyInsertSkills;
+		
+		String statementUpdateSkills;
+		String statementInsertSkills;
+		
+		if(isSkillAvailable) {
+			keyUpdateSkills = "updateSkills";
+			statementUpdateSkills = jsonNode.get(keyUpdateSkills).asText();
+
+			if(statementUpdateSkills != null) {
+				try {
+					int counterSkill = jdbcTemplate.update(statementUpdateSkills, new Object[] { skills.get("programmingLanguage"), skills.get("language"), skills.get("office"), a_id});
+					return counterSkill;
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+				return 0;
+			} else {
+				return 0;
+			}
+		} else {
+			keyInsertSkills = "insertSkills";
+			statementInsertSkills = jsonNode.get(keyInsertSkills).asText();
+
+			if(statementInsertSkills != null) {
+				try {
+					int counterSkill = jdbcTemplate.update(statementInsertSkills, new Object[] { skills.get("programmingLanguage"), skills.get("office"), skills.get("language"), a_id});
+					return counterSkill;
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+				return 0;
+			} else {
+				return 0;
+			}
+		}
+		
+	}
+	
+	@Override
+	public boolean isSkillAvailable(int a_id) {
+		// SQL Statement aus json lesen (Nadine Jakob 07.06.2019)
+		String keySkills = "isSkillAvailable";
+		String statementSkills = jsonNode.get(keySkills).asText();
+
+		//"registerUser": "INSERT INTO user (password,name,surname,email,birthday VALUES(?,?,?,?,?)"
+		if(statementSkills != null) {
+			try {
+				int resultAid = jdbcTemplate.queryForObject(statementSkills, new Object[] {a_id}, int.class);
+				// Ist ein Applicant
+				if(resultAid>0) {
+					return true;
+				} else {
+					return false;
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			return false;
+		} else {
+			return false;
+		}
+	}
+
+
+	@Override
+	public int oldSkills(int a_id) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
 

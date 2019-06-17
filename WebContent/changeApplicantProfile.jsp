@@ -8,7 +8,6 @@
 			<%@include file="css/navigation.css"%>
 			<%@include file="css/backgroundTemplate.css"%>
 		</style>
-		<jsp:include page="navBar.jsp"></jsp:include>
 	</head>
 	<body>
 		<jsp:include page="navBar.jsp"></jsp:include>

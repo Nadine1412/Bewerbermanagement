@@ -14,13 +14,13 @@
 			<div class="page">
 				<div class="form">
 					<table> 
-						<tr> <td class="header">User ID:</td> <td>${recruiter.userId}</td> </tr>
-						<tr> <td class="header">Vorname:</td> <td>${recruiter.userName}</td> </tr> 
-						<tr> <td class="header">Nachname:</td> <td>${recruiter.userSurname}</td> </tr>
-						<tr> <td class="header">Geburtstag:</td> <td>${recruiter.birthday}</td> </tr>
-						<tr> <td class="header">E-Mail:</td> <td>${recruiter.email}</td> </tr>
-						<tr> <td class="header">Unternehmen: </td> <td>${recruiter.enterprise}</td> </tr>
-						<tr> <td class="header">Position: </td> <td>${recruiter.position}</td> </tr>
+						<tr> <td class="header">User ID:</td> 		<td>${recruiter.userId}</td> </tr>
+						<tr> <td class="header">Vorname:</td> 		<td>${recruiter.userName}</td> </tr> 
+						<tr> <td class="header">Nachname:</td> 		<td>${recruiter.userSurname}</td> </tr>
+						<tr> <td class="header">Geburtstag:</td> 	<td>${recruiter.birthday}</td> </tr>
+						<tr> <td class="header">E-Mail:</td> 		<td>${recruiter.email}</td> </tr>
+						<tr> <td class="header">Unternehmen: </td>	<td>${recruiter.enterprise}</td> </tr>
+						<tr> <td class="header">Position: </td> 	<td>${recruiter.position}</td> </tr>
 					</table>
 				</div>
 			</div>			

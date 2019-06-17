@@ -11,22 +11,29 @@
 	</head>
 		<body>
 			<jsp:include page="navBar.jsp"></jsp:include>
+			
 			<div class="page">
 				<div class="form">
 					<table> 
-						<tr> <td class="header">User ID:</td> <td>${applicant.userId}</td> </tr>
-						<tr> <td class="header">Vorname:</td> <td>${applicant.userName}</td> </tr> 
-						<tr> <td class="header">Nachname:</td> <td>${applicant.userSurname}</td> </tr>
-						<tr> <td class="header">Geburtstag:</td> <td>${applicant.birthday}</td> </tr>
-						<tr> <td class="header">E-Mail:</td> <td>${applicant.email}</td> </tr>
-						<tr> <td class="header">Fr.Eintrittsdatum: </td> <td>${applicant.entryDate}</td> </tr>
-						<tr> <td class="header">Fachrichtung: </td> <td>${applicant.subject}</td> </tr>
-						<tr> <td class="header">Vertiefung: </td> <td>${applicant.specialization}</td> </tr>
-						<tr> <td class="header">Gehaltsvorstellung: </td> <td>${applicant.sallery}</td> </tr>
+						<tr> <td class="header-skills">Ihr Bewerber-Profil:</td> </tr>
+						<tr> <td class="header">User ID:</td>				<td>${applicant.userId}</td> </tr>
+						<tr> <td class="header">Vorname:</td>				<td>${applicant.userName}</td> </tr> 
+						<tr> <td class="header">Nachname:</td>				<td>${applicant.userSurname}</td> </tr>
+						<tr> <td class="header">Geburtstag:</td>			<td>${applicant.birthday}</td> </tr>
+						<tr> <td class="header">E-Mail:</td>				<td>${applicant.email}</td> </tr>
+						<tr> <td class="header">Fr.Eintrittsdatum:</td> 	<td>${applicant.entryDate}</td> </tr>
+						<tr> <td class="header">Fachrichtung: </td>			<td>${applicant.subject}</td> </tr>
+						<tr> <td class="header">Vertiefung: </td>			<td>${applicant.specialization}</td> </tr>
+						<tr> <td class="header">Gehaltsvorstellung:</td>	<td>${applicant.sallery}</td> </tr>
+					</table>
+					<br><br>
+					<table>
+					<tr> <td class="header-skills">Ihre Fähigkeiten:</td> </tr>
+					<tr> <td class="header">Programmier-Kenntnisse:</td>	<td>${applicant.userId}</td> </tr>
+					<tr> <td class="header">Office-Kenntnisse:</td> 		<td>${applicant.userId}</td> </tr>
+					<tr> <td class="header">Sprach-Kenntnisse:</td> 		<td>${applicant.userId}</td> </tr>
 					</table>
 				</div>
-			</div>
-		
-			
+			</div>		
 	</body>
 </html>
