@@ -11,5 +11,5 @@
 	"insertSkills": "INSERT INTO skills (programmingLanguage,office,language,a_id) VALUES(?,?,?,?)",
 	"isSkillAvailable": "SELECT a_id FROM skills WHERE a_id=?",
 	"updateSkills": "UPDATE skills JOIN applicant ON applicant.a_id = skills.a_id SET programmingLanguage=?, language=?, office=? WHERE applicant.a_id=?",
-	"showSkills": "SELECT programmingLanguage,office,language FROM skills JOIN applicant ON applicant.a_id = skills.a_id WHERE a_id=?"
+	"showSkills": "SELECT programmingLanguage,office,language FROM skills JOIN applicant ON applicant.a_id = skills.a_id WHERE skills.a_id=?"
 }

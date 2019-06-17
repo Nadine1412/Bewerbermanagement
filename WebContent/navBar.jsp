@@ -25,6 +25,12 @@
 						<li><a href="">Chat</a></li>
 					</ul>
 				</li>	
+				<li>
+					<a href="">Suche</a>
+					<ul>
+						<li><a href="emailForm.jsp">Bewerber suchen</a></li>
+					</ul>
+				</li>
 				
 				<li><a href="decision.jsp">Logout</a></li>
 			</ul>

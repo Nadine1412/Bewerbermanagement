@@ -33,9 +33,23 @@ public class UserProfileController {
 		ModelAndView mv = new ModelAndView();
 		if((boolean) session.getAttribute("isApplicant"))
 		{
+			//session Variable setzen
+			int a_id = (int) session.getAttribute("a_id");
 			Applicant applicant = userDao.showApplicantProfile(session);
+			Map<String, String> skills = userDao.oldSkills(a_id);
+					
 			if(applicant != null) {
 				mv.addObject("applicant", applicant);
+				
+				//Aufrufen der F‰higkeiten
+				if(skills != null) {
+					String programming = skills.get("programmingLanguage");
+					String office = skills.get("office");
+					String language = skills.get("language");
+					mv.addObject("programmingLanguage", programming);
+					mv.addObject("office", office);
+					mv.addObject("language", language);
+				}
 				mv.setViewName("showApplicantProfile");
 			} else {
 				mv.addObject("msg", "Invalid user id or password.");
@@ -112,10 +126,10 @@ public class UserProfileController {
 				ApplicantManager am = new ApplicantManager();
 				Map<String, Boolean> map = am.expressionApplicant(applicant);
 				
-				if(map.get("name") && map.get("surname") && map.get("birthday") && map.get("entrydate") && map.get("subject") && map.get("specialization") && map.get("sallery") && map.get("email") && map.get("password"))
+				if(map.get("name") && map.get("surname") && map.get("birthday") && map.get("entrydate") && 
+						map.get("subject") && map.get("specialization") && map.get("sallery") && map.get("email") && 
+						map.get("password"))
 				{
-					System.out.println("Richtige Eingabe." + "Name" + map.get("name") + "Nachname: " + map.get("surname") + "Geburtstag: " + map.get("birthday") + "Entrydate: " + map.get("entrydate") + "Fachrichtung: " + map.get("subject") + "Vertiefung: " + map.get("specialization") + "Sallery" + map.get("sallery") + "EMail: " + map.get("email") + "Passwort: " + map.get("password"));
-					
 					int counter = userDao.changeApplicantProfile(applicant);
 
 						if (counter > 0) {
@@ -127,8 +141,6 @@ public class UserProfileController {
 							mv.setViewName("changeApplicantProfile");
 						}
 				} else {
-					System.out.println("Falsche Eingabe." + "Name" + map.get("name") + "Nachname: " + map.get("surname") + "Geburtstag: " + map.get("birthday") + "Entrydate: " + map.get("entrydate") + "Fachrichtung: " + map.get("subject") + "Vertiefung: " + map.get("specialization") + "Sallery" + map.get("sallery") + "EMail: " + map.get("email") + "Passwort: " + map.get("password"));
-				
 					if(!map.get("name")) {
 						mv.addObject("errorName", "Falsche Eingabe. Bitte mit einem Groﬂbuchstaben beginnen.");
 					}
@@ -189,10 +201,9 @@ public class UserProfileController {
 		RecruiterManager rm = new RecruiterManager();
 		Map<String, Boolean> map = rm.expressionRecruiter(recruiter);
 		
-		if(map.get("name") && map.get("surname") && map.get("birthday") && map.get("enterprise") && map.get("position") && map.get("email") && map.get("password"))
+		if(map.get("name") && map.get("surname") && map.get("birthday") && map.get("enterprise") && 
+				map.get("position") && map.get("email") && map.get("password"))
 		{
-			System.out.println("Richtige Eingabe." + " Name: " + map.get("name") + " Nachname: " + map.get("surname") + " Geburtstag: " + map.get("birthday") + " Unternehmen: " + map.get("enterprise") + " Position: " + map.get("position") + " EMail: " + map.get("email") + " Passwort: " + map.get("password"));
-			
 			int counter = userDao.changeRecruiterProfile(recruiter);
 
 				if (counter > 0) {
@@ -204,8 +215,6 @@ public class UserProfileController {
 					mv.setViewName("changeRecruiterProfile");
 				}
 		} else {
-			System.out.println("Falsche Eingabe." + " Name: " + map.get("name") + " Nachname: " + map.get("surname") + " Geburtstag: " + map.get("birthday") + " Unternehmen: " + map.get("enterprise") + " Position: " + map.get("position") + " EMail: " + map.get("email") + " Passwort: " + map.get("password"));
-
 			if(!map.get("name")) {
 				mv.addObject("errorName", "Falsche Eingabe. Bitte mit einem Groﬂbuchstaben beginnen.");
 			}
@@ -234,6 +243,6 @@ public class UserProfileController {
 		}
 		
 		return mv;
-}
+	}
 	
 }

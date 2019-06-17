@@ -2,8 +2,10 @@ package de.hfu.bewerbermanagement.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -13,13 +15,16 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import de.hfu.bewerbermanagement.business.ApplicantManager;
 import de.hfu.bewerbermanagement.business.RecruiterManager;
 import de.hfu.bewerbermanagement.dao.UserDao;
+import de.hfu.bewerbermanagement.model.Applicant;
 import de.hfu.bewerbermanagement.model.Recruiter;
 
 @Controller
@@ -27,7 +32,55 @@ public class SkillsController {
 	
 	@Autowired
 	private UserDao userDao;
+	
+	@RequestMapping(value = "/userSkills", method = RequestMethod.POST)
+	public ModelAndView processRequest(HttpServletRequest request, HttpSession session)
+		throws ServletException, IOException{
+			
+			String selectProgramming[]=request.getParameterValues("chkProgramming");
+			String selectOffice[]=request.getParameterValues("chkOffice");
+			String selectLangugage[]=request.getParameterValues("chkLanguage");
 
+			String programming = Arrays.toString(selectProgramming);
+			programming = programming.substring(1, programming.length()-1);
+			
+			String office = Arrays.toString(selectOffice);
+			office = office.substring(1, office.length()-1);
+			
+			String language = Arrays.toString(selectLangugage);
+			language = language.substring(1, language.length()-1);
+
+
+			ModelAndView mv = new ModelAndView();
+			
+			//Erzeugen der Map für die Ausgabe der Substrings
+			Map<String, String> map = new HashMap<String, String>();
+			
+			map.put("programmingLanguage", programming);
+			map.put("office", office);
+			map.put("language", language);
+			
+			//session Variable setzen
+			int a_id = (int) session.getAttribute("a_id");
+			
+			int counter = userDao.addSkills(map, a_id);
+					
+			if (counter > 0) {
+			mv.addObject("msg", "Skills successfully added.");
+			mv.addObject("programming", programming);
+			mv.addObject("language", language);
+			mv.addObject("office", office);
+
+
+			mv.setViewName("userSkills");
+			} else {
+				mv.addObject("msg", "Error - check the console log");
+				mv.setViewName("userSkills");
+			}
+			
+			return mv;	
+	}
+	
 //	@RequestMapping(value = "/userSkills", method = RequestMethod.POST)
 //	public ModelAndView recruiterRegistration(
 //			@RequestParam("selectJava") String java, @RequestParam("selectJavaScript") String javaScript, 
@@ -100,57 +153,7 @@ public class SkillsController {
 //	}
 	
 	
-	@RequestMapping(value = "/userSkills", method = RequestMethod.POST)
-	public ModelAndView processRequest(HttpServletRequest request, HttpSession session)
-		throws ServletException, IOException{
-			
-			String selectProgramming[]=request.getParameterValues("chkProgramming");
-			String selectOffice[]=request.getParameterValues("chkOffice");
-			String selectLangugage[]=request.getParameterValues("chkLanguage");
-
-			String programming = Arrays.toString(selectProgramming);
-			programming = programming.substring(1, programming.length()-1);
-			
-			String office = Arrays.toString(selectOffice);
-			office = office.substring(1, office.length()-1);
-			
-			String language = Arrays.toString(selectLangugage);
-			language = language.substring(1, language.length()-1);
-
-
-			ModelAndView mv = new ModelAndView();
-			
-			//Erzeugen der Map für die Ausgabe der Substrings
-			Map<String, String> map = new HashMap<String, String>();
-			
-			map.put("programmingLanguage", programming);
-			map.put("office", office);
-			map.put("language", language);
-			
-			//session Variable setzen
-			int a_id = (int) session.getAttribute("a_id");
-			
-			int counter = userDao.addSkills(map, a_id);
-					
-			if (counter > 0) {
-			mv.addObject("msg", "Skills successfully added.");
-			mv.addObject("programming", programming);
-			mv.addObject("language", language);
-			mv.addObject("office", office);
-
-
-			mv.setViewName("userSkills");
-			} else {
-				mv.addObject("msg", "Error - check the console log");
-				mv.setViewName("userSkills");
-			}
-			
-			return mv;
-
-
-			
-		
-	}
+	
 	
 	
 }

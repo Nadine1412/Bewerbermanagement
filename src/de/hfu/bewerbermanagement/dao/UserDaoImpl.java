@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -248,7 +249,7 @@ public class UserDaoImpl implements UserDao{
 		}
 	}
 
-
+	// Skills im Profil anzeigen
 	@Override
 	public int addSkills(Map<String, String> skills, int a_id) {
 		boolean isSkillAvailable = isSkillAvailable(a_id);
@@ -293,12 +294,49 @@ public class UserDaoImpl implements UserDao{
 	}
 	
 	@Override
+	public Map<String, String> oldSkills(int a_id) {
+		// get SQL Statement (Nadine Jakob 10.06.2019)
+		String key = "showSkills";
+		String statement = jsonNode.get(key).asText();
+		
+		if(statement != null) {
+			try {
+				
+				Map<String, String> result = jdbcTemplate.queryForObject(statement, new Object[] {a_id}, new RowMapper<Map<String, String>>() {
+					
+					@Override
+					public Map<String, String> mapRow(ResultSet rs, int rowNum) throws SQLException {
+						
+						String programming = rs.getString("programmingLanguage");
+						String office = rs.getString("office");
+						String language = rs.getString("language");
+						
+						Map<String, String> map = new HashMap<String, String>();
+						map.put("programmingLanguage", programming);
+						map.put("office", office);
+						map.put("language", language);
+						
+						return map;
+					}
+					});
+				return result;
+				
+			}catch (Exception e) {
+				return null;
+			}
+		} else {
+			return null;
+		}
+		
+	}
+	
+	
+	@Override
 	public boolean isSkillAvailable(int a_id) {
 		// SQL Statement aus json lesen (Nadine Jakob 07.06.2019)
 		String keySkills = "isSkillAvailable";
 		String statementSkills = jsonNode.get(keySkills).asText();
 
-		//"registerUser": "INSERT INTO user (password,name,surname,email,birthday VALUES(?,?,?,?,?)"
 		if(statementSkills != null) {
 			try {
 				int resultAid = jdbcTemplate.queryForObject(statementSkills, new Object[] {a_id}, int.class);
@@ -315,13 +353,6 @@ public class UserDaoImpl implements UserDao{
 		} else {
 			return false;
 		}
-	}
-
-
-	@Override
-	public int oldSkills(int a_id) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 }
 

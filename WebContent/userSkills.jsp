@@ -15,8 +15,10 @@
 <p>
 <div class="page">
 	<div class="form">
+
 		<form action="userSkills" method="post">
 		<h2>Fähigkeiten angeben: </h2>
+		
 			<table>
 				<tr> <td class="header-skills"> Programmier-Kenntnisse:</td> </tr>
 				<tr> <td class="skills"> <input type="checkbox" name="chkProgramming" value="Java"> Java </td> </tr>

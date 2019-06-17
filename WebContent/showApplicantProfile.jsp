@@ -29,9 +29,9 @@
 					<br><br>
 					<table>
 					<tr> <td class="header-skills">Ihre Fähigkeiten:</td> </tr>
-					<tr> <td class="header">Programmier-Kenntnisse:</td>	<td>${applicant.userId}</td> </tr>
-					<tr> <td class="header">Office-Kenntnisse:</td> 		<td>${applicant.userId}</td> </tr>
-					<tr> <td class="header">Sprach-Kenntnisse:</td> 		<td>${applicant.userId}</td> </tr>
+					<tr> <td class="header">Programmier-Kenntnisse:</td>	<td>${programmingLanguage}</td> </tr>
+					<tr> <td class="header">Office-Kenntnisse:</td> 		<td>${office}</td> </tr>
+					<tr> <td class="header">Sprach-Kenntnisse:</td> 		<td>${language}</td> </tr>
 					</table>
 				</div>
 			</div>		

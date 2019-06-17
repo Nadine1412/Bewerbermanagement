@@ -35,5 +35,5 @@ public interface UserDao {
 	boolean isSkillAvailable(int a_id);
 
 	// Bereits eingetragene Skills anzeigen
-	public int oldSkills(int a_id);
+	public Map<String, String> oldSkills(int a_id);
 }
