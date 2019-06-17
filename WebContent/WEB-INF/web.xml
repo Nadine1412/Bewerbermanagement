@@ -8,4 +8,10 @@
 		<welcome-file>decision.jsp</welcome-file>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
+	
+	<!-- Systemfehler auf Error-View leiten (Florian Möhrle 17.06.2019) -->
+	<error-page>
+	<error-code>404</error-code>
+	<location>/error/error.jsp</location>
+	</error-page>
 </web-app>
