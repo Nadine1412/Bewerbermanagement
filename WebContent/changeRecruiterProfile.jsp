@@ -32,7 +32,8 @@
 						<tr> <td> </td> <td class="errorMsg"> ${errorEmail} </td> </tr>
 						<tr> <td class="header-change"> Passwort: </td> 		<td> <input class="profile" type="password" placeholder="Passwort" name="password" value="${recruiter.password}"> </td> </tr> 
 						<tr> <td> </td> <td class="errorMsg"> ${errorPassword} </td> </tr>
-					</table>	
+					</table>
+					<br>	
 					<button type="submit">Ändern</button>	
 				</form>
 				<p class="message">${msg}</p>

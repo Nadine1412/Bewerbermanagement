@@ -26,6 +26,7 @@ import de.hfu.bewerbermanagement.business.RecruiterManager;
 import de.hfu.bewerbermanagement.dao.UserDao;
 import de.hfu.bewerbermanagement.model.Applicant;
 import de.hfu.bewerbermanagement.model.Recruiter;
+import de.hfu.bewerbermanagement.model.Skills;
 
 @Controller
 public class SkillsController {
@@ -37,40 +38,103 @@ public class SkillsController {
 	public ModelAndView processRequest(HttpServletRequest request, HttpSession session)
 		throws ServletException, IOException{
 			
-			String selectProgramming[]=request.getParameterValues("chkProgramming");
-			String selectOffice[]=request.getParameterValues("chkOffice");
-			String selectLangugage[]=request.getParameterValues("chkLanguage");
+			String java = request.getParameter("chkJava");
+			String javaScript =request.getParameter("chkJavaScript");
+			String cPlusPlus =request.getParameter("chkC++");
+			String python =request.getParameter("chkPython");
+			String html =request.getParameter("chkHtml");
 
-			String programming = Arrays.toString(selectProgramming);
-			programming = programming.substring(1, programming.length()-1);
+			String word = request.getParameter("chkWord");
+			String excel =request.getParameter("chkExcel");
+			String powerpoint =request.getParameter("chkPowerpoint");
+			String git =request.getParameter("chkGit");
+			String jira =request.getParameter("chkJira");
 			
-			String office = Arrays.toString(selectOffice);
-			office = office.substring(1, office.length()-1);
-			
-			String language = Arrays.toString(selectLangugage);
-			language = language.substring(1, language.length()-1);
+			String german = request.getParameter("chkGerman");
+			String english =request.getParameter("chkEnglish");
+			String spanish =request.getParameter("chkSpanish");
+			String french =request.getParameter("chkFrench");
+			String chinese =request.getParameter("chkChinese");
 
 
 			ModelAndView mv = new ModelAndView();
 			
-			//Erzeugen der Map für die Ausgabe der Substrings
-			Map<String, String> map = new HashMap<String, String>();
+			//Erzeugen der Liste für die Ausgabe der Skills
+			List<String> programmingLanguage = new ArrayList<String>();
+			List<String> office = new ArrayList<>();
+			List<String> language = new ArrayList<>();
 			
-			map.put("programmingLanguage", programming);
-			map.put("office", office);
-			map.put("language", language);
+			if(java != null) {
+				programmingLanguage.add(java);
+			}
+			if(javaScript != null) {
+				programmingLanguage.add(javaScript);
+			}
+			if(cPlusPlus != null) {
+				programmingLanguage.add(cPlusPlus);
+			}
+			if(python != null) {
+				programmingLanguage.add(python);
+			}
+			if(html != null) {
+				programmingLanguage.add(html);
+			}
+			
+			if(word != null) {
+				office.add(word);
+			}
+			if(excel != null) {
+				office.add(excel);
+			}
+			if(powerpoint != null) {
+				office.add(powerpoint);
+			}
+			if(git != null) {
+				office.add(git);
+			}
+			if(jira != null) {
+				office.add(jira);
+			}
+			
+			if(german != null) {
+				language.add(german);
+			}
+			if(english != null) {
+				language.add(english);
+			}
+			if(spanish != null) {
+				language.add(spanish);
+			}
+			if(french != null) {
+				language.add(french);
+			}
+			if(chinese != null) {
+				language.add(chinese);
+			}
 			
 			//session Variable setzen
 			int a_id = (int) session.getAttribute("a_id");
 			
-			int counter = userDao.addSkills(map, a_id);
+			Skills skills = new Skills();
+			skills.setProgrammingLanguage(programmingLanguage);
+			skills.setOffice(office);
+			skills.setLanguage(language);
+			
+			int counter = userDao.addSkills(skills, a_id);
 					
 			if (counter > 0) {
+				String programmingStr = programmingLanguage.toString();
+				String officeStr = office.toString();
+				String languageStr = language.toString();
+				
+				String subProgramming = programmingStr.substring(1, programmingStr.length()-1);
+				String subOffice = officeStr.substring(1, officeStr.length()-1);
+				String subLanguage = languageStr.substring(1, languageStr.length()-1);
+						
 			mv.addObject("msg", "Skills successfully added.");
-			mv.addObject("programming", programming);
-			mv.addObject("language", language);
-			mv.addObject("office", office);
-
+			mv.addObject("programmingLanguage", subProgramming);
+			mv.addObject("office", subOffice);
+			mv.addObject("language", subLanguage);
 
 			mv.setViewName("userSkills");
 			} else {

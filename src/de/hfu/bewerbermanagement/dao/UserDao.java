@@ -1,11 +1,13 @@
 package de.hfu.bewerbermanagement.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import de.hfu.bewerbermanagement.model.Applicant;
 import de.hfu.bewerbermanagement.model.Recruiter;
+import de.hfu.bewerbermanagement.model.Skills;
 import de.hfu.bewerbermanagement.model.User;
 public interface UserDao {
 	
@@ -29,11 +31,11 @@ public interface UserDao {
 	public int isApplicant(String email);
 	
 	// Skills hinzufügen
-	public int addSkills(Map<String, String> skills, int a_id);
+	public int addSkills(Skills skills, int a_id);
 	
 	// Prüfen ob bereits Skills eingegeben wurden
 	boolean isSkillAvailable(int a_id);
 
 	// Bereits eingetragene Skills anzeigen
-	public Map<String, String> oldSkills(int a_id);
+	public Skills oldSkills(int a_id);
 }

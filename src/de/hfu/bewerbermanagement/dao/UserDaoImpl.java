@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -12,6 +14,7 @@ import javax.sql.DataSource;
 
 import de.hfu.bewerbermanagement.model.Applicant;
 import de.hfu.bewerbermanagement.model.Recruiter;
+import de.hfu.bewerbermanagement.model.Skills;
 import de.hfu.bewerbermanagement.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -249,9 +252,9 @@ public class UserDaoImpl implements UserDao{
 		}
 	}
 
-	// Skills im Profil anzeigen
+	// Skills hinzufügen
 	@Override
-	public int addSkills(Map<String, String> skills, int a_id) {
+	public int addSkills(Skills skills, int a_id) {
 		boolean isSkillAvailable = isSkillAvailable(a_id);
 		String keyUpdateSkills;
 		String keyInsertSkills;
@@ -265,7 +268,15 @@ public class UserDaoImpl implements UserDao{
 
 			if(statementUpdateSkills != null) {
 				try {
-					int counterSkill = jdbcTemplate.update(statementUpdateSkills, new Object[] { skills.get("programmingLanguage"), skills.get("language"), skills.get("office"), a_id});
+					int counterSkill = jdbcTemplate.update(statementUpdateSkills, new Object[] {
+							skills.getProgrammingLanguage().contains("Java"), skills.getProgrammingLanguage().contains("JavaScript"),
+							skills.getProgrammingLanguage().contains("C++"), skills.getProgrammingLanguage().contains("Python"),
+							skills.getProgrammingLanguage().contains("Html"), skills.getOffice().contains("Word"),
+							skills.getOffice().contains("Excel"), skills.getOffice().contains("Powerpoint"),
+							skills.getOffice().contains("Git"), skills.getOffice().contains("Jira"),
+							skills.getLanguage().contains("Deutsch"), skills.getLanguage().contains("Englisch"),
+							skills.getLanguage().contains("Spanisch"), skills.getLanguage().contains("Franzoesisch"),
+							skills.getLanguage().contains("Chinesisch"), a_id});
 					return counterSkill;
 				} catch(Exception e) {
 					e.printStackTrace();
@@ -280,7 +291,15 @@ public class UserDaoImpl implements UserDao{
 
 			if(statementInsertSkills != null) {
 				try {
-					int counterSkill = jdbcTemplate.update(statementInsertSkills, new Object[] { skills.get("programmingLanguage"), skills.get("office"), skills.get("language"), a_id});
+					int counterSkill = jdbcTemplate.update(statementInsertSkills, new Object[] { 
+							skills.getProgrammingLanguage().contains("Java"), skills.getProgrammingLanguage().contains("JavaScript"),
+							skills.getProgrammingLanguage().contains("C++"), skills.getProgrammingLanguage().contains("Python"),
+							skills.getProgrammingLanguage().contains("Html"), skills.getOffice().contains("Word"),
+							skills.getOffice().contains("Excel"), skills.getOffice().contains("Powerpoint"),
+							skills.getOffice().contains("Git"), skills.getOffice().contains("Jira"),
+							skills.getLanguage().contains("Deutsch"), skills.getLanguage().contains("Englisch"),
+							skills.getLanguage().contains("Spanisch"), skills.getLanguage().contains("Franzoesisch"),
+							skills.getLanguage().contains("Chinesisch"), a_id});
 					return counterSkill;
 				} catch(Exception e) {
 					e.printStackTrace();
@@ -293,8 +312,9 @@ public class UserDaoImpl implements UserDao{
 		
 	}
 	
+	//Skill-Profil anzeigen
 	@Override
-	public Map<String, String> oldSkills(int a_id) {
+	public Skills oldSkills(int a_id) {
 		// get SQL Statement (Nadine Jakob 10.06.2019)
 		String key = "showSkills";
 		String statement = jsonNode.get(key).asText();
@@ -302,21 +322,88 @@ public class UserDaoImpl implements UserDao{
 		if(statement != null) {
 			try {
 				
-				Map<String, String> result = jdbcTemplate.queryForObject(statement, new Object[] {a_id}, new RowMapper<Map<String, String>>() {
+				Skills result = jdbcTemplate.queryForObject(statement, new Object[] {a_id}, new RowMapper<Skills>() {
 					
 					@Override
-					public Map<String, String> mapRow(ResultSet rs, int rowNum) throws SQLException {
+					public Skills mapRow(ResultSet rs, int rowNum) throws SQLException {
 						
-						String programming = rs.getString("programmingLanguage");
-						String office = rs.getString("office");
-						String language = rs.getString("language");
+						boolean java = rs.getBoolean("java");
+						boolean javaScript = rs.getBoolean("javaScript");
+						boolean cPlusPlus = rs.getBoolean("cPlusPlus");
+						boolean python = rs.getBoolean("python");
+						boolean html = rs.getBoolean("html");
 						
-						Map<String, String> map = new HashMap<String, String>();
-						map.put("programmingLanguage", programming);
-						map.put("office", office);
-						map.put("language", language);
+						boolean word = rs.getBoolean("word");
+						boolean excel = rs.getBoolean("excel");
+						boolean powerpoint = rs.getBoolean("powerpoint");
+						boolean git = rs.getBoolean("git");
+						boolean jira = rs.getBoolean("jira");
 						
-						return map;
+						boolean german = rs.getBoolean("german");
+						boolean english = rs.getBoolean("english");
+						boolean spanish = rs.getBoolean("spanish");
+						boolean french = rs.getBoolean("french");
+						boolean chinese = rs.getBoolean("chinese");
+						
+						List<String> programmingLanguage = new ArrayList<String>();
+						List<String> office = new ArrayList<>();
+						List<String> language = new ArrayList<>();
+						
+						if(java == true) {
+						programmingLanguage.add("Java");
+						}
+						if(javaScript == true) {
+							programmingLanguage.add("JavaScript");
+						}
+						if(cPlusPlus == true) {
+							programmingLanguage.add("C++");
+						}
+						if(python == true) {
+							programmingLanguage.add("Python");
+						}
+						if(html == true) {
+							programmingLanguage.add("HTML/CSS");
+						}
+							
+						if(word == true) {
+							office.add("Word");
+						}
+						if(excel == true) {
+							office.add("Excel");
+						}
+						if(powerpoint == true) {
+							office.add("PowerPoint");
+						}
+						if(git == true) {
+							office.add("GitHub");
+						}
+						if(jira == true) {
+							office.add("Jira");
+						}
+					
+						if(german == true) {
+							language.add("Deutsch");
+						}
+						if(english == true) {
+							language.add("Englisch");
+						}
+						if(spanish == true) {
+							language.add("Spanisch");
+						}
+						if(french == true) {
+							language.add("Französisch");
+						}
+						if(chinese == true) {
+							language.add("Chinesisch");
+						}
+							
+							
+						Skills skills = new Skills();
+						skills.setProgrammingLanguage(programmingLanguage);
+						skills.setOffice(office);
+						skills.setLanguage(language);
+						
+						return skills;
 					}
 					});
 				return result;
@@ -346,8 +433,13 @@ public class UserDaoImpl implements UserDao{
 				} else {
 					return false;
 				}
-			} catch(Exception e) {
-				e.printStackTrace();
+				
+			} 
+			catch(EmptyResultDataAccessException e) {
+				return false;
+			}
+			catch(Exception e) {
+				e.printStackTrace();	
 			}
 			return false;
 		} else {

@@ -21,38 +21,38 @@
 		
 			<table>
 				<tr> <td class="header-skills"> Programmier-Kenntnisse:</td> </tr>
-				<tr> <td class="skills"> <input type="checkbox" name="chkProgramming" value="Java"> Java </td> </tr>
-				<tr> <td class="skills"> <input type="checkbox" name="chkProgramming" value="JavaScript"> JavaScript </td> </tr>
-				<tr> <td class="skills"> <input type="checkbox" name="chkProgramming" value="C++"> C++ <td> </tr>
-				<tr> <td class="skills"> <input type="checkbox" name="chkProgramming" value="Python"> Python <td> </tr>
-				<tr> <td class="skills"> <input type="checkbox" name="chkProgramming" value="HTML/CSS"> HTML/CSS <td> </tr>
+				<tr> <td class="skills"> <input type="checkbox" name="chkJava" value="Java"> Java </td> </tr>
+				<tr> <td class="skills"> <input type="checkbox" name="chkJavaScript" value="JavaScript"> JavaScript </td> </tr>
+				<tr> <td class="skills"> <input type="checkbox" name="chkC++" value="C++"> C++ <td> </tr>
+				<tr> <td class="skills"> <input type="checkbox" name="chkPython" value="Python"> Python <td> </tr>
+				<tr> <td class="skills"> <input type="checkbox" name="chkHtml" value="HTML"> HTML/CSS <td> </tr>
 		    </table>  
 		    <table>
 		      	<tr> <td class="header-skills"> Office-Kenntnisse: </td> </tr>
-		       	<tr> <td class="skills"> <input type="checkbox" name="chkOffice" value="Word"> Word </td> </tr>
-		       	<tr> <td class="skills"> <input type="checkbox" name="chkOffice" value="Excel"> Excel </td> </tr>
-				<tr> <td class="skills"> <input type="checkbox" name="chkOffice" value="Powerpoint"> PowerPoint <td> </tr>
-				<tr> <td class="skills"> <input type="checkbox" name="chkOffice" value="GitHub"> GitHub <td> </tr>
-				<tr> <td class="skills"> <input type="checkbox" name="chkOffice" value="Jira"> Jira <td> </tr>
+		       	<tr> <td class="skills"> <input type="checkbox" name="chkWord" value="Word"> Word </td> </tr>
+		       	<tr> <td class="skills"> <input type="checkbox" name="chkExcel" value="Excel"> Excel </td> </tr>
+				<tr> <td class="skills"> <input type="checkbox" name="chkPowerpoint" value="Powerpoint"> PowerPoint <td> </tr>
+				<tr> <td class="skills"> <input type="checkbox" name="chkGit" value="GitHub"> GitHub <td> </tr>
+				<tr> <td class="skills"> <input type="checkbox" name="chkJira" value="Jira"> Jira <td> </tr>
 			</table>
 			<table>	
 				<tr> <td class="header-skills"> Sprach-Kenntnisse: </td> </tr>
-		       	<tr> <td class="skills"> <input type="checkbox" name="chkLanguage" value="Deutsch"> Deutsch </td> </tr>
-		       	<tr> <td class="skills"> <input type="checkbox" name="chkLanguage" value="Englisch"> Englisch </td> </tr>
-				<tr> <td class="skills"> <input type="checkbox" name="chkLanguage" value="Spanisch"> Spanisch <td> </tr>
-				<tr> <td class="skills"> <input type="checkbox" name="chkLanguage" value="Franzoesisch"> Französisch <td> </tr>
-				<tr> <td class="skills"> <input type="checkbox" name="chkLanguage" value="Chinesisch"> Chinesisch <td> </tr>
+		       	<tr> <td class="skills"> <input type="checkbox" name="chkGerman" value="Deutsch"> Deutsch </td> </tr>
+		       	<tr> <td class="skills"> <input type="checkbox" name="chkEnglish" value="Englisch"> Englisch </td> </tr>
+				<tr> <td class="skills"> <input type="checkbox" name="chkSpanish" value="Spanisch"> Spanisch <td> </tr>
+				<tr> <td class="skills"> <input type="checkbox" name="chkFrench" value="Franzoesisch"> Französisch <td> </tr>
+				<tr> <td class="skills"> <input type="checkbox" name="chkChinese" value="Chinesisch"> Chinesisch <td> </tr>
 			</table>	
 				<br>
 				<button type="submit"> Bestätigen </button>
 		</form>
 		
-		<h3>Ausgewählte Fähigkeiten:</h3>
-		<div>Programmiersprache: ${ programming }</div>
-		<div>Office: ${ office }</div>
-		<div>Sprach-Kenntnisse: ${ language }</div>
-		
-		${msg}
+		<h3>Ausgewählte Fähigkeiten:</h3> 
+		<div class="header-change"> Programmiersprache: </div> <div> ${ programmingLanguage } </div>
+		<div class="header-change"> Office: </div> <div> ${ office } </div>
+		<div class="header-change">Sprach-Kenntnisse: </div>  <div> ${ language } </div>
+		<br>
+		<div class="message"> ${msg} </div> 
 	</div>
 </div>
 </body>

@@ -140,16 +140,15 @@ body {
   -moz-osx-font-smoothing: grayscale;      
 }
 
-.header-skills {
+td.header-skills {
    	font-weight: bolder;
-   	text-align: left;
-   	padding-left: 30px;
+   	text-align: center;
    	padding-bottom:10px;
 } 
 
 .skills {
    	text-align: left;
-   	padding-left: 50px;
+   	padding-left: 120px;
    	padding-bottom: 0px;
 } 
 
@@ -166,4 +165,5 @@ body {
 
 table {
 	   	text-align: left;
+	   	width: 100%;
 }

@@ -1,6 +1,7 @@
 package de.hfu.bewerbermanagement.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -10,6 +11,7 @@ import de.hfu.bewerbermanagement.business.RecruiterManager;
 import de.hfu.bewerbermanagement.dao.UserDao;
 import de.hfu.bewerbermanagement.model.Applicant;
 import de.hfu.bewerbermanagement.model.Recruiter;
+import de.hfu.bewerbermanagement.model.Skills;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,19 +38,24 @@ public class UserProfileController {
 			//session Variable setzen
 			int a_id = (int) session.getAttribute("a_id");
 			Applicant applicant = userDao.showApplicantProfile(session);
-			Map<String, String> skills = userDao.oldSkills(a_id);
+			Skills skills =  userDao.oldSkills(a_id);
 					
 			if(applicant != null) {
 				mv.addObject("applicant", applicant);
 				
 				//Aufrufen der Fähigkeiten
 				if(skills != null) {
-					String programming = skills.get("programmingLanguage");
-					String office = skills.get("office");
-					String language = skills.get("language");
-					mv.addObject("programmingLanguage", programming);
-					mv.addObject("office", office);
-					mv.addObject("language", language);
+					String programmingStr = skills.getProgrammingLanguage().toString();
+					String officeStr = skills.getOffice().toString();
+					String languageStr = skills.getLanguage().toString();
+					
+					String subProgramming = programmingStr.substring(1, programmingStr.length()-1);
+					String subOffice = officeStr.substring(1, officeStr.length()-1);
+					String subLanguage = languageStr.substring(1, languageStr.length()-1);
+							
+					mv.addObject("programmingLanguage", subProgramming);
+					mv.addObject("office", subOffice);
+					mv.addObject("language", subLanguage);
 				}
 				mv.setViewName("showApplicantProfile");
 			} else {
