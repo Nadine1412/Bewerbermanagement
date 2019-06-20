@@ -1,3 +1,4 @@
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,16 +7,41 @@
 </head>
 <body>
 <div class="navbar">
+		<c:if test="${sessionScope.isApplicant == true}">
 			<ul>
 				<li><a href="overviewUser.jsp">Startseite</a></li>
 				<li>
 					<a href="">Profil</a>
 					<ul>
 						<li><a href="getProfile">Profil anzeigen</a></li>
-						<li><a class="active" href="getOldProfile">Profil bearbeiten</a></li>
-						<li><a class="active" href="fileUpload.jsp">Anhänge hochladen</a></li>
-						<li><a class="active" href="fileUploadView.jsp">Anhänge anzeigen</a></li>
-						<li><a class="active" href="userSkills.jsp">Fähigkeiten hinzufügen</a></li>
+						<li><a href="getOldProfile">Profil bearbeiten</a></li>
+						<li><a href="fileUpload.jsp">Anhänge hochladen</a></li>
+						<li><a href="fileUploadView.jsp">Anhänge anzeigen</a></li>
+						<li><a href="userSkills.jsp">Fähigkeiten hinzufügen</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="">Kommunikation</a>
+					<ul>
+						<li><a href="emailForm.jsp">Email senden</a></li>
+						<li><a href="">Chat</a></li>
+					</ul>
+				</li>	
+				
+				<li><a href="decision.jsp">Logout</a></li>
+			</ul>
+			</c:if>
+			
+		<c:if test="${sessionScope.isApplicant == false}">
+			<ul>
+				<li><a href="overviewUser.jsp">Startseite</a></li>
+				<li>
+					<a href="">Profil</a>
+					<ul>
+						<li><a href="getProfile">Profil anzeigen</a></li>
+						<li><a href="getOldProfile">Profil bearbeiten</a></li>
+						<li><a href="fileUpload.jsp">Anhänge hochladen</a></li>
+						<li><a href="fileUploadView.jsp">Anhänge anzeigen</a></li>
 					</ul>
 				</li>
 				<li>
@@ -28,12 +54,13 @@
 				<li>
 					<a href="">Suche</a>
 					<ul>
-						<li><a href="emailForm.jsp">Bewerber suchen</a></li>
+						<li><a href="searchApplicants.jsp">Bewerber suchen</a></li>
 					</ul>
 				</li>
 				
 				<li><a href="decision.jsp">Logout</a></li>
 			</ul>
-		</div>
+		</c:if>
+	</div>
 </body>
 </html>

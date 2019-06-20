@@ -32,12 +32,14 @@ public class UserProfileController {
 	@RequestMapping(value = {"getProfile"}, method = RequestMethod.GET)
 	public ModelAndView showApplicantProfile(HttpSession session) {
 		
+		String email = (String) session.getAttribute("userEmail");
+		
 		ModelAndView mv = new ModelAndView();
 		if((boolean) session.getAttribute("isApplicant"))
 		{
 			//session Variable setzen
 			int a_id = (int) session.getAttribute("a_id");
-			Applicant applicant = userDao.showApplicantProfile(session);
+			Applicant applicant = userDao.showApplicantProfile(email);
 			Skills skills =  userDao.oldSkills(a_id);
 					
 			if(applicant != null) {
@@ -64,7 +66,7 @@ public class UserProfileController {
 			}
 		}
 		else {
-			Recruiter recruiter = userDao.showRecruiterProfile(session);
+			Recruiter recruiter = userDao.showRecruiterProfile(email);
 			if(recruiter != null) {
 				mv.addObject("recruiter", recruiter);
 				mv.setViewName("showRecruiterProfile");

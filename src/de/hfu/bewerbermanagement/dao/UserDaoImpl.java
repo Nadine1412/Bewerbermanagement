@@ -2,8 +2,10 @@ package de.hfu.bewerbermanagement.dao;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -44,11 +46,9 @@ public class UserDaoImpl implements UserDao{
 		String statementUser = jsonNode.get(keyUser).asText();
 		String statementApplicant = jsonNode.get(keyApplicant).asText();
 
-		//"registerUser": "INSERT INTO user (password,name,surname,email,birthday VALUES(?,?,?,?,?)"
 		if(statementUser != null) {
 			try {
 				int counterUser = jdbcTemplate.update(statementUser, new Object[] { applicant.getPassword(), applicant.getUserName(), applicant.getUserSurname(), applicant.getEmail(),applicant.getBirthday()});
-				//"registerApplicant": "INSERT INTO applicant (entrydate,subject,specialization,sallery,u_id) VALUES(?,?,?,?,(SELECT u_id FROM user WHERE email=?)"
 				if(statementApplicant != null && counterUser != 0) {
 					int counterApplicant = jdbcTemplate.update(statementApplicant, new Object[] {applicant.getEntryDate(), applicant.getSubject(), applicant.getSpecialization(), applicant.getSallery(), applicant.getEmail()});
 					return counterApplicant;
@@ -70,11 +70,9 @@ public class UserDaoImpl implements UserDao{
 				String statementUser = jsonNode.get(keyUser).asText();
 				String statementRecruiter = jsonNode.get(keyRecruiter).asText();
 
-				//"registerUser": "INSERT INTO user (password,name,surname,email,birthday VALUES(?,?,?,?,?)"
 				if(statementUser != null) {
 					try {
 						int counterUser = jdbcTemplate.update(statementUser, new Object[] { recruiter.getPassword(), recruiter.getUserName(), recruiter.getUserSurname(), recruiter.getEmail(),recruiter.getBirthday()});
-						//"registerRecruiter": "INSERT INTO recruiter (position,enterprise, u_id) VALUES(?,?,(SELECT u_id FROM user WHERE email=?))",
 						if(statementRecruiter != null && counterUser != 0) {
 							int counterRecruiter = jdbcTemplate.update(statementRecruiter, new Object[] {recruiter.getPosition(), recruiter.getEnterprise(), recruiter.getEmail()});
 							return counterRecruiter;
@@ -101,11 +99,9 @@ public class UserDaoImpl implements UserDao{
 				return resultName;
 			} catch (Exception e) {
 				return null;
-				//@ToDo error Message ausgeben
 			}
 		} else {
 			return null;
-			//@ToDo error Message ausgeben
 		}
 	}
 	
@@ -135,15 +131,14 @@ public class UserDaoImpl implements UserDao{
 
 	// Applicant Profil anzeigen
 	@Override
-	public Applicant showApplicantProfile(HttpSession session) {
+	public Applicant showApplicantProfile(String email) {
 		// get SQL Statement (Nadine Jakob 10.06.2019)
 		String key = "showApplicantProfile";
 		String statement = jsonNode.get(key).asText();
 		
 		if(statement != null) {
 			try {
-				String email = session.getAttribute("userEmail").toString(); //kommt in Präsentationslogik
-				
+								
 				Applicant result = jdbcTemplate.queryForObject(statement, new Object[] {email}, new RowMapper<Applicant>() {
 					@Override
 					public Applicant mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -172,15 +167,14 @@ public class UserDaoImpl implements UserDao{
 
 	// Recruiter Profil anzeigen
 	@Override
-		public Recruiter showRecruiterProfile(HttpSession session) {
+		public Recruiter showRecruiterProfile(String email) {
 			// get SQL Statement (Nadine Jakob 10.06.2019)
 			String key = "showRecruiterProfile";
 			String statement = jsonNode.get(key).asText();
 			
 			if(statement != null) {
 				try {
-					String email = session.getAttribute("userEmail").toString(); //kommt in Präsentationslogik
-					
+									
 					Recruiter result = jdbcTemplate.queryForObject(statement, new Object[] {email}, new RowMapper<Recruiter>() {
 						@Override
 						public Recruiter mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -444,6 +438,47 @@ public class UserDaoImpl implements UserDao{
 			return false;
 		} else {
 			return false;
+		}
+	}
+
+
+	@Override
+	public List<Applicant> searchApp(List<String> skills) {
+		String key = "searchApplicant";
+		String statement = jsonNode.get(key).asText();
+		
+		if(statement != null) {
+			try {
+				//List<Applicant> applicantList= jdbcTemplate.queryForList(statement, Applicant.class);
+				for(String skill: skills) {
+					statement = statement + skill +"=1 AND "; 
+				}
+				statement = statement.substring(0, statement.length()-4);
+
+				List<Map <String, Object>> resultList = jdbcTemplate.queryForList(statement);
+				List<Applicant> applicantList =  new ArrayList<Applicant>();
+			    for(Map<String, Object> map : resultList) {
+			    	Applicant applicant = new Applicant();
+			    	applicant.setUserName((String)map.get("name"));
+			    	applicant.setUserSurname((String)map.get("surname"));
+			    	applicant.setEmail((String)map.get("email"));
+			    	Date birthday = (Date) map.get("birthday");
+			    	applicant.setBirthday(birthday.toString());
+			    	Date entryDate = (Date) map.get("entryDate");
+			    	applicant.setEntryDate(entryDate.toString());
+			    	int sallery = (int)map.get("sallery");
+			    	applicant.setSallery(Integer.toString(sallery));
+			    	applicant.setSpecialization((String)map.get("specialization"));
+			    	applicant.setSubject((String)map.get("subject"));
+			    	
+			    	applicantList.add(applicant);
+			    }
+				return applicantList;		
+			} catch (Exception e) {
+				return null;
+			}
+		} else {
+			return null;
 		}
 	}
 }

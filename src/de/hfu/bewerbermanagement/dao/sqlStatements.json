@@ -11,5 +11,7 @@
 	"insertSkills": "INSERT INTO skills (java, javaScript, cPlusPlus, python, html, word, excel, powerpoint, git, jira, german, english, spanish, french, chinese, a_id) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
 	"isSkillAvailable": "SELECT a_id FROM skills WHERE a_id=?",
 	"updateSkills": "UPDATE skills JOIN applicant ON applicant.a_id = skills.a_id SET java=?, javaScript=?, cPlusPlus=?, python=?, html=?, word=?, excel=?, powerpoint=?, git=?, jira=?, german=?, english=?, spanish=?, french=?, chinese=? WHERE applicant.a_id=?",
-	"showSkills": "SELECT * FROM skills JOIN applicant ON applicant.a_id = skills.a_id WHERE skills.a_id=?"
+	"showSkills": "SELECT * FROM skills JOIN applicant ON applicant.a_id = skills.a_id WHERE skills.a_id=?",
+	"searchApp": "SELECT user.name, user.surname, user.email, user.birthday, applicant.entrydate, applicant.sallery, applicant.specialization, applicant.subject FROM user JOIN applicant ON user.u_id = applicant.u_id JOIN skills ON applicant.a_id = skills.a_id WHERE skills.java=1 AND skills.javaScript=1 AND skills.word=1 AND skills.excel=1",
+	"searchApplicant": "SELECT user.name, user.surname, user.email, user.birthday, applicant.entrydate, applicant.sallery, applicant.specialization, applicant.subject FROM user JOIN applicant ON user.u_id = applicant.u_id JOIN skills ON applicant.a_id = skills.a_id WHERE "
 }

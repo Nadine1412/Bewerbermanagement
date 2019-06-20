@@ -19,10 +19,9 @@ public interface UserDao {
 	public String loginUser(User user);
 	
 	// Profil anzeigen
-	public Applicant showApplicantProfile(HttpSession session);
-	public Recruiter showRecruiterProfile(HttpSession session);
+	public Applicant showApplicantProfile(String email);
+	public Recruiter showRecruiterProfile(String email);
 
-	
 	// Profil ändern
 	public int changeApplicantProfile(Applicant applicant);
 	public int changeRecruiterProfile(Recruiter recruiter);
@@ -38,4 +37,7 @@ public interface UserDao {
 
 	// Bereits eingetragene Skills anzeigen
 	public Skills oldSkills(int a_id);
+	
+	// Bewerber suchen
+	public List<Applicant> searchApp(List<String> skills); 
 }
