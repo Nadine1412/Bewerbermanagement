@@ -33,7 +33,7 @@
 	  margin-bottom: 0px;
 	  margin-top: 10px;
 }
-.form button {
+button {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
@@ -166,4 +166,43 @@ td.header-skills {
 table {
 	   	text-align: left;
 	   	width: 100%;
+	   	border-collapse: collapse;
+}
+
+.pageSearch {
+	width:1300px;
+	padding: 4% 0 0;
+ 	margin: auto;
+}
+
+.formSearch {
+	width:300px;
+	position: relative;
+	z-index: 1;
+	background: #FFFFFF;
+	/*max-width: 360px;*/
+	/*margin: 0 auto 100px;*/
+	/*padding: auto;*/
+	padding-top: 15px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-bottom: 15px;
+	text-align: center;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.searchTable {
+	width:900px;
+	position: relative;
+	z-index: 1;
+	background: #FFFFFF;
+	/*max-width: 360px;*/
+	/*margin: 0 auto 100px;*/
+	/*padding: auto;*/
+	padding-top: 15px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-bottom: 15px;
+	text-align: center;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }

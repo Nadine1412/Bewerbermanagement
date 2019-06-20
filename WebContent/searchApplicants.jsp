@@ -14,11 +14,11 @@
 <body>
 <jsp:include page="navBar.jsp"></jsp:include>
 <p>
-<div class="page" style="width:1300px">
+<div class="pageSearch">
 <table>
 <tr>
 	<td >
-		<div class="form" style="width:300px">
+		<div class="formSearch">
 			<form action="searchApplicant" method="post">
 			<h2>Gewünschte Fähigkeiten angeben: </h2>
 			
@@ -52,8 +52,8 @@
 		</div>
 	</td>
 	<td valign="top">
-		<div class="form" style="width:900px">
-			<table style="   border-collapse: collapse;"border="1" color:"black">
+		<div class="searchTable">
+			<table border="1">
 				<tr class="header-change"> <td> Name:  </td> <td> Nachname: </td> <td> Geburtstag </td> <td> E-Mail: </td> <td> Fr. Eintrittsdatum: </td> <td> Fachrichtung: </td> <td> Vertiefung: </td> <td> Gehaltsvorstellung: </td> 
 			
 	 			<c:forEach items="${applicants}" var= "applicant">
