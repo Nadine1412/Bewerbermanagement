@@ -82,10 +82,12 @@ public class UserProfileController {
 	@RequestMapping(value = {"getOldProfile"}, method = RequestMethod.GET)
 	public ModelAndView showOldProfil(HttpSession session) {
 		
+		String email = (String) session.getAttribute("userEmail");
+		
 		ModelAndView mv = new ModelAndView();
 		if((boolean) session.getAttribute("isApplicant"))
 		{
-			Applicant applicant = userDao.showApplicantProfile(session);
+			Applicant applicant = userDao.showApplicantProfile(email);
 			if(applicant != null) {
 				mv.addObject("applicant", applicant);
 				mv.setViewName("changeApplicantProfile");
@@ -95,7 +97,7 @@ public class UserProfileController {
 			}
 		}
 		else {
-			Recruiter recruiter = userDao.showRecruiterProfile(session);
+			Recruiter recruiter = userDao.showRecruiterProfile(email);
 			if(recruiter != null) {
 				mv.addObject("recruiter", recruiter);
 				mv.setViewName("changeRecruiterProfile");
