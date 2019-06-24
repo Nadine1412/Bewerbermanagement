@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import de.hfu.bewerbermanagement.model.Applicant;
+import de.hfu.bewerbermanagement.model.File;
 import de.hfu.bewerbermanagement.model.Recruiter;
 import de.hfu.bewerbermanagement.model.Skills;
 import de.hfu.bewerbermanagement.model.User;
@@ -39,5 +40,8 @@ public interface UserDao {
 	public Skills oldSkills(int a_id);
 	
 	// Bewerber suchen
-	public List<Applicant> searchApp(List<String> skills); 
+	public List<Applicant> searchApp(List<String> skills);
+	
+	// Datei upload speicher
+	public int saveFileUpload(de.hfu.bewerbermanagement.model.File f);
 }

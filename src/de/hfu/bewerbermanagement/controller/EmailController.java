@@ -66,19 +66,7 @@ public class EmailController {
 	}
 
 	private void sendMail(Mail mail) throws IOException {
-		
-		
-//		Properties props = new Properties();
-//		props.put("mail.smtp.auth", Constants.smtpAuth);
-//		props.put("mail.smtp.starttls.enable", Constants.smtpStarttls);
-//		props.put("mail.smtp.host", Constants.smtpHost);
-//		props.put("mail.smtp.ssl.trust", Constants.sslTrust);
-//		props.put("mail.smtp.port", Constants.smtpPort);
-//	
-//		Session session = Session.getInstance(props, new Authenticator() { protected PasswordAuthentication getPasswordAuthentication() {
-//			return new PasswordAuthentication(Constants.email, Constants.pw); }
-//		});
-		
+				
 		Message msg = new MimeMessage(getEmailSession);
 		try {
 			msg.setFrom(new InternetAddress(Constants.email, false));

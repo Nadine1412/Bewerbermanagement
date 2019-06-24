@@ -9,22 +9,19 @@
 		<%@include file="css/navigation.css"%>
 		<%@include file="css/backgroundTemplate.css"%>
 </style>
-
 </head>
 <body>
 <jsp:include page="navBar.jsp"></jsp:include>
-<h2>Anhänge hochladen</h2>
-<form action="uploadFile" method="POST" enctype="multipart/form-data">
-    <table>
-        <tr>
-            <td><form:label path="file">Select a file to upload</form:label></td>
-            <td><input type="file" name="file" /></td>
-        </tr>
-        <tr>
-            <td><input type="submit" value="Submit" /></td>
-        </tr>
-    </table>
-</form>
-
+	<div class="page">
+		<div class="form">
+			<form action="uploadFile" method="POST" enctype="multipart/form-data">
+				<input type="text" name="name" placeholder="Name"/>
+				<textarea id="description" cols="30" rows="10" name="description"></textarea>
+				<br><br>
+				<input type="file" name="file" />
+				<button type="submit">upload</button>
+			</form>
+		</div>
+	</div>
 </body>
 </html>
