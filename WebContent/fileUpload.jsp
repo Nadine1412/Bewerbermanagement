@@ -21,6 +21,7 @@
 				<input type="file" name="file" />
 				<button type="submit">upload</button>
 			</form>
+			<p class="message" color="RED">${msg}</p>
 		</div>
 	</div>
 </body>
