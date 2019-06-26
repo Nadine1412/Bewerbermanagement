@@ -481,5 +481,25 @@ public class UserDaoImpl implements UserDao{
 			return null;
 		}
 	}
+
+	@Override
+	public int saveFileUpload(de.hfu.bewerbermanagement.model.File f) {
+		String key = "saveFileUpload";
+		String statement = jsonNode.get(key).asText();
+
+		if(statement != null) {
+			try {
+				//int counter = 0;
+				int counter = jdbcTemplate.update(statement, new Object[] {f.getFilename(), f.getFile(), f.getDescription(), f.getUploadDate(), f.getA_id()});
+				
+				return counter;
+				}
+				catch (Exception e) {
+					return 0;
+				}
+		} else {
+			return 0;
+		}
+	}
 }
 

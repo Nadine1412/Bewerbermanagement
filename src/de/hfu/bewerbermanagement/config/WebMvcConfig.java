@@ -2,10 +2,16 @@ package de.hfu.bewerbermanagement.config;
 
 import de.hfu.bewerbermanagement.dao.UserDao;
 import de.hfu.bewerbermanagement.dao.UserDaoImpl;
+import resources.Constants;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Properties;
+
+import javax.mail.Authenticator;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -50,16 +56,15 @@ public class WebMvcConfig {
 		return new UserDaoImpl(getDataSource());
 
 	}
-
+	
+	// JsonNode f�r sqlstatements
 	@Bean
 	public JsonNode getJsonNode() {
 		ObjectMapper objectMapper = new ObjectMapper();
-		// String json = "de\\hfu\\bewerbermanagement\\dao\\sqlStatements.json";
-//		String json = "C:\\Users\\Nadine\\git\\Bewerbermanagement\\src\\de\\hfu\\bewerbermanagement\\dao\\sqlStatements.json";
-		URL sqlUrl = WebMvcConfig.class.getResource("/de/hfu/bewerbermanagement/dao/sqlStatements.json");
+		URL jsonUrl = WebMvcConfig.class.getResource("/de/hfu/bewerbermanagement/dao/sqlStatements.json");
 
 		try {
-			JsonNode jsonNode = objectMapper.readTree(new File(sqlUrl.getPath()));
+			JsonNode jsonNode = objectMapper.readTree(new File(jsonUrl.getPath()));
 			return jsonNode;
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -67,7 +72,21 @@ public class WebMvcConfig {
 		}
 	}
 
-	// Properties für mail adapter hier setzen
+	// Properties für mail adapter
+	@Bean
+	public Session getEmailSession() {
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", Constants.smtpAuth);
+		props.put("mail.smtp.starttls.enable", Constants.smtpStarttls);
+		props.put("mail.smtp.host", Constants.smtpHost);
+		props.put("mail.smtp.ssl.trust", Constants.sslTrust);
+		props.put("mail.smtp.port", Constants.smtpPort);
+	
+		Session session = Session.getInstance(props, new Authenticator() { protected PasswordAuthentication getPasswordAuthentication() {
+			return new PasswordAuthentication(Constants.email, Constants.pw); }
+		});
+		return session;
+	}
 
 	// Beans für den File Upload (Florian Möhrle 13.06.2019)
 	@Bean(name = "multipartResolver")

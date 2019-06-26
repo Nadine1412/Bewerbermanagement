@@ -24,7 +24,7 @@
 					<a href="">Kommunikation</a>
 					<ul>
 						<li><a href="emailForm.jsp">Email senden</a></li>
-						<li><a href="">Chat</a></li>
+						<!-- <li><a href="">Chat</a></li> -->
 					</ul>
 				</li>	
 				
@@ -48,7 +48,7 @@
 					<a href="">Kommunikation</a>
 					<ul>
 						<li><a href="emailForm.jsp">Email senden</a></li>
-						<li><a href="">Chat</a></li>
+						<!-- <li><a href="">Chat</a></li> -->
 					</ul>
 				</li>	
 				<li>

@@ -54,16 +54,17 @@
 	<td valign="top">
 		<div class="searchTable">
 			<table border="1">
-				<tr class="header-change"> <td> Name:  </td> <td> Nachname: </td> <td> Geburtstag </td> <td> E-Mail: </td> <td> Fr. Eintrittsdatum: </td> <td> Fachrichtung: </td> <td> Vertiefung: </td> <td> Gehaltsvorstellung: </td> 
-			
+				<tr class="header-change"> <td> </td> <td> Name:  </td> <td> Nachname: </td> <td> Geburtstag </td> <td> E-Mail: </td> <td> Fr. Eintrittsdatum: </td> <td> Fachrichtung: </td> <td> Vertiefung: </td> <td> Gehaltsvorstellung: </td>		
 	 			<c:forEach items="${applicants}" var= "applicant">
 	
-		 		<tr> <td> ${applicant.userName} </td> <td> ${applicant.userSurname} </td> <td> ${applicant.birthday} </td> <td> ${applicant.email} </td> <td> ${applicant.entryDate} </td> <td> ${applicant.subject} </td> <td> ${applicant.specialization} </td> <td> ${applicant.sallery} </td> </tr>
+		 		<tr> <td><input type="checkbox"> </td><td> ${applicant.userName} </td> <td> ${applicant.userSurname} </td> <td> ${applicant.birthday} </td> <td> ${applicant.email} </td> <td> ${applicant.entryDate} </td> <td> ${applicant.subject} </td> <td> ${applicant.specialization} </td> <td> ${applicant.sallery} </td>  </tr>
 	 		
 	 			</c:forEach>
 	 		</table>
+	 		<button>Bewerber kontaktieren</button>
 	 		<div class="message">${msg} </div>
 		</div>
+		
 	</td>
 </tr>
 </table>
