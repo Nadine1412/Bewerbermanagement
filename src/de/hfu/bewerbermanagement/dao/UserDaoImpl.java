@@ -2,6 +2,7 @@ package de.hfu.bewerbermanagement.dao;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Blob;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,6 +26,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 public class UserDaoImpl implements UserDao{
 	
@@ -493,7 +495,7 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public int saveFileUpload(de.hfu.bewerbermanagement.model.File f) {
-		String key = "attachment.fileUpload";
+		String key = "file.upload";
 		String statement = jsonNode.get(key).asText();
 
 		if(statement != null) {
@@ -510,5 +512,36 @@ public class UserDaoImpl implements UserDao{
 			return 0;
 		}
 	}
+
+
+	@Override
+	public de.hfu.bewerbermanagement.model.File showFiles(int a_id) {
+		
+		// get SQL Statement (Nadine Jakob 10.06.2019)
+				String key = "file.show";
+				String statement = jsonNode.get(key).asText();
+				
+				if(statement != null) {
+					try {
+										
+						File result = jdbcTemplate.queryForObject(statement, new Object[] {a_id}, new RowMapper<File>() {
+							@Override
+							public File mapRow(ResultSet rs, int rowNum) throws SQLException {
+								// File file = new File();
+								Blob file =  rs.getBlob("file_data");
+								System.out.println(file);
+								// file.setFile(rs.getString("file_data"));
+								return null;
+							}
+						} );	
+						return null;		
+					} catch (Exception e) {
+						return null;
+					}
+				} else {
+					return null;
+				}
+			}
+	
 }
 

@@ -44,4 +44,9 @@ public interface UserDao {
 	
 	// Datei upload speicher
 	public int saveFileUpload(de.hfu.bewerbermanagement.model.File f);
+	
+	// Files anzeigen
+	public File showFiles(int a_id);
+	
 }
+
