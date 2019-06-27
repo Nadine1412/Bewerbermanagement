@@ -64,6 +64,7 @@ public class SkillsController {
 			List<String> office = new ArrayList<>();
 			List<String> language = new ArrayList<>();
 			
+			// in die ProgrammingLanguage-Liste speichern
 			if(java != null) {
 				programmingLanguage.add(java);
 			}
@@ -80,6 +81,7 @@ public class SkillsController {
 				programmingLanguage.add(html);
 			}
 			
+			// in die Office-Liste speichern
 			if(word != null) {
 				office.add(word);
 			}
@@ -96,6 +98,7 @@ public class SkillsController {
 				office.add(jira);
 			}
 			
+			// in die Language-Liste speichern
 			if(german != null) {
 				language.add(german);
 			}

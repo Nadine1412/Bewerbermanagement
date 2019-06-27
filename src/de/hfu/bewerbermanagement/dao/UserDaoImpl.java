@@ -41,8 +41,8 @@ public class UserDaoImpl implements UserDao{
 
 	public int registerApplicant(Applicant applicant) {
 		// SQL Statement aus json lesen (Nadine Jakob 07.06.2019)
-		String keyUser = "registerUser";
-		String keyApplicant = "registerApplicant";
+		String keyUser = "user.register";
+		String keyApplicant = "applicant.register";
 		String statementUser = jsonNode.get(keyUser).asText();
 		String statementApplicant = jsonNode.get(keyApplicant).asText();
 
@@ -65,8 +65,8 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public int registerRecruiter(Recruiter recruiter) {
 		// SQL Statement aus json lesen (Nadine Jakob 07.06.2019)
-				String keyUser = "registerUser";
-				String keyRecruiter = "registerRecruiter";
+				String keyUser = "user.register";
+				String keyRecruiter = "recruiter.register";
 				String statementUser = jsonNode.get(keyUser).asText();
 				String statementRecruiter = jsonNode.get(keyRecruiter).asText();
 
@@ -89,13 +89,22 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public String loginUser(User user) {
 		
+		
 		// SQL Statement aus json lesen (Nadine Jakob 07.06.2019)
-		String key = "login";
+		String key = "user.login";
 		String statement = jsonNode.get(key).asText();
 		
 		if(statement  != null) {
 			try {
-				String resultName = jdbcTemplate.queryForObject(statement, new Object[] {user.getEmail(), user.getPassword()}, String.class);
+				String resultName = jdbcTemplate.queryForObject(statement, new Object[] {user.getEmail(), user.getPassword()}, new RowMapper<String>() {
+				
+				@Override
+				public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+					String name = rs.getString("name");
+					String surname = rs.getString("surname");
+					return name + " " + surname;
+				}
+				});
 				return resultName;
 			} catch (Exception e) {
 				return null;
@@ -108,7 +117,7 @@ public class UserDaoImpl implements UserDao{
 	//Prüfen ob Applicant oder Recruiter
 	@Override
 	public int isApplicant(String email) {
-		String key = "isApplicant";
+		String key = "user.isApplicant";
 		String statement = jsonNode.get(key).asText();
 		
 		if(statement  != null) {
@@ -133,7 +142,7 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public Applicant showApplicantProfile(String email) {
 		// get SQL Statement (Nadine Jakob 10.06.2019)
-		String key = "showApplicantProfile";
+		String key = "applicant.showProfile";
 		String statement = jsonNode.get(key).asText();
 		
 		if(statement != null) {
@@ -169,7 +178,7 @@ public class UserDaoImpl implements UserDao{
 	@Override
 		public Recruiter showRecruiterProfile(String email) {
 			// get SQL Statement (Nadine Jakob 10.06.2019)
-			String key = "showRecruiterProfile";
+			String key = "recruiter.showProfile";
 			String statement = jsonNode.get(key).asText();
 			
 			if(statement != null) {
@@ -205,7 +214,7 @@ public class UserDaoImpl implements UserDao{
 		String userId = applicant.getUserId();
 		
 		// get SQL Statement (Nadine Jakob 10.06.2019)
-		String key = "changeApplicantProfile";
+		String key = "applicant.updateProfile";
 		String statement = jsonNode.get(key).asText();
 
 		if(statement != null) {
@@ -228,7 +237,7 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public int changeRecruiterProfile(Recruiter recruiter) {
 		
-		String key = "changeRecruiterProfile";
+		String key = "recruiter.updateProfile";
 		String statement = jsonNode.get(key).asText();
 
 		if(statement != null) {
@@ -257,7 +266,7 @@ public class UserDaoImpl implements UserDao{
 		String statementInsertSkills;
 		
 		if(isSkillAvailable) {
-			keyUpdateSkills = "updateSkills";
+			keyUpdateSkills = "skills.update";
 			statementUpdateSkills = jsonNode.get(keyUpdateSkills).asText();
 
 			if(statementUpdateSkills != null) {
@@ -280,7 +289,7 @@ public class UserDaoImpl implements UserDao{
 				return 0;
 			}
 		} else {
-			keyInsertSkills = "insertSkills";
+			keyInsertSkills = "skills.insert";
 			statementInsertSkills = jsonNode.get(keyInsertSkills).asText();
 
 			if(statementInsertSkills != null) {
@@ -310,7 +319,7 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public Skills oldSkills(int a_id) {
 		// get SQL Statement (Nadine Jakob 10.06.2019)
-		String key = "showSkills";
+		String key = "skills.show";
 		String statement = jsonNode.get(key).asText();
 		
 		if(statement != null) {
@@ -415,7 +424,7 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public boolean isSkillAvailable(int a_id) {
 		// SQL Statement aus json lesen (Nadine Jakob 07.06.2019)
-		String keySkills = "isSkillAvailable";
+		String keySkills = "skills.isAvailable";
 		String statementSkills = jsonNode.get(keySkills).asText();
 
 		if(statementSkills != null) {
@@ -444,7 +453,7 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public List<Applicant> searchApp(List<String> skills) {
-		String key = "searchApplicant";
+		String key = "applicant.search";
 		String statement = jsonNode.get(key).asText();
 		
 		if(statement != null) {
@@ -484,7 +493,7 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public int saveFileUpload(de.hfu.bewerbermanagement.model.File f) {
-		String key = "saveFileUpload";
+		String key = "attachment.fileUpload";
 		String statement = jsonNode.get(key).asText();
 
 		if(statement != null) {

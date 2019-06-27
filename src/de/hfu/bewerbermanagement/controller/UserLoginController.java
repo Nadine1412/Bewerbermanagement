@@ -48,7 +48,7 @@ public class UserLoginController {
 		session.setAttribute("a_id", a_id);
 
 		if(name != null) {
-			mv.addObject("msg", "Willkommen Herr / Frau " + name + ", Sie haben sich erfolgreich eingeloggt.");
+			mv.addObject("msg", "Willkommen " + name + ", Sie haben sich erfolgreich eingeloggt.");
 			mv.setViewName("overviewUser");
 		} else {
 			mv.addObject("msg", "Invalid user id or password.");

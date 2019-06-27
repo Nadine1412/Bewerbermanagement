@@ -37,7 +37,7 @@ function handleClick()
 					<tr> <td class="header-change"> Passwort: </td> 	<td> <input class="profile" type="password" placeholder="Passwort" name="password" value="${recruiter.password}"> </td> </tr> 
 					<tr> <td> </td> <td class="errorMsg"> ${errorPassword} </td> </tr>
 				</table>
-				<br> Ich stimme der <a href="dsgvo.jsp" target="_blank"> DSGVO </a>zu: <input type="checkbox" id="checkBoxDSGVO" onclick="handleClick(this)" name="DSGVO" value="true">
+				<br> Ich stimme der Speicherung meiner Daten entsprechend der  <a href="dsgvo.jsp" target="_blank"> DSGVO</a> zu: <input type="checkbox" id="checkBoxDSGVO" onclick="handleClick(this)" name="DSGVO" value="true">
 				<input type="submit"  id="submitButtonId" class="submitButton" value="registrieren" disabled="disabled">
 				<p class="message"> Zurück zur Auswahl? <a href="decision.jsp"> Zurück </a></p>
 				<p class="message">${msg}</p>
