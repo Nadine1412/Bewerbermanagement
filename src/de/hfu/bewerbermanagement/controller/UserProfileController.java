@@ -1,5 +1,7 @@
 package de.hfu.bewerbermanagement.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +22,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Controller
 public class UserProfileController {
 	
@@ -30,7 +36,7 @@ public class UserProfileController {
 	
 	//Profildaten von der Datenbank(dao) an den View weitergeben
 	@RequestMapping(value = {"getProfile"}, method = RequestMethod.GET)
-	public ModelAndView showApplicantProfile(HttpSession session) {
+	public ModelAndView showApplicantProfile(HttpSession session) throws JsonParseException, JsonMappingException, IOException {
 		
 		String email = (String) session.getAttribute("userEmail");
 		
@@ -40,7 +46,10 @@ public class UserProfileController {
 			//session Variable setzen
 			int a_id = (int) session.getAttribute("a_id");
 			Applicant applicant = userDao.showApplicantProfile(email);
-			Skills skills =  userDao.oldSkills(a_id);
+			
+			// Skills aus lokalem File holen
+			ObjectMapper mapper = new ObjectMapper();
+			Skills skills = mapper.readValue(new File(System.getProperty("user.dir") + "/skills.json"), Skills.class);
 					
 			if(applicant != null) {
 				mv.addObject("applicant", applicant);

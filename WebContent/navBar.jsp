@@ -24,11 +24,10 @@
 					<a href="">Kommunikation</a>
 					<ul>
 						<li><a href="emailForm.jsp">Email senden</a></li>
-						<!-- <li><a href="">Chat</a></li> -->
 					</ul>
 				</li>	
 				
-				<li><a href="decision.jsp">Logout</a></li>
+				<li><a href="logout">Logout</a></li>
 			</ul>
 			</c:if>
 			
@@ -53,8 +52,9 @@
 				<li>
 					<a href="searchApplicants.jsp">Bewerber suchen</a>
 				</li>
-				
-				<li><a href="decision.jsp">Logout</a></li>
+				<li>
+					<a href="logout">Logout</a>
+				</li>
 			</ul>
 		</c:if>
 	</div>
