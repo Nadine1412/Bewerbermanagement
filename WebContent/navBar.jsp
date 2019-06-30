@@ -51,10 +51,7 @@
 					</ul>
 				</li>	
 				<li>
-					<a href="">Suche</a>
-					<ul>
-						<li><a href="searchApplicants.jsp">Bewerber suchen</a></li>
-					</ul>
+					<a href="searchApplicants.jsp">Bewerber suchen</a>
 				</li>
 				
 				<li><a href="decision.jsp">Logout</a></li>
