@@ -96,7 +96,19 @@
 			<artifactId>standard</artifactId>
 			<version>1.1.2</version>
 		</dependency>
+
+		<!-- Dependency für Arch Unit Test (Florian Möhrle 24.06.2019) -->
+
+		<dependency>
+			<groupId>com.tngtech.archunit</groupId>
+			<artifactId>archunit-junit4</artifactId>
+			<version>0.10.2</version>
+			<scope>test</scope>
+		</dependency>
+
+
 	</dependencies>
+
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
