@@ -54,14 +54,39 @@
 	<td valign="top">
 		<div class="searchTable">
 			<table border="1">
-				<tr class="header-change"> <td> </td> <td> Bewerber-ID: </td> <td> Name:  </td> <td> Nachname: </td> <td> Geburtstag </td> <td> E-Mail: </td> <td> Fr. Eintrittsdatum: </td> <td> Fachrichtung: </td> <td> Vertiefung: </td> <td> Gehaltsvorstellung: </td>	<td> Anhänge </td> </tr>
+				<tr class="header-change"> 
+					<td> Bewerber-ID: </td> 
+					<td> Name:  </td> 
+					<td> Nachname: </td> 
+					<td> Geburtstag </td> 
+					<td> Fr. Eintrittsdatum: </td> 
+					<td> Fachrichtung: </td> 
+					<td> Vertiefung: </td> 
+					<td> Gehaltsvorstellung: </td>	
+					<td> Anhänge: </td> 
+					<td> Kontaktieren: </td> 
+				</tr>
+				
 	 			<c:forEach items="${applicants}" var= "applicant">
-	
-		 		<tr> <td><input type="checkbox"> </td> <td> ${applicant.a_id} </td> <td> ${applicant.userName} </td> <td> ${applicant.userSurname} </td> <td> ${applicant.birthday} </td> <td> ${applicant.email} </td> <td> ${applicant.entryDate} </td> <td> ${applicant.subject} </td> <td> ${applicant.specialization} </td> <td> ${applicant.sallery} </td> <td> <a href="getSearchedFiles?param=${applicant.a_id}" target="_blank"> Anhänge anzeigen </a></td>  </tr>
-	 		
+			 		<tr> 
+			 			<td> ${applicant.a_id} </td> 
+			 			<td> ${applicant.userName} </td> 
+			 			<td> ${applicant.userSurname} </td> 
+			 			<td> ${applicant.birthday} </td>  
+			 			<td> ${applicant.entryDate} </td> 
+			 			<td> ${applicant.subject} </td> 
+			 			<td> ${applicant.specialization} </td> 
+			 			<td> ${applicant.sallery} </td> 
+			 			<td> <a href="getSearchedFiles?paramAid=${applicant.a_id}" target="_blank"> Anhänge anzeigen </a></td> 
+			 			<td> 
+			 				<form action="getEmail" method="post" class="register-form" target="_blank">
+			 					<button type="submit" name="mailReceiver" value="${applicant.email}"> E-Mail </button>
+			 				</form>
+			 			</td>
+			 		</tr>
 	 			</c:forEach>
 	 		</table>
-	 		<button>Bewerber kontaktieren</button>
+	 		<br>
 	 		<div class="message">${msg} </div>
 		</div>
 		
