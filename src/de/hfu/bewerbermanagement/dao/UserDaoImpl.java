@@ -2,10 +2,12 @@ package de.hfu.bewerbermanagement.dao;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Blob;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +27,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 public class UserDaoImpl implements UserDao{
 	
@@ -64,7 +67,6 @@ public class UserDaoImpl implements UserDao{
 	
 	@Override
 	public int registerRecruiter(Recruiter recruiter) {
-		// SQL Statement aus json lesen (Nadine Jakob 07.06.2019)
 				String keyUser = "user.register";
 				String keyRecruiter = "recruiter.register";
 				String statementUser = jsonNode.get(keyUser).asText();
@@ -141,7 +143,7 @@ public class UserDaoImpl implements UserDao{
 	// Applicant Profil anzeigen
 	@Override
 	public Applicant showApplicantProfile(String email) {
-		// get SQL Statement (Nadine Jakob 10.06.2019)
+		// get SQL Statement 
 		String key = "applicant.showProfile";
 		String statement = jsonNode.get(key).asText();
 		
@@ -177,7 +179,7 @@ public class UserDaoImpl implements UserDao{
 	// Recruiter Profil anzeigen
 	@Override
 		public Recruiter showRecruiterProfile(String email) {
-			// get SQL Statement (Nadine Jakob 10.06.2019)
+			// get SQL Statement 
 			String key = "recruiter.showProfile";
 			String statement = jsonNode.get(key).asText();
 			
@@ -213,7 +215,7 @@ public class UserDaoImpl implements UserDao{
 	public int changeApplicantProfile(Applicant applicant) {
 		String userId = applicant.getUserId();
 		
-		// get SQL Statement (Nadine Jakob 10.06.2019)
+		// get SQL Statement 
 		String key = "applicant.updateProfile";
 		String statement = jsonNode.get(key).asText();
 
@@ -318,7 +320,7 @@ public class UserDaoImpl implements UserDao{
 	//Skill-Profil anzeigen
 	@Override
 	public Skills oldSkills(int a_id) {
-		// get SQL Statement (Nadine Jakob 10.06.2019)
+		// get SQL Statement 
 		String key = "skills.show";
 		String statement = jsonNode.get(key).asText();
 		
@@ -423,7 +425,7 @@ public class UserDaoImpl implements UserDao{
 	
 	@Override
 	public boolean isSkillAvailable(int a_id) {
-		// SQL Statement aus json lesen (Nadine Jakob 07.06.2019)
+		// SQL Statement aus json lesen 
 		String keySkills = "skills.isAvailable";
 		String statementSkills = jsonNode.get(keySkills).asText();
 
@@ -468,6 +470,8 @@ public class UserDaoImpl implements UserDao{
 				List<Applicant> applicantList =  new ArrayList<Applicant>();
 			    for(Map<String, Object> map : resultList) {
 			    	Applicant applicant = new Applicant();
+			    	int appId = (int)map.get("a_id");
+			    	applicant.setA_id(appId);
 			    	applicant.setUserName((String)map.get("name"));
 			    	applicant.setUserSurname((String)map.get("surname"));
 			    	applicant.setEmail((String)map.get("email"));
@@ -493,7 +497,7 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public int saveFileUpload(de.hfu.bewerbermanagement.model.File f) {
-		String key = "attachment.fileUpload";
+		String key = "file.upload";
 		String statement = jsonNode.get(key).asText();
 
 		if(statement != null) {
@@ -510,5 +514,47 @@ public class UserDaoImpl implements UserDao{
 			return 0;
 		}
 	}
+
+
+	@Override
+	public List<de.hfu.bewerbermanagement.model.File> showFiles(int a_id) {
+		
+		// get SQL Statement 
+				String key = "file.show";
+				String statement = jsonNode.get(key).asText();
+				if(statement != null) {
+					try {
+						statement = statement + a_id;
+						
+							List<Map <String, Object>> resultList = jdbcTemplate.queryForList(statement);
+							List<de.hfu.bewerbermanagement.model.File> fileList =  new ArrayList<de.hfu.bewerbermanagement.model.File>();
+						    for(Map<String, Object> map : resultList) {
+						    	
+						    	de.hfu.bewerbermanagement.model.File file = new de.hfu.bewerbermanagement.model.File();
+						    	
+						    	int applID = (int)map.get("a_id");
+						    	file.setA_id(applID);
+						    	
+						    	file.setFilename((String)map.get("file_name"));	
+						    	
+								byte[] fileBytes =  (byte[]) map.get("file_data");
+								file.setFile(fileBytes);
+								
+								file.setDescription((String)map.get("description"));
+								Date uploadDate = (Date)map.get("upload_date");
+								file.setUploadDate(uploadDate.toLocalDate());
+							
+						    	fileList.add(file);
+						    }
+						    	
+						return fileList;		
+					} catch (Exception e) {
+						return null;
+					}
+				} else {
+					return null;
+				}
+			}
+	
 }
 
