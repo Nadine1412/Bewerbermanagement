@@ -62,7 +62,6 @@ public class WebMvcConfig {
 	public JsonNode getJsonNode() {
 		ObjectMapper objectMapper = new ObjectMapper();
 		URL jsonUrl = WebMvcConfig.class.getResource("/de/hfu/bewerbermanagement/dao/sqlStatements.json");
-
 		try {
 			JsonNode jsonNode = objectMapper.readTree(new File(jsonUrl.getPath()));
 			return jsonNode;

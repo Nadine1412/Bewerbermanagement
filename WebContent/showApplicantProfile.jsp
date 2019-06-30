@@ -53,7 +53,7 @@
 						</tr>
 						<tr> 
 							<td class="header">Gehaltsvorstellung:</td>
-							<td>${applicant.sallery}</td> 
+							<td>${applicant.salary}</td> 
 						</tr>
 					</table>
 					<br><br>

@@ -58,7 +58,7 @@
 					<td> Bewerber-ID: </td> 
 					<td> Name:  </td> 
 					<td> Nachname: </td> 
-					<td> Geburtstag </td> 
+					<td> Geburtstag: </td> 
 					<td> Fr. Eintrittsdatum: </td> 
 					<td> Fachrichtung: </td> 
 					<td> Vertiefung: </td> 
@@ -76,7 +76,7 @@
 			 			<td> ${applicant.entryDate} </td> 
 			 			<td> ${applicant.subject} </td> 
 			 			<td> ${applicant.specialization} </td> 
-			 			<td> ${applicant.sallery} </td> 
+			 			<td> ${applicant.salary} </td> 
 			 			<td> <a href="getSearchedFiles?paramAid=${applicant.a_id}" target="_blank"> Anhänge anzeigen </a></td> 
 			 			<td> 
 			 				<form action="getEmail" method="post" class="register-form" target="_blank">

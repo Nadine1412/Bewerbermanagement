@@ -4,7 +4,7 @@ public class Applicant extends User {
 	private String entryDate;
 	private String subject;
 	private String specialization;
-	private String sallery;
+	private String salary;
 	private int a_id;
 
 	public String getSubject() {
@@ -23,12 +23,12 @@ public class Applicant extends User {
 		this.specialization = specialization;
 	}
 
-	public String getSallery() {
-		return sallery;
+	public String getSalary() {
+		return salary;
 	}
 
-	public void setSallery(String sallery) {
-		this.sallery = sallery;
+	public void setSalary(String salary) {
+		this.salary = salary;
 	}
 
 	public String getEntryDate() {

@@ -30,7 +30,7 @@ public class ApplicantManager {
 			boolean resultSurname = Pattern.matches("^[A-Z][a-z]+$", applicant.getUserSurname()); //Keine Zahlen im Nachnamen	
 			boolean resultSubject = Pattern.matches("^[A-Z][A-Z0-9a-z.\\/_%+-]+", applicant.getSubject()); // Großer Anfangsbuchstabe
 			boolean resultSpecialization = Pattern.matches("^[A-Z][A-Z0-9a-z.\\/_%+-]+", applicant.getSpecialization()); // Großer Anfangsbuchstabe
-			boolean resultSallery = Pattern.matches("^[1-9][0-9]{2,}$", applicant.getSallery()); // Keine 0 am Anfang und nur Positiveganzzahlen (mind.3stellig)
+			boolean resultSalary = Pattern.matches("^[1-9][0-9]{2,}$", applicant.getSalary()); // Keine 0 am Anfang und nur Positiveganzzahlen (mind.3stellig)
 			boolean resultEmail = Pattern.matches("[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}", applicant.getEmail()); // Überprüfen der EMail
 			boolean resultPassword = Pattern.matches("(?=.*?[A-Za-z]).{4,}", applicant.getPassword());
 			
@@ -53,7 +53,7 @@ public class ApplicantManager {
 			myMap.put("entrydate", resultEntrydate);
 			myMap.put("subject", resultSubject);
 			myMap.put("specialization", resultSpecialization);
-			myMap.put("sallery", resultSallery);
+			myMap.put("salary", resultSalary);
 			myMap.put("email", resultEmail);
 			myMap.put("password", resultPassword);
 			

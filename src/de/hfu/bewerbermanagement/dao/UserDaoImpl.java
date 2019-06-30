@@ -53,7 +53,7 @@ public class UserDaoImpl implements UserDao{
 			try {
 				int counterUser = jdbcTemplate.update(statementUser, new Object[] { applicant.getPassword(), applicant.getUserName(), applicant.getUserSurname(), applicant.getEmail(),applicant.getBirthday()});
 				if(statementApplicant != null && counterUser != 0) {
-					int counterApplicant = jdbcTemplate.update(statementApplicant, new Object[] {applicant.getEntryDate(), applicant.getSubject(), applicant.getSpecialization(), applicant.getSallery(), applicant.getEmail()});
+					int counterApplicant = jdbcTemplate.update(statementApplicant, new Object[] {applicant.getEntryDate(), applicant.getSubject(), applicant.getSpecialization(), applicant.getSalary(), applicant.getEmail()});
 					return counterApplicant;
 				}
 			} catch(Exception e) {
@@ -156,7 +156,7 @@ public class UserDaoImpl implements UserDao{
 						Applicant applicant = new Applicant();
 						applicant.setEmail(rs.getString("email"));
 						applicant.setEntryDate(rs.getDate("entrydate").toString());
-						applicant.setSallery(rs.getString("sallery"));
+						applicant.setSalary(rs.getString("salary"));
 						applicant.setPassword(rs.getString("password"));
 						applicant.setBirthday(rs.getString("birthday"));
 						applicant.setSpecialization(rs.getString("specialization"));
@@ -222,7 +222,7 @@ public class UserDaoImpl implements UserDao{
 		if(statement != null) {
 			try {
 				int counter = jdbcTemplate.update(statement, new Object[] {applicant.getUserName(), applicant.getUserSurname(), applicant.getEmail(), applicant.getBirthday(), applicant.getEntryDate(), 
-						applicant.getSubject(), applicant.getSpecialization(), applicant.getSallery(), applicant.getPassword(), applicant.getUserId()});
+						applicant.getSubject(), applicant.getSpecialization(), applicant.getSalary(), applicant.getPassword(), applicant.getUserId()});
 				
 				return counter;
 				}
@@ -479,8 +479,8 @@ public class UserDaoImpl implements UserDao{
 			    	applicant.setBirthday(birthday.toString());
 			    	Date entryDate = (Date) map.get("entryDate");
 			    	applicant.setEntryDate(entryDate.toString());
-			    	int sallery = (int)map.get("sallery");
-			    	applicant.setSallery(Integer.toString(sallery));
+			    	int salary = (int)map.get("salary");
+			    	applicant.setSalary(Integer.toString(salary));
 			    	applicant.setSpecialization((String)map.get("specialization"));
 			    	applicant.setSubject((String)map.get("subject"));
 			    	

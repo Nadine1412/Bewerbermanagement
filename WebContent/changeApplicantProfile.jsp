@@ -29,8 +29,8 @@
 						<tr> <td> </td> <td class="errorMsg"> ${errorSubject} </td> </tr>
 					<tr> <td class="header-change"> Vertiefung: </td> 				<td> <input class="profile" type="text" placeholder="Vertiefung" name="specialization" value="${applicant.specialization}"> </td>
 						<tr> <td> </td> <td class="errorMsg"> ${errorSpecialization} </td> </tr>
-					<tr> <td class="header-change"> Gehaltsvorstellung: </td> 		<td> <input class="profile" type="text" placeholder="Gehaltsvorstellung" name="sallery" value="${applicant.sallery}"> </td>
-						<tr> <td> </td> <td class="errorMsg"> ${errorSallery} </td> </tr>
+					<tr> <td class="header-change"> Gehaltsvorstellung: </td> 		<td> <input class="profile" type="text" placeholder="Gehaltsvorstellung" name="salary" value="${applicant.salary}"> </td>
+						<tr> <td> </td> <td class="errorMsg"> ${errorSalary} </td> </tr>
 					<tr> <td class="header-change"> E-Mail: </td> 					<td> <input class="profile" type="text" placeholder="Email" name="email" value="${applicant.email}"> </td>
 						<tr> <td> </td> <td class="errorMsg"> ${errorEmail} </td> </tr>
 					<tr> <td class="header-change"> Passwort: </td> 				<td> <input class="profile" type="password" placeholder="Passwort" name="password" value="${applicant.password}"> </td> 

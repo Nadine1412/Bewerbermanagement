@@ -98,7 +98,7 @@ public class UserRegistrationController {
 			@RequestParam("userName") String userName, @RequestParam("userSurname") String userSurname, 
 			@RequestParam("birthday") String birthday, @RequestParam("entryDate") String entryDate, 
 			@RequestParam("subject") String subject, @RequestParam("specialization") String specialization, 
-			@RequestParam("sallery") String sallery) {
+			@RequestParam("salary") String salary) {
 		
 		ModelAndView mv = new ModelAndView();
 		
@@ -112,16 +112,15 @@ public class UserRegistrationController {
 		applicant.setEntryDate(entryDate);
 		applicant.setSubject(subject);
 		applicant.setSpecialization(specialization);
-		applicant.setSallery(sallery);
+		applicant.setSalary(salary);
 
 		//Aufruf der Methode ExpressionApplicant
 		ApplicantManager am = new ApplicantManager();
 		Map<String, Boolean> map = am.expressionApplicant(applicant);
 		
-		if(map.get("name") && map.get("surname") && map.get("birthday") && map.get("entrydate") && map.get("subject") && map.get("specialization") && map.get("sallery") && map.get("email") && map.get("password"))
+		if(map.get("name") && map.get("surname") && map.get("birthday") && map.get("entrydate") && map.get("subject") && map.get("specialization") && map.get("salary") && map.get("email") && map.get("password"))
 		{
-			System.out.println("Richtige Eingabe." + "Name" + map.get("name") + "Nachname: " + map.get("surname") + "Geburtstag: " + map.get("birthday") + "Entrydate: " + map.get("entrydate") + "Fachrichtung: " + map.get("subject") + "Vertiefung: " + map.get("specialization") + "Sallery" + map.get("sallery") + "EMail: " + map.get("email") + "Passwort: " + map.get("password"));
-			
+	
 			int counter = userDao.registerApplicant(applicant);
 
 				if (counter > 0) {
@@ -132,8 +131,7 @@ public class UserRegistrationController {
 					mv.setViewName("registrationApplicant");
 				}
 		} else {
-			System.out.println("Falsche Eingabe." + "Name" + map.get("name") + "Nachname: " + map.get("surname") + "Geburtstag: " + map.get("birthday") + "Entrydate: " + map.get("entrydate") + "Fachrichtung: " + map.get("subject") + "Vertiefung: " + map.get("specialization") + "Sallery" + map.get("sallery") + "EMail: " + map.get("email") + "Passwort: " + map.get("password"));
-		
+					
 			if(!map.get("name")) {
 				mv.addObject("errorName", "Falsche Eingabe. Bitte mit einem Groﬂbuchstaben beginnen.");
 			}
@@ -152,8 +150,8 @@ public class UserRegistrationController {
 			if(!map.get("specialization")) {
 				mv.addObject("errorSpecialization", "Falsche Eingabe. Bitte mit einem Groﬂbuchstaben beginnen.");
 			}
-			if(!map.get("sallery")) {
-				mv.addObject("errorSallery", "Bitte eine mind. drei-stellige Zahl eingeben.");
+			if(!map.get("salary")) {
+				mv.addObject("errorSalary", "Bitte eine mind. drei-stellige Zahl eingeben.");
 			}
 			if(!map.get("email")) {
 				mv.addObject("errorEmail", "Bitte eine richtige E-Mailadresse eingeben.");
