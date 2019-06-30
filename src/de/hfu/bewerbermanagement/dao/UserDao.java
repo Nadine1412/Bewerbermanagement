@@ -46,7 +46,7 @@ public interface UserDao {
 	public int saveFileUpload(de.hfu.bewerbermanagement.model.File f);
 	
 	// Files anzeigen
-	public File showFiles(int a_id);
+	public List<de.hfu.bewerbermanagement.model.File> showFiles(int a_id);
 	
 }
 

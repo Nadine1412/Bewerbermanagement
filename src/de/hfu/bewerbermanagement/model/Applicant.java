@@ -5,6 +5,7 @@ public class Applicant extends User {
 	private String subject;
 	private String specialization;
 	private String sallery;
+	private int a_id;
 
 	public String getSubject() {
 		return subject;
@@ -36,6 +37,14 @@ public class Applicant extends User {
 
 	public void setEntryDate(String entryDate) {
 		this.entryDate = entryDate;
+	}
+
+	public int getA_id() {
+		return a_id;
+	}
+
+	public void setA_id(int a_id) {
+		this.a_id = a_id;
 	}
 
 	public Applicant() {

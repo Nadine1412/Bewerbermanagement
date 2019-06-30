@@ -16,7 +16,7 @@
 						<li><a href="getProfile">Profil anzeigen</a></li>
 						<li><a href="getOldProfile">Profil bearbeiten</a></li>
 						<li><a href="fileUpload.jsp">Anhänge hochladen</a></li>
-						<li><a href="fileUploadView.jsp">Anhänge anzeigen</a></li>
+						<li><a href="getFiles">Anhänge anzeigen</a></li>
 						<li><a href="userSkills.jsp">Fähigkeiten hinzufügen</a></li>
 					</ul>
 				</li>
@@ -40,8 +40,7 @@
 					<ul>
 						<li><a href="getProfile">Profil anzeigen</a></li>
 						<li><a href="getOldProfile">Profil bearbeiten</a></li>
-						<li><a href="fileUpload.jsp">Anhänge hochladen</a></li>
-						<li><a href="fileUploadView.jsp">Anhänge anzeigen</a></li>
+						
 					</ul>
 				</li>
 				<li>

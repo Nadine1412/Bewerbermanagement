@@ -54,10 +54,10 @@
 	<td valign="top">
 		<div class="searchTable">
 			<table border="1">
-				<tr class="header-change"> <td> </td> <td> Name:  </td> <td> Nachname: </td> <td> Geburtstag </td> <td> E-Mail: </td> <td> Fr. Eintrittsdatum: </td> <td> Fachrichtung: </td> <td> Vertiefung: </td> <td> Gehaltsvorstellung: </td>		
+				<tr class="header-change"> <td> </td> <td> Bewerber-ID: </td> <td> Name:  </td> <td> Nachname: </td> <td> Geburtstag </td> <td> E-Mail: </td> <td> Fr. Eintrittsdatum: </td> <td> Fachrichtung: </td> <td> Vertiefung: </td> <td> Gehaltsvorstellung: </td>	<td> Anhänge </td> </tr>
 	 			<c:forEach items="${applicants}" var= "applicant">
 	
-		 		<tr> <td><input type="checkbox"> </td><td> ${applicant.userName} </td> <td> ${applicant.userSurname} </td> <td> ${applicant.birthday} </td> <td> ${applicant.email} </td> <td> ${applicant.entryDate} </td> <td> ${applicant.subject} </td> <td> ${applicant.specialization} </td> <td> ${applicant.sallery} </td>  </tr>
+		 		<tr> <td><input type="checkbox"> </td> <td> ${applicant.a_id} </td> <td> ${applicant.userName} </td> <td> ${applicant.userSurname} </td> <td> ${applicant.birthday} </td> <td> ${applicant.email} </td> <td> ${applicant.entryDate} </td> <td> ${applicant.subject} </td> <td> ${applicant.specialization} </td> <td> ${applicant.sallery} </td> <td> <a href="getSearchedFiles?param=${applicant.a_id}" target="_blank"> Anhänge anzeigen </a></td>  </tr>
 	 		
 	 			</c:forEach>
 	 		</table>

@@ -12,7 +12,7 @@
 	"skills.isAvailable": "SELECT a_id FROM skills WHERE a_id=?",
 	"skills.update": "UPDATE skills JOIN applicant ON applicant.a_id = skills.a_id SET java=?, javaScript=?, cPlusPlus=?, python=?, html=?, word=?, excel=?, powerpoint=?, git=?, jira=?, german=?, english=?, spanish=?, french=?, chinese=? WHERE applicant.a_id=?",
 	"skills.show": "SELECT * FROM skills JOIN applicant ON applicant.a_id = skills.a_id WHERE skills.a_id=?",
-	"applicant.search": "SELECT user.name, user.surname, user.email, user.birthday, applicant.entrydate, applicant.sallery, applicant.specialization, applicant.subject FROM user JOIN applicant ON user.u_id = applicant.u_id JOIN skills ON applicant.a_id = skills.a_id WHERE ",
+	"applicant.search": "SELECT applicant.a_id, user.name, user.surname, user.email, user.birthday, applicant.entrydate, applicant.sallery, applicant.specialization, applicant.subject FROM user JOIN applicant ON user.u_id = applicant.u_id JOIN skills ON applicant.a_id = skills.a_id WHERE ",
 	"file.upload": "INSERT INTO attachement (file_name,file_data,description,upload_date,a_id) VALUES (?,?,?,?,?)",
-	"file.show": "SELECT attachement.file_data FROM attachement JOIN applicant ON applicant.a_id = attachement.a_id WHERE attachement.a_id=?"
+	"file.show": "SELECT attachement.a_id, file_name, file_data, description, upload_date FROM attachement JOIN applicant ON applicant.a_id = attachement.a_id WHERE applicant.a_id="
 }

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+        <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,16 +14,30 @@
 <body>
 <jsp:include page="navBar.jsp"></jsp:include>
 
-<h2>Submitted File</h2>
-<table>
-    <tr>
-        <td>Original File Name:</td>
-        <td>${file.originalFilename}</td>
-    </tr>
-    <tr>
-        <td>Type:</td>
-        <td>${file.contentType}</td>
-    </tr>
-</table>
+<div class="pageSearch">
+	<div class="searchTable">
+
+		<table border="1">
+			<tr class="header-change"> <td> Bewerber-ID: </td> <td> Name:  </td> <td> File: </td> <td> Beschreibung: </td> <td> Upload-Datum: </td> </tr>		
+ 			<c:forEach items="${filesList}" var= "file"> 
+ 				
+ 					<tr> 
+ 						<td> ${file.a_id} </td>
+	 					<td> ${file.filename} </td> 
+	 					<td> 
+	 						<form method="post" action="downloadFile">	
+	 							<input type="hidden" name="filename" value="${file.filename}"/> <button class="button downloadButton" type="submit"> Download </button>
+							</form>	
+	 					</td> 
+	 					<td> ${file.description} </td>
+	 					<td> ${file.uploadDate} </td> 	
+ 					</tr>
+ 							
+ 			</c:forEach>	
+ 		</table>	
+ 		<div class="message">${msg} </div>
+	</div>
+</div>
+
 </body>
 </html>

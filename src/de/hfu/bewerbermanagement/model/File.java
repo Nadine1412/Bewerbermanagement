@@ -40,6 +40,4 @@ public class File {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-
 }
