@@ -1,18 +1,29 @@
 package de.hfu.bewerbermanagement.controller;
 
+import java.io.File;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class UserLogoutController {
 
 	@RequestMapping(value="/logout",method = RequestMethod.GET)
-    public String logout(HttpSession session){
+    public ModelAndView logout(HttpSession session){
+		ModelAndView mv = new ModelAndView();
+
+		session.invalidate();
+      
+		// Löschen des lokalen Skill-Files
+      	File file = new File(System.getProperty("user.dir") + "/skills.json"); 
+      	file.delete();
 		
-      session.invalidate();
-      return "redirect:/";
+      	mv.addObject("msg", "Erfolgreich ausgeloggt.");
+		mv.setViewName("decision");
+		return mv;
     }
 }

@@ -1,5 +1,6 @@
 package de.hfu.bewerbermanagement.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import de.hfu.bewerbermanagement.business.ApplicantManager;
 import de.hfu.bewerbermanagement.business.RecruiterManager;
@@ -123,7 +126,12 @@ public class SkillsController {
 			skills.setOffice(office);
 			skills.setLanguage(language);
 			
+			// Updaten der Skills in der Datenbank
 			int counter = userDao.addSkills(skills, a_id);
+			
+			// Updaten der Skills im lokalen File
+			ObjectMapper mapper = new ObjectMapper();
+			mapper.writeValue(new File(System.getProperty("user.dir") + "/skills.json"), skills);
 					
 			if (counter > 0) {
 				String programmingStr = programmingLanguage.toString();

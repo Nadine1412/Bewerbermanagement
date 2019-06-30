@@ -276,9 +276,9 @@ public class UserDaoImpl implements UserDao{
 					int counterSkill = jdbcTemplate.update(statementUpdateSkills, new Object[] {
 							skills.getProgrammingLanguage().contains("Java"), skills.getProgrammingLanguage().contains("JavaScript"),
 							skills.getProgrammingLanguage().contains("C++"), skills.getProgrammingLanguage().contains("Python"),
-							skills.getProgrammingLanguage().contains("Html"), skills.getOffice().contains("Word"),
+							skills.getProgrammingLanguage().contains("HTML"), skills.getOffice().contains("Word"),
 							skills.getOffice().contains("Excel"), skills.getOffice().contains("Powerpoint"),
-							skills.getOffice().contains("Git"), skills.getOffice().contains("Jira"),
+							skills.getOffice().contains("GitHub"), skills.getOffice().contains("Jira"),
 							skills.getLanguage().contains("Deutsch"), skills.getLanguage().contains("Englisch"),
 							skills.getLanguage().contains("Spanisch"), skills.getLanguage().contains("Franzoesisch"),
 							skills.getLanguage().contains("Chinesisch"), a_id});
@@ -299,9 +299,9 @@ public class UserDaoImpl implements UserDao{
 					int counterSkill = jdbcTemplate.update(statementInsertSkills, new Object[] { 
 							skills.getProgrammingLanguage().contains("Java"), skills.getProgrammingLanguage().contains("JavaScript"),
 							skills.getProgrammingLanguage().contains("C++"), skills.getProgrammingLanguage().contains("Python"),
-							skills.getProgrammingLanguage().contains("Html"), skills.getOffice().contains("Word"),
+							skills.getProgrammingLanguage().contains("HTML"), skills.getOffice().contains("Word"),
 							skills.getOffice().contains("Excel"), skills.getOffice().contains("Powerpoint"),
-							skills.getOffice().contains("Git"), skills.getOffice().contains("Jira"),
+							skills.getOffice().contains("GitHub"), skills.getOffice().contains("Jira"),
 							skills.getLanguage().contains("Deutsch"), skills.getLanguage().contains("Englisch"),
 							skills.getLanguage().contains("Spanisch"), skills.getLanguage().contains("Franzoesisch"),
 							skills.getLanguage().contains("Chinesisch"), a_id});
@@ -367,7 +367,7 @@ public class UserDaoImpl implements UserDao{
 							programmingLanguage.add("Python");
 						}
 						if(html == true) {
-							programmingLanguage.add("HTML/CSS");
+							programmingLanguage.add("HTML");
 						}
 							
 						if(word == true) {
