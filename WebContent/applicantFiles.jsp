@@ -32,6 +32,7 @@
  							
  			</c:forEach>
  		</table>	
+ 		<br>
  		<div class="message">${msg} </div>
 	</div>
 </div>

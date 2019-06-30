@@ -13,7 +13,7 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -92,13 +92,20 @@ public class EmailController {
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-		
-		
+		}	
 	}
 	
-	
+	@RequestMapping(value="/getEmail", method = RequestMethod.POST)
+	public ModelAndView selectedEmail(@RequestParam("mailReceiver") String mailReceiver) {
+		
+		ModelAndView mv = new ModelAndView();
+		
+			mv.addObject("paramEmail", mailReceiver);
+			mv.setViewName("emailForm");
+				
+		return mv;
+		
+	}
 	
 
 }

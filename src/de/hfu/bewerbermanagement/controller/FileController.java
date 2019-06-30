@@ -136,7 +136,7 @@ public class FileController {
 				@RequestMapping(value = {"getSearchedFiles"}, method = RequestMethod.GET)
 				public ModelAndView showSearchedFiles(HttpServletRequest request, HttpSession session) {
 					
-					int a_id = Integer.parseInt(request.getParameter("param"));
+					int a_id = Integer.parseInt(request.getParameter("paramAid"));
 					
 					ModelAndView mv = new ModelAndView();
 										
@@ -145,46 +145,16 @@ public class FileController {
 					// Sessionattribute für Files setzten
 					session.setAttribute("files", filesList);
 					
-						if(filesList != null) {
+						if(filesList.size() > 0) {
 							mv.addObject("filesList", filesList);
-							mv.addObject("bla", "bla");
 							mv.setViewName("applicantFiles");
 						} else {
-							mv.addObject("msg", "Keine Files vorhanden");
+							mv.addObject("msg", "Keine Files für diesen Bewerber vorhanden.");
 							mv.setViewName("applicantFiles");
 						}
 				
 					return mv;		
 				}
-				
-				//Files von der JSP downloaden
-						@RequestMapping(value = {"/downloadSearchedFile"}, method = RequestMethod.POST)
-						public void downloadSearchedFile(@RequestParam("filename") String filename, HttpServletResponse response, HttpSession session) throws IOException {
-
-							
-							
-							List<de.hfu.bewerbermanagement.model.File> downloadList = (List<File>) session.getAttribute("files");
-							
-							byte[] fileData = null;
-							for(File file:downloadList) {
-								if (file.getFilename().equals(filename)) {
-						           fileData = file.getFile();
-								}
-							}
-							
-							InputStream in = new ByteArrayInputStream(fileData);
-							ServletOutputStream out = response.getOutputStream();
-							
-							byte[] outputByte = new byte[fileData.length];
-							//copy binary context to output stream
-							while(in.read(outputByte, 0, fileData.length) != -1)
-							{
-								out.write(outputByte, 0, fileData.length);
-							}
-							in.close();
-							out.flush();
-							out.close();
-						}
 				
 }
 
