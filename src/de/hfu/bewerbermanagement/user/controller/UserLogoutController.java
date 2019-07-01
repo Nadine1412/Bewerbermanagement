@@ -1,4 +1,4 @@
-package de.hfu.bewerbermanagement.controller;
+package de.hfu.bewerbermanagement.user.controller;
 
 import java.io.File;
 

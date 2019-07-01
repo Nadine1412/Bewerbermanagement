@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import de.hfu.bewerbermanagement.controller.UserRegistrationController;
-import de.hfu.bewerbermanagement.model.Applicant;
+import de.hfu.bewerbermanagement.user.controller.UserRegistrationController;
+import de.hfu.bewerbermanagement.user.model.Applicant;
 
 //Fachlogik vom Bewerber
 //exception handling

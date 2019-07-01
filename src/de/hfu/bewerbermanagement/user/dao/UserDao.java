@@ -1,4 +1,4 @@
-package de.hfu.bewerbermanagement.dao;
+package de.hfu.bewerbermanagement.user.dao;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,10 +16,10 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
-import de.hfu.bewerbermanagement.model.Applicant;
-import de.hfu.bewerbermanagement.model.Recruiter;
-import de.hfu.bewerbermanagement.model.Skills;
-import de.hfu.bewerbermanagement.model.User;
+import de.hfu.bewerbermanagement.skills.model.Skills;
+import de.hfu.bewerbermanagement.user.model.Applicant;
+import de.hfu.bewerbermanagement.user.model.Recruiter;
+import de.hfu.bewerbermanagement.user.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -29,7 +29,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
-public class UserDaoImpl implements UserDao{
+public class UserDao{
 	
 	private JdbcTemplate jdbcTemplate;
 	
@@ -37,11 +37,11 @@ public class UserDaoImpl implements UserDao{
 	private JsonNode jsonNode;
 	
 	
-	public UserDaoImpl(DataSource dataSource) {
+	public UserDao(DataSource dataSource) {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
-
+	// Applicant registrieren
 	public int registerApplicant(Applicant applicant) {
 		// SQL Statement aus json lesen (Nadine Jakob 07.06.2019)
 		String keyUser = "user.register";
@@ -65,7 +65,7 @@ public class UserDaoImpl implements UserDao{
 		}	
 	}
 	
-	@Override
+	//Recruiter registrieren
 	public int registerRecruiter(Recruiter recruiter) {
 				String keyUser = "user.register";
 				String keyRecruiter = "recruiter.register";
@@ -88,7 +88,6 @@ public class UserDaoImpl implements UserDao{
 				}
 	}
 	
-	@Override
 	public String loginUser(User user) {
 		
 		
@@ -117,7 +116,6 @@ public class UserDaoImpl implements UserDao{
 	}
 	
 	//Prüfen ob Applicant oder Recruiter
-	@Override
 	public int isApplicant(String email) {
 		String key = "user.isApplicant";
 		String statement = jsonNode.get(key).asText();
@@ -141,7 +139,6 @@ public class UserDaoImpl implements UserDao{
 
 
 	// Applicant Profil anzeigen
-	@Override
 	public Applicant showApplicantProfile(String email) {
 		// get SQL Statement 
 		String key = "applicant.showProfile";
@@ -177,7 +174,6 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	// Recruiter Profil anzeigen
-	@Override
 		public Recruiter showRecruiterProfile(String email) {
 			// get SQL Statement 
 			String key = "recruiter.showProfile";
@@ -211,7 +207,6 @@ public class UserDaoImpl implements UserDao{
 		}
 	
 	// Applicant Profil ändern
-	@Override
 	public int changeApplicantProfile(Applicant applicant) {
 		String userId = applicant.getUserId();
 		
@@ -236,7 +231,6 @@ public class UserDaoImpl implements UserDao{
 
 
 	// Recruiter Profil ändern
-	@Override
 	public int changeRecruiterProfile(Recruiter recruiter) {
 		
 		String key = "recruiter.updateProfile";
@@ -257,203 +251,6 @@ public class UserDaoImpl implements UserDao{
 		}
 	}
 
-	// Skills hinzufügen
-	@Override
-	public int addSkills(Skills skills, int a_id) {
-		boolean isSkillAvailable = isSkillAvailable(a_id);
-		String keyUpdateSkills;
-		String keyInsertSkills;
-		
-		String statementUpdateSkills;
-		String statementInsertSkills;
-		
-		if(isSkillAvailable) {
-			keyUpdateSkills = "skills.update";
-			statementUpdateSkills = jsonNode.get(keyUpdateSkills).asText();
-
-			if(statementUpdateSkills != null) {
-				try {
-					int counterSkill = jdbcTemplate.update(statementUpdateSkills, new Object[] {
-							skills.getProgrammingLanguage().contains("Java"), skills.getProgrammingLanguage().contains("JavaScript"),
-							skills.getProgrammingLanguage().contains("C++"), skills.getProgrammingLanguage().contains("Python"),
-							skills.getProgrammingLanguage().contains("HTML"), skills.getOffice().contains("Word"),
-							skills.getOffice().contains("Excel"), skills.getOffice().contains("Powerpoint"),
-							skills.getOffice().contains("GitHub"), skills.getOffice().contains("Jira"),
-							skills.getLanguage().contains("Deutsch"), skills.getLanguage().contains("Englisch"),
-							skills.getLanguage().contains("Spanisch"), skills.getLanguage().contains("Franzoesisch"),
-							skills.getLanguage().contains("Chinesisch"), a_id});
-					return counterSkill;
-				} catch(Exception e) {
-					e.printStackTrace();
-				}
-				return 0;
-			} else {
-				return 0;
-			}
-		} else {
-			keyInsertSkills = "skills.insert";
-			statementInsertSkills = jsonNode.get(keyInsertSkills).asText();
-
-			if(statementInsertSkills != null) {
-				try {
-					int counterSkill = jdbcTemplate.update(statementInsertSkills, new Object[] { 
-							skills.getProgrammingLanguage().contains("Java"), skills.getProgrammingLanguage().contains("JavaScript"),
-							skills.getProgrammingLanguage().contains("C++"), skills.getProgrammingLanguage().contains("Python"),
-							skills.getProgrammingLanguage().contains("HTML"), skills.getOffice().contains("Word"),
-							skills.getOffice().contains("Excel"), skills.getOffice().contains("Powerpoint"),
-							skills.getOffice().contains("GitHub"), skills.getOffice().contains("Jira"),
-							skills.getLanguage().contains("Deutsch"), skills.getLanguage().contains("Englisch"),
-							skills.getLanguage().contains("Spanisch"), skills.getLanguage().contains("Franzoesisch"),
-							skills.getLanguage().contains("Chinesisch"), a_id});
-					return counterSkill;
-				} catch(Exception e) {
-					e.printStackTrace();
-				}
-				return 0;
-			} else {
-				return 0;
-			}
-		}
-		
-	}
-	
-	//Skill-Profil anzeigen
-	@Override
-	public Skills oldSkills(int a_id) {
-		// get SQL Statement 
-		String key = "skills.show";
-		String statement = jsonNode.get(key).asText();
-		
-		if(statement != null) {
-			try {
-				
-				Skills result = jdbcTemplate.queryForObject(statement, new Object[] {a_id}, new RowMapper<Skills>() {
-					
-					@Override
-					public Skills mapRow(ResultSet rs, int rowNum) throws SQLException {
-						
-						boolean java = rs.getBoolean("java");
-						boolean javaScript = rs.getBoolean("javaScript");
-						boolean cPlusPlus = rs.getBoolean("cPlusPlus");
-						boolean python = rs.getBoolean("python");
-						boolean html = rs.getBoolean("html");
-						
-						boolean word = rs.getBoolean("word");
-						boolean excel = rs.getBoolean("excel");
-						boolean powerpoint = rs.getBoolean("powerpoint");
-						boolean git = rs.getBoolean("git");
-						boolean jira = rs.getBoolean("jira");
-						
-						boolean german = rs.getBoolean("german");
-						boolean english = rs.getBoolean("english");
-						boolean spanish = rs.getBoolean("spanish");
-						boolean french = rs.getBoolean("french");
-						boolean chinese = rs.getBoolean("chinese");
-						
-						List<String> programmingLanguage = new ArrayList<String>();
-						List<String> office = new ArrayList<>();
-						List<String> language = new ArrayList<>();
-						
-						if(java == true) {
-						programmingLanguage.add("Java");
-						}
-						if(javaScript == true) {
-							programmingLanguage.add("JavaScript");
-						}
-						if(cPlusPlus == true) {
-							programmingLanguage.add("C++");
-						}
-						if(python == true) {
-							programmingLanguage.add("Python");
-						}
-						if(html == true) {
-							programmingLanguage.add("HTML");
-						}
-							
-						if(word == true) {
-							office.add("Word");
-						}
-						if(excel == true) {
-							office.add("Excel");
-						}
-						if(powerpoint == true) {
-							office.add("PowerPoint");
-						}
-						if(git == true) {
-							office.add("GitHub");
-						}
-						if(jira == true) {
-							office.add("Jira");
-						}
-					
-						if(german == true) {
-							language.add("Deutsch");
-						}
-						if(english == true) {
-							language.add("Englisch");
-						}
-						if(spanish == true) {
-							language.add("Spanisch");
-						}
-						if(french == true) {
-							language.add("Französisch");
-						}
-						if(chinese == true) {
-							language.add("Chinesisch");
-						}
-							
-							
-						Skills skills = new Skills();
-						skills.setProgrammingLanguage(programmingLanguage);
-						skills.setOffice(office);
-						skills.setLanguage(language);
-						
-						return skills;
-					}
-					});
-				return result;
-				
-			}catch (Exception e) {
-				return null;
-			}
-		} else {
-			return null;
-		}
-		
-	}
-	
-	
-	@Override
-	public boolean isSkillAvailable(int a_id) {
-		// SQL Statement aus json lesen 
-		String keySkills = "skills.isAvailable";
-		String statementSkills = jsonNode.get(keySkills).asText();
-
-		if(statementSkills != null) {
-			try {
-				int resultAid = jdbcTemplate.queryForObject(statementSkills, new Object[] {a_id}, int.class);
-				// Ist ein Applicant
-				if(resultAid>0) {
-					return true;
-				} else {
-					return false;
-				}
-				
-			} 
-			catch(EmptyResultDataAccessException e) {
-				return false;
-			}
-			catch(Exception e) {
-				e.printStackTrace();	
-			}
-			return false;
-		} else {
-			return false;
-		}
-	}
-
-
-	@Override
 	public List<Applicant> searchApp(List<String> skills) {
 		String key = "applicant.search";
 		String statement = jsonNode.get(key).asText();
@@ -494,67 +291,5 @@ public class UserDaoImpl implements UserDao{
 			return null;
 		}
 	}
-
-	@Override
-	public int saveFileUpload(de.hfu.bewerbermanagement.model.File f) {
-		String key = "file.upload";
-		String statement = jsonNode.get(key).asText();
-
-		if(statement != null) {
-			try {
-				//int counter = 0;
-				int counter = jdbcTemplate.update(statement, new Object[] {f.getFilename(), f.getFile(), f.getDescription(), f.getUploadDate(), f.getA_id()});
-				
-				return counter;
-				}
-				catch (Exception e) {
-					return 0;
-				}
-		} else {
-			return 0;
-		}
-	}
-
-
-	@Override
-	public List<de.hfu.bewerbermanagement.model.File> showFiles(int a_id) {
-		
-		// get SQL Statement 
-				String key = "file.show";
-				String statement = jsonNode.get(key).asText();
-				if(statement != null) {
-					try {
-						statement = statement + a_id;
-						
-							List<Map <String, Object>> resultList = jdbcTemplate.queryForList(statement);
-							List<de.hfu.bewerbermanagement.model.File> fileList =  new ArrayList<de.hfu.bewerbermanagement.model.File>();
-						    for(Map<String, Object> map : resultList) {
-						    	
-						    	de.hfu.bewerbermanagement.model.File file = new de.hfu.bewerbermanagement.model.File();
-						    	
-						    	int applID = (int)map.get("a_id");
-						    	file.setA_id(applID);
-						    	
-						    	file.setFilename((String)map.get("file_name"));	
-						    	
-								byte[] fileBytes =  (byte[]) map.get("file_data");
-								file.setFile(fileBytes);
-								
-								file.setDescription((String)map.get("description"));
-								Date uploadDate = (Date)map.get("upload_date");
-								file.setUploadDate(uploadDate.toLocalDate());
-							
-						    	fileList.add(file);
-						    }
-						    	
-						return fileList;		
-					} catch (Exception e) {
-						return null;
-					}
-				} else {
-					return null;
-				}
-			}
-	
 }
 

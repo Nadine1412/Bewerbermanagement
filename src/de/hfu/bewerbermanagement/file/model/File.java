@@ -1,4 +1,4 @@
-package de.hfu.bewerbermanagement.model;
+package de.hfu.bewerbermanagement.file.model;
 
 import java.time.LocalDate;
 

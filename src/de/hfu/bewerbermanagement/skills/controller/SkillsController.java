@@ -1,4 +1,4 @@
-package de.hfu.bewerbermanagement.controller;
+package de.hfu.bewerbermanagement.skills.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,16 +26,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import de.hfu.bewerbermanagement.business.ApplicantManager;
 import de.hfu.bewerbermanagement.business.RecruiterManager;
-import de.hfu.bewerbermanagement.dao.UserDao;
-import de.hfu.bewerbermanagement.model.Applicant;
-import de.hfu.bewerbermanagement.model.Recruiter;
-import de.hfu.bewerbermanagement.model.Skills;
+import de.hfu.bewerbermanagement.file.dao.FileDao;
+import de.hfu.bewerbermanagement.skills.dao.SkillsDao;
+import de.hfu.bewerbermanagement.skills.model.Skills;
+import de.hfu.bewerbermanagement.user.dao.UserDao;
+import de.hfu.bewerbermanagement.user.model.Applicant;
+import de.hfu.bewerbermanagement.user.model.Recruiter;
 
 @Controller
 public class SkillsController {
 	
 	@Autowired
-	private UserDao userDao;
+	private SkillsDao skillsDao;
 	
 	@RequestMapping(value = "/userSkills", method = RequestMethod.POST)
 	public ModelAndView processRequest(HttpServletRequest request, HttpSession session)
@@ -127,7 +129,7 @@ public class SkillsController {
 			skills.setLanguage(language);
 			
 			// Updaten der Skills in der Datenbank
-			int counter = userDao.addSkills(skills, a_id);
+			int counter = skillsDao.addSkills(skills, a_id);
 			
 			// Updaten der Skills im lokalen File
 			ObjectMapper mapper = new ObjectMapper();

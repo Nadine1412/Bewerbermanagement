@@ -1,7 +1,11 @@
 package de.hfu.bewerbermanagement.config;
 
-import de.hfu.bewerbermanagement.dao.UserDao;
-import de.hfu.bewerbermanagement.dao.UserDaoImpl;
+import de.hfu.bewerbermanagement.file.dao.FileDao;
+import de.hfu.bewerbermanagement.file.dao.FileDao;
+import de.hfu.bewerbermanagement.skills.dao.SkillsDao;
+import de.hfu.bewerbermanagement.skills.dao.SkillsDao;
+import de.hfu.bewerbermanagement.user.dao.UserDao;
+import de.hfu.bewerbermanagement.user.dao.UserDao;
 import resources.Constants;
 
 import java.io.File;
@@ -53,7 +57,18 @@ public class WebMvcConfig {
 
 	@Bean
 	public UserDao getUserDao() {
-		return new UserDaoImpl(getDataSource());
+		return new UserDao(getDataSource());
+
+	}
+	@Bean
+	public FileDao getFileDao() {
+		return new FileDao(getDataSource());
+
+	}
+	
+	@Bean
+	public SkillsDao getSkillsDao() {
+		return new SkillsDao(getDataSource());
 
 	}
 	

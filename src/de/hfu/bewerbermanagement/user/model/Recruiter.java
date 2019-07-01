@@ -1,4 +1,4 @@
-package de.hfu.bewerbermanagement.model;
+package de.hfu.bewerbermanagement.user.model;
 
 public class Recruiter extends User {
 

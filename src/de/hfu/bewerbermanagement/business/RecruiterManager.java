@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import de.hfu.bewerbermanagement.model.Applicant;
-import de.hfu.bewerbermanagement.model.Recruiter;
+import de.hfu.bewerbermanagement.user.model.Applicant;
+import de.hfu.bewerbermanagement.user.model.Recruiter;
 
 //Fachlogik vom Bewerber
 //exception handling
