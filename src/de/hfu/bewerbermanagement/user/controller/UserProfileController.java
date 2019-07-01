@@ -1,4 +1,4 @@
-package de.hfu.bewerbermanagement.controller;
+package de.hfu.bewerbermanagement.user.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,10 +10,10 @@ import javax.servlet.http.HttpSession;
 
 import de.hfu.bewerbermanagement.business.ApplicantManager;
 import de.hfu.bewerbermanagement.business.RecruiterManager;
-import de.hfu.bewerbermanagement.dao.UserDao;
-import de.hfu.bewerbermanagement.model.Applicant;
-import de.hfu.bewerbermanagement.model.Recruiter;
-import de.hfu.bewerbermanagement.model.Skills;
+import de.hfu.bewerbermanagement.skills.model.Skills;
+import de.hfu.bewerbermanagement.user.dao.UserDao;
+import de.hfu.bewerbermanagement.user.model.Applicant;
+import de.hfu.bewerbermanagement.user.model.Recruiter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

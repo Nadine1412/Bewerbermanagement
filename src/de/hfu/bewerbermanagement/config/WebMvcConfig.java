@@ -1,7 +1,7 @@
 package de.hfu.bewerbermanagement.config;
 
-import de.hfu.bewerbermanagement.dao.UserDao;
-import de.hfu.bewerbermanagement.dao.UserDaoImpl;
+import de.hfu.bewerbermanagement.user.dao.UserDao;
+import de.hfu.bewerbermanagement.user.dao.UserDaoImpl;
 import resources.Constants;
 
 import java.io.File;

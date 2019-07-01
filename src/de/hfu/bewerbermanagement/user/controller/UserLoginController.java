@@ -1,4 +1,4 @@
-package de.hfu.bewerbermanagement.controller;
+package de.hfu.bewerbermanagement.user.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,10 +6,11 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import de.hfu.bewerbermanagement.dao.UserDao;
-import de.hfu.bewerbermanagement.dao.UserDaoImpl;
-import de.hfu.bewerbermanagement.model.Skills;
-import de.hfu.bewerbermanagement.model.User;
+import de.hfu.bewerbermanagement.skills.model.Skills;
+import de.hfu.bewerbermanagement.user.dao.UserDao;
+import de.hfu.bewerbermanagement.user.dao.UserDaoImpl;
+import de.hfu.bewerbermanagement.user.model.User;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

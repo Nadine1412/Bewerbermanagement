@@ -1,4 +1,4 @@
-package de.hfu.bewerbermanagement.model;
+package de.hfu.bewerbermanagement.skills.model;
 
 import java.util.List;
 

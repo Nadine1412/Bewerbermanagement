@@ -1,4 +1,4 @@
-package de.hfu.bewerbermanagement.controller;
+package de.hfu.bewerbermanagement.file.controller;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -22,11 +22,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import de.hfu.bewerbermanagement.dao.UserDao;
-import de.hfu.bewerbermanagement.model.Applicant;
-import de.hfu.bewerbermanagement.model.File;
-import de.hfu.bewerbermanagement.model.Recruiter;
-import de.hfu.bewerbermanagement.model.Skills;
+import de.hfu.bewerbermanagement.file.model.File;
+import de.hfu.bewerbermanagement.skills.model.Skills;
+import de.hfu.bewerbermanagement.user.dao.UserDao;
+import de.hfu.bewerbermanagement.user.model.Applicant;
+import de.hfu.bewerbermanagement.user.model.Recruiter;
 
 //Controller fÃ¼r den Upload der File (Florian MÃ¶hrle 14.06.2019)
 @Controller
@@ -88,7 +88,7 @@ public class FileController {
 			ModelAndView mv = new ModelAndView();
 								
 			//Aufrufen der Files
-			List<de.hfu.bewerbermanagement.model.File> filesList = userDao.showFiles(a_id);
+			List<de.hfu.bewerbermanagement.file.model.File> filesList = userDao.showFiles(a_id);
 			// Sessionattribute für Files setzten
 			session.setAttribute("files", filesList);
 			
@@ -109,7 +109,7 @@ public class FileController {
 
 					
 					
-					List<de.hfu.bewerbermanagement.model.File> downloadList = (List<File>) session.getAttribute("files");
+					List<de.hfu.bewerbermanagement.file.model.File> downloadList = (List<File>) session.getAttribute("files");
 					
 					byte[] fileData = null;
 					for(File file:downloadList) {
@@ -141,7 +141,7 @@ public class FileController {
 					ModelAndView mv = new ModelAndView();
 										
 					//Aufrufen der Files
-					List<de.hfu.bewerbermanagement.model.File> filesList = userDao.showFiles(a_id);
+					List<de.hfu.bewerbermanagement.file.model.File> filesList = userDao.showFiles(a_id);
 					// Sessionattribute für Files setzten
 					session.setAttribute("files", filesList);
 					

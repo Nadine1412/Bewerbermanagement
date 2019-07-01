@@ -1,4 +1,4 @@
-package de.hfu.bewerbermanagement.dao;
+package de.hfu.bewerbermanagement.user.dao;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,10 +16,10 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
-import de.hfu.bewerbermanagement.model.Applicant;
-import de.hfu.bewerbermanagement.model.Recruiter;
-import de.hfu.bewerbermanagement.model.Skills;
-import de.hfu.bewerbermanagement.model.User;
+import de.hfu.bewerbermanagement.skills.model.Skills;
+import de.hfu.bewerbermanagement.user.model.Applicant;
+import de.hfu.bewerbermanagement.user.model.Recruiter;
+import de.hfu.bewerbermanagement.user.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -496,7 +496,7 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
-	public int saveFileUpload(de.hfu.bewerbermanagement.model.File f) {
+	public int saveFileUpload(de.hfu.bewerbermanagement.file.model.File f) {
 		String key = "file.upload";
 		String statement = jsonNode.get(key).asText();
 
@@ -517,7 +517,7 @@ public class UserDaoImpl implements UserDao{
 
 
 	@Override
-	public List<de.hfu.bewerbermanagement.model.File> showFiles(int a_id) {
+	public List<de.hfu.bewerbermanagement.file.model.File> showFiles(int a_id) {
 		
 		// get SQL Statement 
 				String key = "file.show";
@@ -527,10 +527,10 @@ public class UserDaoImpl implements UserDao{
 						statement = statement + a_id;
 						
 							List<Map <String, Object>> resultList = jdbcTemplate.queryForList(statement);
-							List<de.hfu.bewerbermanagement.model.File> fileList =  new ArrayList<de.hfu.bewerbermanagement.model.File>();
+							List<de.hfu.bewerbermanagement.file.model.File> fileList =  new ArrayList<de.hfu.bewerbermanagement.file.model.File>();
 						    for(Map<String, Object> map : resultList) {
 						    	
-						    	de.hfu.bewerbermanagement.model.File file = new de.hfu.bewerbermanagement.model.File();
+						    	de.hfu.bewerbermanagement.file.model.File file = new de.hfu.bewerbermanagement.file.model.File();
 						    	
 						    	int applID = (int)map.get("a_id");
 						    	file.setA_id(applID);

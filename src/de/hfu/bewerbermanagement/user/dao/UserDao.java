@@ -1,15 +1,15 @@
-package de.hfu.bewerbermanagement.dao;
+package de.hfu.bewerbermanagement.user.dao;
 
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import de.hfu.bewerbermanagement.model.Applicant;
-import de.hfu.bewerbermanagement.model.File;
-import de.hfu.bewerbermanagement.model.Recruiter;
-import de.hfu.bewerbermanagement.model.Skills;
-import de.hfu.bewerbermanagement.model.User;
+import de.hfu.bewerbermanagement.file.model.File;
+import de.hfu.bewerbermanagement.skills.model.Skills;
+import de.hfu.bewerbermanagement.user.model.Applicant;
+import de.hfu.bewerbermanagement.user.model.Recruiter;
+import de.hfu.bewerbermanagement.user.model.User;
 public interface UserDao {
 	
 	//public String readSQLStatement(String key);
@@ -43,10 +43,10 @@ public interface UserDao {
 	public List<Applicant> searchApp(List<String> skills);
 	
 	// Datei upload speicher
-	public int saveFileUpload(de.hfu.bewerbermanagement.model.File f);
+	public int saveFileUpload(de.hfu.bewerbermanagement.file.model.File f);
 	
 	// Files anzeigen
-	public List<de.hfu.bewerbermanagement.model.File> showFiles(int a_id);
+	public List<de.hfu.bewerbermanagement.file.model.File> showFiles(int a_id);
 	
 }
 
