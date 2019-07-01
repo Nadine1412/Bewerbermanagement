@@ -1,4 +1,4 @@
-package de.hfu.bewerbermanagement.mailAdapter;
+package de.hfu.bewerbermanagement.mail.model;
 
 import java.io.File;
 

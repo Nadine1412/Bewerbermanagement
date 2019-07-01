@@ -1,4 +1,4 @@
-package de.hfu.bewerbermanagement.controller;
+package de.hfu.bewerbermanagement.email.controller;
 /**
  * 
  * @author Nadine Jakob
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import de.hfu.bewerbermanagement.mailAdapter.Mail;
+import de.hfu.bewerbermanagement.mail.model.Mail;
 import resources.Constants;
 
 @Controller
