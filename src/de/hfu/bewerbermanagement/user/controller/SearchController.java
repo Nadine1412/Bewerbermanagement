@@ -30,96 +30,93 @@ import de.hfu.bewerbermanagement.user.model.Recruiter;
 
 @Controller
 public class SearchController {
-	
+
 	@Autowired
 	private UserDao userDao;
-	
+
 	@RequestMapping(value = "/searchApplicant", method = RequestMethod.POST)
 	public ModelAndView processRequest(HttpServletRequest request, HttpSession session)
-		throws ServletException, IOException{
-			
-			String java = request.getParameter("chkJava");
-			String javaScript =request.getParameter("chkJavaScript");
-			String cPlusPlus =request.getParameter("chkC++");
-			String python =request.getParameter("chkPython");
-			String html =request.getParameter("chkHtml");
+			throws ServletException, IOException {
 
-			String word = request.getParameter("chkWord");
-			String excel =request.getParameter("chkExcel");
-			String powerpoint =request.getParameter("chkPowerpoint");
-			String git =request.getParameter("chkGit");
-			String jira =request.getParameter("chkJira");
-			
-			String german = request.getParameter("chkGerman");
-			String english =request.getParameter("chkEnglish");
-			String spanish =request.getParameter("chkSpanish");
-			String french =request.getParameter("chkFrench");
-			String chinese =request.getParameter("chkChinese");
+		String java = request.getParameter("chkJava");
+		String javaScript = request.getParameter("chkJavaScript");
+		String cPlusPlus = request.getParameter("chkC++");
+		String python = request.getParameter("chkPython");
+		String html = request.getParameter("chkHtml");
 
+		String word = request.getParameter("chkWord");
+		String excel = request.getParameter("chkExcel");
+		String powerpoint = request.getParameter("chkPowerpoint");
+		String git = request.getParameter("chkGit");
+		String jira = request.getParameter("chkJira");
 
-			ModelAndView mv = new ModelAndView();
-			
-			//Erzeugen der Liste für die Ausgabe der Skills
-			List<String> allSkills = new ArrayList<String>();
-			
-			
-			if(java != null) {
-				allSkills.add(java);
-			}
-			if(javaScript != null) {
-				allSkills.add(javaScript);
-			}
-			if(cPlusPlus != null) {
-				allSkills.add(cPlusPlus);
-			}
-			if(python != null) {
-				allSkills.add(python);
-			}
-			if(html != null) {
-				allSkills.add(html);
-			}
-			
-			if(word != null) {
-				allSkills.add(word);
-			}
-			if(excel != null) {
-				allSkills.add(excel);
-			}
-			if(powerpoint != null) {
-				allSkills.add(powerpoint);
-			}
-			if(git != null) {
-				allSkills.add(git);
-			}
-			if(jira != null) {
-				allSkills.add(jira);
-			}
-			
-			if(german != null) {
-				allSkills.add(german);
-			}
-			if(english != null) {
-				allSkills.add(english);
-			}
-			if(spanish != null) {
-				allSkills.add(spanish);
-			}
-			if(french != null) {
-				allSkills.add(french);
-			}
-			if(chinese != null) {
-				allSkills.add(chinese);
-			}
-						
-			
-			List<Applicant> list = userDao.searchApp(allSkills);
-			if(list.size()!= 0) {
-				mv.addObject("applicants", list);
-				mv.setViewName("searchApplicants");
-			} else {
-				mv.addObject("msg", "No applicant with selected skills found.");
-				mv.setViewName("searchApplicants");
-			}
-			return mv;
-	}		
+		String german = request.getParameter("chkGerman");
+		String english = request.getParameter("chkEnglish");
+		String spanish = request.getParameter("chkSpanish");
+		String french = request.getParameter("chkFrench");
+		String chinese = request.getParameter("chkChinese");
+
+		ModelAndView mv = new ModelAndView();
+
+		// Erzeugen der Liste für die Ausgabe der Skills
+		List<String> allSkills = new ArrayList<String>();
+
+		if (java != null) {
+			allSkills.add(java);
+		}
+		if (javaScript != null) {
+			allSkills.add(javaScript);
+		}
+		if (cPlusPlus != null) {
+			allSkills.add(cPlusPlus);
+		}
+		if (python != null) {
+			allSkills.add(python);
+		}
+		if (html != null) {
+			allSkills.add(html);
+		}
+
+		if (word != null) {
+			allSkills.add(word);
+		}
+		if (excel != null) {
+			allSkills.add(excel);
+		}
+		if (powerpoint != null) {
+			allSkills.add(powerpoint);
+		}
+		if (git != null) {
+			allSkills.add(git);
+		}
+		if (jira != null) {
+			allSkills.add(jira);
+		}
+
+		if (german != null) {
+			allSkills.add(german);
+		}
+		if (english != null) {
+			allSkills.add(english);
+		}
+		if (spanish != null) {
+			allSkills.add(spanish);
+		}
+		if (french != null) {
+			allSkills.add(french);
+		}
+		if (chinese != null) {
+			allSkills.add(chinese);
+		}
+
+		List<Applicant> list = userDao.searchApp(allSkills);
+		if (list.size() != 0) {
+			mv.addObject("applicants", list);
+			mv.setViewName("searchApplicants");
+		} else {
+			mv.addObject("msg", "No applicant with selected skills found.");
+			mv.setViewName("searchApplicants");
+		}
+		return mv;
+	}
 }

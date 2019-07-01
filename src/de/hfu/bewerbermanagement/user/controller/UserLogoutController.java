@@ -12,18 +12,18 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class UserLogoutController {
 
-	@RequestMapping(value="/logout",method = RequestMethod.GET)
-    public ModelAndView logout(HttpSession session){
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public ModelAndView logout(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 
 		session.invalidate();
-      
+
 		// Löschen des lokalen Skill-Files
-      	File file = new File(System.getProperty("user.dir") + "/skills.json"); 
-      	file.delete();
-		
-      	mv.addObject("msg", "Erfolgreich ausgeloggt.");
+		File file = new File(System.getProperty("user.dir") + "/skills.json");
+		file.delete();
+
+		mv.addObject("msg", "Erfolgreich ausgeloggt.");
 		mv.setViewName("decision");
 		return mv;
-    }
+	}
 }

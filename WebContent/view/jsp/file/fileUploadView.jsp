@@ -6,15 +6,15 @@
 <meta charset="UTF-8">
 <title>Uploaded File</title>
 <style>
-		<%@include file="css/navigation.css"%>
-		<%@include file="css/backgroundTemplate.css"%>
+		<%@include file="/view/css/navigation.css"%>
+		<%@include file="/view/css/backgroundTemplate.css"%>
 </style>
 </head>
 
 <body>
-<jsp:include page="navBar.jsp"></jsp:include>
+<jsp:include page="/view/jsp/navigation/navBar.jsp"></jsp:include>
 
-<div class="pageSearch">
+<div class="page" style="width:1300px">
 	<div class="searchTable">
 
 		<table border="1">
@@ -26,7 +26,9 @@
 	 					<td> ${file.filename} </td> 
 	 					<td> 
 	 						<form method="post" action="downloadFile">	
-	 							<input type="hidden" name="filename" value="${file.filename}"/> <button class="button downloadButton" type="submit"> Download </button>
+	 							<input type="hidden" name="filename" value="${file.filename}"/> 
+	 							<!-- <button class="button downloadButton" type="submit"> Download </button> -->
+	 							<button type="submit"> Download </button>
 							</form>	
 	 					</td> 
 	 					<td> ${file.description} </td>

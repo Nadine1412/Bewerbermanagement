@@ -6,12 +6,12 @@
 <meta charset="UTF-8">
 <title>Fähigkeiten</title>
 <style>
-		<%@include file="css/navigation.css"%>
-		<%@include file="css/backgroundTemplate.css"%>
+		<%@include file="/view/css/navigation.css"%>
+		<%@include file="/view/css/backgroundTemplate.css"%>
 </style>
 </head>
 <body>
-<jsp:include page="navBar.jsp"></jsp:include>
+<jsp:include page="/view/jsp/navigation/navBar.jsp"></jsp:include>
 <p>
 <div class="page">
 	<div class="form">

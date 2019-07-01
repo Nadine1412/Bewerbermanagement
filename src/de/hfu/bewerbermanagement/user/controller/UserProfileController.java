@@ -2,8 +2,6 @@ package de.hfu.bewerbermanagement.user.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -28,42 +26,38 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 public class UserProfileController {
-	
-	//private ArrayList<Bewerber> bewerberList = new ArrayList<Bewerber>();
-	
+
 	@Autowired
 	private UserDao userDao;
-	
-	//Profildaten von der Datenbank(dao) an den View weitergeben
-	@RequestMapping(value = {"getProfile"}, method = RequestMethod.GET)
-	public ModelAndView showApplicantProfile(HttpSession session) throws JsonParseException, JsonMappingException, IOException {
-		
+
+	// Profildaten von der Datenbank(dao) an den View weitergeben
+	@RequestMapping(value = { "getProfile" }, method = RequestMethod.GET)
+	public ModelAndView showApplicantProfile(HttpSession session)
+			throws JsonParseException, JsonMappingException, IOException {
+
 		String email = (String) session.getAttribute("userEmail");
-		
+
 		ModelAndView mv = new ModelAndView();
-		if((boolean) session.getAttribute("isApplicant"))
-		{
-			//session Variable setzen
-			int a_id = (int) session.getAttribute("a_id");
+		if ((boolean) session.getAttribute("isApplicant")) {
 			Applicant applicant = userDao.showApplicantProfile(email);
-			
+
 			// Skills aus lokalem File holen
 			ObjectMapper mapper = new ObjectMapper();
 			Skills skills = mapper.readValue(new File(System.getProperty("user.dir") + "/skills.json"), Skills.class);
-					
-			if(applicant != null) {
+
+			if (applicant != null) {
 				mv.addObject("applicant", applicant);
-				
-				//Aufrufen der F‰higkeiten
-				if(skills != null) {
+
+				// Aufrufen der F‰higkeiten
+				if (skills != null) {
 					String programmingStr = skills.getProgrammingLanguage().toString();
 					String officeStr = skills.getOffice().toString();
 					String languageStr = skills.getLanguage().toString();
-					
-					String subProgramming = programmingStr.substring(1, programmingStr.length()-1);
-					String subOffice = officeStr.substring(1, officeStr.length()-1);
-					String subLanguage = languageStr.substring(1, languageStr.length()-1);
-							
+
+					String subProgramming = programmingStr.substring(1, programmingStr.length() - 1);
+					String subOffice = officeStr.substring(1, officeStr.length() - 1);
+					String subLanguage = languageStr.substring(1, languageStr.length() - 1);
+
 					mv.addObject("programmingLanguage", subProgramming);
 					mv.addObject("office", subOffice);
 					mv.addObject("language", subLanguage);
@@ -73,10 +67,9 @@ public class UserProfileController {
 				mv.addObject("msg", "Invalid user id or password.");
 				mv.setViewName("login");
 			}
-		}
-		else {
+		} else {
 			Recruiter recruiter = userDao.showRecruiterProfile(email);
-			if(recruiter != null) {
+			if (recruiter != null) {
 				mv.addObject("recruiter", recruiter);
 				mv.setViewName("showRecruiterProfile");
 			} else {
@@ -84,30 +77,28 @@ public class UserProfileController {
 				mv.setViewName("login");
 			}
 		}
-		return mv;		
+		return mv;
 	}
-	
-	//Alte Profildaten von der Datenbank(dao) an den View weitergeben
-	@RequestMapping(value = {"getOldProfile"}, method = RequestMethod.GET)
+
+	// Alte Profildaten von der Datenbank(dao) an den View weitergeben
+	@RequestMapping(value = { "getOldProfile" }, method = RequestMethod.GET)
 	public ModelAndView showOldProfil(HttpSession session) {
-		
+
 		String email = (String) session.getAttribute("userEmail");
-		
+
 		ModelAndView mv = new ModelAndView();
-		if((boolean) session.getAttribute("isApplicant"))
-		{
+		if ((boolean) session.getAttribute("isApplicant")) {
 			Applicant applicant = userDao.showApplicantProfile(email);
-			if(applicant != null) {
+			if (applicant != null) {
 				mv.addObject("applicant", applicant);
 				mv.setViewName("changeApplicantProfile");
 			} else {
 				mv.addObject("msg", "Invalid user id or password.");
 				mv.setViewName("login");
 			}
-		}
-		else {
+		} else {
 			Recruiter recruiter = userDao.showRecruiterProfile(email);
-			if(recruiter != null) {
+			if (recruiter != null) {
 				mv.addObject("recruiter", recruiter);
 				mv.setViewName("changeRecruiterProfile");
 			} else {
@@ -115,21 +106,20 @@ public class UserProfileController {
 				mv.setViewName("login");
 			}
 		}
-		return mv;		
+		return mv;
 	}
-	
+
 	// Aktualisiertes Bewerber-Profil vom View an die Datenbank (dao) posten
-	@RequestMapping(value = {"/updateApplicantProfile"}, method = RequestMethod.POST)
-	public ModelAndView changeApplicantProfil(
-			@RequestParam("userId") String userId,
+	@RequestMapping(value = { "/updateApplicantProfile" }, method = RequestMethod.POST)
+	public ModelAndView changeApplicantProfil(@RequestParam("userId") String userId,
 			@RequestParam("password") String password, @RequestParam("email") String email,
 			@RequestParam("userName") String userName, @RequestParam("userSurname") String userSurname,
-			@RequestParam("birthday") String birthday, @RequestParam("entryDate") String entryDate, 
-			@RequestParam("subject") String subject, @RequestParam("specialization") String specialization, 
+			@RequestParam("birthday") String birthday, @RequestParam("entryDate") String entryDate,
+			@RequestParam("subject") String subject, @RequestParam("specialization") String specialization,
 			@RequestParam("salary") String salary) {
-		
+
 		ModelAndView mv = new ModelAndView();
-		
+
 		Applicant applicant = new Applicant();
 		applicant.setUserId(userId);
 		applicant.setPassword(password);
@@ -141,71 +131,68 @@ public class UserProfileController {
 		applicant.setSubject(subject);
 		applicant.setSpecialization(specialization);
 		applicant.setSalary(salary);
-		
-		//Aufruf der Methode ExpressionApplicant
-				ApplicantManager am = new ApplicantManager();
-				Map<String, Boolean> map = am.expressionApplicant(applicant);
-				
-				if(map.get("name") && map.get("surname") && map.get("birthday") && map.get("entrydate") && 
-						map.get("subject") && map.get("specialization") && map.get("salary") && map.get("email") && 
-						map.get("password"))
-				{
-					int counter = userDao.changeApplicantProfile(applicant);
 
-						if (counter > 0) {
-							mv.addObject("msg", "Profil-ƒnderung erfolgreich.");
-							mv.addObject("applicant", applicant);
-							mv.setViewName("showApplicantProfile");
-						} else {
-							mv.addObject("msg", "Error - check the console log");
-							mv.setViewName("changeApplicantProfile");
-						}
-				} else {
-					if(!map.get("name")) {
-						mv.addObject("errorName", "Falsche Eingabe. Bitte mit einem Groﬂbuchstaben beginnen.");
-					}
-					if(!map.get("surname")) {
-						mv.addObject("errorSurname", "Falsche Eingabe. Bitte mit einem Groﬂbuchstaben beginnen.");
-					}
-					if(!map.get("birthday")) {
-						mv.addObject("errorBirthday", "Bitte geben Sie ein Datum ein.");
-					}
-					if(!map.get("entrydate")) {
-						mv.addObject("errorEntrydate", "Bitte geben Sie ein Datum ein.");
-					}
-					if(!map.get("subject")) {
-						mv.addObject("errorSubject", "Falsche Eingabe. Bitte mit einem Groﬂbuchstaben beginnen.");
-					}
-					if(!map.get("specialization")) {
-						mv.addObject("errorSpecialization", "Falsche Eingabe. Bitte mit einem Groﬂbuchstaben beginnen.");
-					} 
-					if(!map.get("salary")) {
-						mv.addObject("errorSalary", "Bitte eine mind. drei-stellige Zahl eingeben.");
-					}
-					if(!map.get("email")) {
-						mv.addObject("errorEmail", "Bitte eine richtige E-Mailadresse eingeben.");
-					}
-					if(!map.get("password")) {
-						mv.addObject("errorPassword", "Das Passwort muss mind. 4 Zeichen enthalten.");
-					}
-					mv.addObject("applicant", applicant);
-					mv.setViewName("changeApplicantProfile");
-				}
-				
-				return mv;
+		// Aufruf der Methode ExpressionApplicant
+		ApplicantManager am = new ApplicantManager();
+		Map<String, Boolean> map = am.expressionApplicant(applicant);
+
+		if (map.get("name") && map.get("surname") && map.get("birthday") && map.get("entrydate") && map.get("subject")
+				&& map.get("specialization") && map.get("salary") && map.get("email") && map.get("password")) {
+			int counter = userDao.changeApplicantProfile(applicant);
+
+			if (counter > 0) {
+				mv.addObject("msg", "Profil-ƒnderung erfolgreich.");
+				mv.addObject("applicant", applicant);
+				mv.setViewName("showApplicantProfile");
+			} else {
+				mv.addObject("msg", "Error - check the console log");
+				mv.setViewName("changeApplicantProfile");
+			}
+		} else {
+			if (!map.get("name")) {
+				mv.addObject("errorName", "Falsche Eingabe. Bitte mit einem Groﬂbuchstaben beginnen.");
+			}
+			if (!map.get("surname")) {
+				mv.addObject("errorSurname", "Falsche Eingabe. Bitte mit einem Groﬂbuchstaben beginnen.");
+			}
+			if (!map.get("birthday")) {
+				mv.addObject("errorBirthday", "Bitte geben Sie ein Datum ein.");
+			}
+			if (!map.get("entrydate")) {
+				mv.addObject("errorEntrydate", "Bitte geben Sie ein Datum ein.");
+			}
+			if (!map.get("subject")) {
+				mv.addObject("errorSubject", "Falsche Eingabe. Bitte mit einem Groﬂbuchstaben beginnen.");
+			}
+			if (!map.get("specialization")) {
+				mv.addObject("errorSpecialization", "Falsche Eingabe. Bitte mit einem Groﬂbuchstaben beginnen.");
+			}
+			if (!map.get("salary")) {
+				mv.addObject("errorSalary", "Bitte eine mind. drei-stellige Zahl eingeben.");
+			}
+			if (!map.get("email")) {
+				mv.addObject("errorEmail", "Bitte eine richtige E-Mailadresse eingeben.");
+			}
+			if (!map.get("password")) {
+				mv.addObject("errorPassword", "Das Passwort muss mind. 4 Zeichen enthalten.");
+			}
+			mv.addObject("applicant", applicant);
+			mv.setViewName("changeApplicantProfile");
 		}
-	
+
+		return mv;
+	}
+
 	// Aktualisiertes Personaler-Profil vom View an die Datenbank(dao) posten
-	@RequestMapping(value = {"/updateRecruiterProfile"}, method = RequestMethod.POST)
-	public ModelAndView changeRecruiterProfil(
-			@RequestParam("userId") String userId,
+	@RequestMapping(value = { "/updateRecruiterProfile" }, method = RequestMethod.POST)
+	public ModelAndView changeRecruiterProfil(@RequestParam("userId") String userId,
 			@RequestParam("password") String password, @RequestParam("email") String email,
 			@RequestParam("userName") String userName, @RequestParam("userSurname") String userSurname,
 			@RequestParam("enterprise") String enterprise, @RequestParam("position") String position,
 			@RequestParam("birthday") String birthday) {
-		
+
 		ModelAndView mv = new ModelAndView();
-		
+
 		Recruiter recruiter = new Recruiter();
 		recruiter.setUserId(userId);
 		recruiter.setPassword(password);
@@ -216,53 +203,51 @@ public class UserProfileController {
 		recruiter.setEnterprise(enterprise);
 		recruiter.setPosition(position);
 
-		
-		//Aufruf der Methode ExpressionApplicant
+		// Aufruf der Methode ExpressionApplicant
 		RecruiterManager rm = new RecruiterManager();
 		Map<String, Boolean> map = rm.expressionRecruiter(recruiter);
-		
-		if(map.get("name") && map.get("surname") && map.get("birthday") && map.get("enterprise") && 
-				map.get("position") && map.get("email") && map.get("password"))
-		{
+
+		if (map.get("name") && map.get("surname") && map.get("birthday") && map.get("enterprise") && map.get("position")
+				&& map.get("email") && map.get("password")) {
 			int counter = userDao.changeRecruiterProfile(recruiter);
 
-				if (counter > 0) {
-					mv.addObject("msg", "Profil-ƒnderung erfolgreich.");
-					mv.addObject("recruiter", recruiter);
-					mv.setViewName("showRecruiterProfile");
-				} else {
-					mv.addObject("msg", "Error - check the console log");
-					mv.setViewName("changeRecruiterProfile");
-				}
+			if (counter > 0) {
+				mv.addObject("msg", "Profil-ƒnderung erfolgreich.");
+				mv.addObject("recruiter", recruiter);
+				mv.setViewName("showRecruiterProfile");
+			} else {
+				mv.addObject("msg", "Error - check the console log");
+				mv.setViewName("changeRecruiterProfile");
+			}
 		} else {
-			if(!map.get("name")) {
+			if (!map.get("name")) {
 				mv.addObject("errorName", "Falsche Eingabe. Bitte mit einem Groﬂbuchstaben beginnen.");
 			}
-			if(!map.get("surname")) {
+			if (!map.get("surname")) {
 				mv.addObject("errorSurname", "Falsche Eingabe. Bitte mit einem Groﬂbuchstaben beginnen.");
 			}
-			if(!map.get("birthday")) {
+			if (!map.get("birthday")) {
 				mv.addObject("errorBirthday", "Bitte geben Sie ein Datum ein.");
 			}
-			if(!map.get("enterprise")) {
+			if (!map.get("enterprise")) {
 				mv.addObject("errorEnterprise", "Falsche Eingabe. Bitte ein Unternehmen eintragen.");
 			}
-			if(!map.get("position")) {
+			if (!map.get("position")) {
 				mv.addObject("errorPosition", "Falsche Eingabe. Bitte mit einem Groﬂbuchstaben beginnen.");
 			}
-			if(!map.get("email")) {
+			if (!map.get("email")) {
 				mv.addObject("errorEmail", "Bitte eine richtige E-Mailadresse eingeben.");
 			}
-			if(!map.get("password")) {
+			if (!map.get("password")) {
 				mv.addObject("errorPassword", "Das Passwort muss mind. 4 Zeichen enthalten.");
 			}
-			
-			mv.addObject("recruiter",recruiter);
+
+			mv.addObject("recruiter", recruiter);
 			mv.setViewName("changeRecruiterProfile");
-					
+
 		}
-		
+
 		return mv;
 	}
-	
+
 }

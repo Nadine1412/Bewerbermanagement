@@ -5,7 +5,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<!-- <link href="bootstrap.css" rel="stylesheet" type="text/css">  -->
    		<style>
-   			<%@include file="css/backgroundTemplate.css"%>
+   			<%@include file="/view/css/backgroundTemplate.css"%>
 		</style>
     </head>
 	<body>
@@ -19,7 +19,6 @@
     			</form>
     			<br>
     			<p class="message" color="RED">${msg}</p>
-
   			</div>
 		</div>
 	</body>

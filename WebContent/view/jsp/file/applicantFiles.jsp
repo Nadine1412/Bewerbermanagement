@@ -6,12 +6,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Applicant Files</title>
 <style>
-		<%@include file="css/navigation.css"%>
-		<%@include file="css/backgroundTemplate.css"%>
+		<%@include file="/view/css/navigation.css"%>
+		<%@include file="/view/css/backgroundTemplate.css"%>
 </style>
 </head>
 <body>
-<div class="pageSearch">
+<div class="page">
 	<div class="searchTable">
 
 		<table border="1">
@@ -23,7 +23,8 @@
 	 					<td> ${file.filename} </td> 
 	 					<td> 
 	 						<form method="post" action="downloadFile">	
-	 							<input type="hidden" name="filename" value="${file.filename}"/> <button class="button downloadButton" type="submit"> Download </button>
+	 							<input type="hidden" name="filename" value="${file.filename}"/> 
+	 							<button type="submit"> Download </button>
 							</form>	
 	 					</td> 
 	 					<td> ${file.description} </td>

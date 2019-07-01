@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Registration Personaler</title>
 <style>
-	<%@include file="css/backgroundTemplate.css"%>
+	<%@include file="/view/css/backgroundTemplate.css"%>
 </style>
 
 <script>

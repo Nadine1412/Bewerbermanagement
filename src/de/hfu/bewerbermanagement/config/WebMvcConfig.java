@@ -1,11 +1,8 @@
 package de.hfu.bewerbermanagement.config;
+import de.hfu.bewerbermanagement.file.dao.FileDao;
+import de.hfu.bewerbermanagement.skills.dao.SkillsDao;
+import de.hfu.bewerbermanagement.user.dao.UserDao;
 
-import de.hfu.bewerbermanagement.file.dao.FileDao;
-import de.hfu.bewerbermanagement.file.dao.FileDao;
-import de.hfu.bewerbermanagement.skills.dao.SkillsDao;
-import de.hfu.bewerbermanagement.skills.dao.SkillsDao;
-import de.hfu.bewerbermanagement.user.dao.UserDao;
-import de.hfu.bewerbermanagement.user.dao.UserDao;
 import resources.Constants;
 
 import java.io.File;
@@ -17,13 +14,11 @@ import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
-import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -76,9 +71,12 @@ public class WebMvcConfig {
 	@Bean
 	public JsonNode getJsonNode() {
 		ObjectMapper objectMapper = new ObjectMapper();
-		URL jsonUrl = WebMvcConfig.class.getResource("/de/hfu/bewerbermanagement/dao/sqlStatements.json");
+		String jsonUrl = "/src/de/hfu/bewerbermanagement/email/controller/sqlStatements.json";
+		File jsonFile = new File(jsonUrl);
+		//URL jsonUrl = WebMvcConfig.class.getResource("/de/hfu/bewerbermanagement/dao/sqlStatements.json");
 		try {
-			JsonNode jsonNode = objectMapper.readTree(new File(jsonUrl.getPath()));
+			//JsonNode jsonNode = objectMapper.readTree(new File(jsonUrl)); 
+			JsonNode jsonNode = objectMapper.readTree(jsonFile);
 			return jsonNode;
 		} catch (IOException e) {
 			e.printStackTrace();
