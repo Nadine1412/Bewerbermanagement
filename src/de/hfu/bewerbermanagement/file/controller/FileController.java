@@ -22,7 +22,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import de.hfu.bewerbermanagement.file.dao.FileDao;
 import de.hfu.bewerbermanagement.file.model.File;
+import de.hfu.bewerbermanagement.skills.dao.SkillsDao;
 import de.hfu.bewerbermanagement.skills.model.Skills;
 import de.hfu.bewerbermanagement.user.dao.UserDao;
 import de.hfu.bewerbermanagement.user.model.Applicant;
@@ -33,6 +35,10 @@ import de.hfu.bewerbermanagement.user.model.Recruiter;
 public class FileController {
 	@Autowired
 	private UserDao userDao;
+	@Autowired
+	private FileDao fileDao;
+	@Autowired
+	private SkillsDao skillsDao;
 
 	@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
 	public ModelAndView upload(@RequestParam("name") String name, 
@@ -61,7 +67,7 @@ public class FileController {
 			fileModel.setA_id((int)session.getAttribute("a_id"));
 			fileModel.setDescription(description);
 			
-			int result = userDao.saveFileUpload(fileModel);
+			int result = fileDao.saveFileUpload(fileModel);
 			
 			if(result != 0) {
 				mv.addObject("msg", "Datei erfolgreich hochgeladen.");
@@ -88,7 +94,7 @@ public class FileController {
 			ModelAndView mv = new ModelAndView();
 								
 			//Aufrufen der Files
-			List<de.hfu.bewerbermanagement.file.model.File> filesList = userDao.showFiles(a_id);
+			List<de.hfu.bewerbermanagement.file.model.File> filesList = fileDao.showFiles(a_id);
 			// Sessionattribute für Files setzten
 			session.setAttribute("files", filesList);
 			
@@ -141,7 +147,7 @@ public class FileController {
 					ModelAndView mv = new ModelAndView();
 										
 					//Aufrufen der Files
-					List<de.hfu.bewerbermanagement.file.model.File> filesList = userDao.showFiles(a_id);
+					List<de.hfu.bewerbermanagement.file.model.File> filesList = fileDao.showFiles(a_id);
 					// Sessionattribute für Files setzten
 					session.setAttribute("files", filesList);
 					

@@ -6,9 +6,10 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+
+import de.hfu.bewerbermanagement.skills.dao.SkillsDao;
 import de.hfu.bewerbermanagement.skills.model.Skills;
 import de.hfu.bewerbermanagement.user.dao.UserDao;
-import de.hfu.bewerbermanagement.user.dao.UserDaoImpl;
 import de.hfu.bewerbermanagement.user.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,8 @@ public class UserLoginController {
 	
 	@Autowired
 	private UserDao userDao;
+	@Autowired
+	private SkillsDao skillsDao;
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView userLogin(
@@ -48,7 +51,7 @@ public class UserLoginController {
 			isApplicant = true;
 			
 			// Laden der Skills aus der Datenbank in lokales File
-			Skills skills = userDao.oldSkills(a_id);
+			Skills skills = skillsDao.oldSkills(a_id);
 			ObjectMapper mapper = new ObjectMapper();
 			mapper.writeValue(new File(System.getProperty("user.dir") + "/skills.json"), skills);
 		} else {
