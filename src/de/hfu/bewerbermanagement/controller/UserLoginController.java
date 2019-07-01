@@ -1,14 +1,11 @@
 package de.hfu.bewerbermanagement.controller;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import de.hfu.bewerbermanagement.dao.UserDao;
 import de.hfu.bewerbermanagement.dao.UserDaoImpl;
-import de.hfu.bewerbermanagement.model.Skills;
 import de.hfu.bewerbermanagement.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,10 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 public class UserLoginController {
@@ -29,7 +22,7 @@ public class UserLoginController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView userLogin(
-			@RequestParam("inputEmail") String email, @RequestParam("inputPassword") String password, HttpSession session) throws JsonGenerationException, JsonMappingException, IOException {
+			@RequestParam("inputEmail") String email, @RequestParam("inputPassword") String password, HttpSession session) {
 				
 		ModelAndView mv = new ModelAndView();
 		
@@ -45,11 +38,6 @@ public class UserLoginController {
 		boolean isApplicant;
 		if(a_id > 0) {
 			isApplicant = true;
-			
-			// Laden der Skills aus der Datenbank in lokales File
-			Skills skills = userDao.oldSkills(a_id);
-			ObjectMapper mapper = new ObjectMapper();
-			mapper.writeValue(new File(System.getProperty("user.dir") + "/skills.json"), skills);
 		} else {
 			isApplicant = false;
 		}
