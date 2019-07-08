@@ -36,7 +36,7 @@ public class FileController {
 	@Autowired
 	private FileDao fileDao;
 	
-
+	// Ladend er Files in die Datenbank
 	@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
 	public ModelAndView upload(//@RequestParam("name") String name, 
 			@RequestParam("file") MultipartFile file,

@@ -34,6 +34,7 @@ public class SearchController {
 	@Autowired
 	private UserDao userDao;
 	
+	// Weiterleiten der ausgewählten Fähigkeiten aus der JSP
 	@RequestMapping(value = "/searchApplicant", method = RequestMethod.POST)
 	public ModelAndView processRequest(HttpServletRequest request, HttpSession session)
 		throws ServletException, IOException{

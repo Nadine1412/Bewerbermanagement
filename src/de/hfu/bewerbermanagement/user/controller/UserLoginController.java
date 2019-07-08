@@ -31,6 +31,7 @@ public class UserLoginController {
 	@Autowired
 	private SkillsDao skillsDao;
 	
+	// Weiterleiten der Login-Daten aus der JSP
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView userLogin(
 			@RequestParam("inputEmail") String email, @RequestParam("inputPassword") String password, HttpSession session) throws JsonGenerationException, JsonMappingException, IOException {

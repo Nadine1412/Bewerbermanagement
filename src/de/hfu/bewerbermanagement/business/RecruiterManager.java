@@ -36,6 +36,7 @@ public class RecruiterManager {
 			resultEnterprise = true;
 		}
 		
+		// Speichern der Ergebnisse in einer Map
 		myMap.put("name", resultName);
 		myMap.put("surname", resultSurname);
 		myMap.put("birthday", resultBirthday);

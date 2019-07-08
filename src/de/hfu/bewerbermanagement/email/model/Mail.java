@@ -4,6 +4,7 @@ import java.io.File;
 
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+// Erzeugen der Mail-Klasse
 public class Mail {
 	
 	private String mailReceiver;

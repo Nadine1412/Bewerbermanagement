@@ -2,7 +2,7 @@ package de.hfu.bewerbermanagement.file.model;
 
 import java.time.LocalDate;
 
-
+// Erzeugen der Klasse File
 public class File {
 	private String filename;
 	private byte[] file;

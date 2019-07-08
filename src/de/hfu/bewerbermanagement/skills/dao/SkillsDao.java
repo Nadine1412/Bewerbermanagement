@@ -36,12 +36,12 @@ public class SkillsDao {
 	@Autowired
 	private JsonNode jsonNode;
 	
-	
+	// Aufrufen des jdbcTemplate
 	public SkillsDao(DataSource dataSource) {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
-	// Skills hinzufügen
+	// Fähigkeiten der Datenbank hinzufügen
 	public int addSkills(Skills skills, int a_id) {
 		boolean isSkillAvailable = isSkillAvailable(a_id);
 		String keyUpdateSkills;
@@ -204,7 +204,7 @@ public class SkillsDao {
 		
 	}
 	
-	// Prüfen ob Skills vorhanden
+	// Prüfen ob Skills bereits vorhanden
 	public boolean isSkillAvailable(int a_id) {
 		// SQL Statement aus json lesen 
 		String keySkills = "skills.isAvailable";

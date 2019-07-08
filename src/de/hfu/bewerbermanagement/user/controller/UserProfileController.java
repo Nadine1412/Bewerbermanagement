@@ -49,6 +49,7 @@ public class UserProfileController {
 			ObjectMapper mapper = new ObjectMapper();
 			Skills skills = mapper.readValue(new File(System.getProperty("user.dir") + "/skills.json"), Skills.class);
 					
+			// Überprüfung ob es sich um einen Applicant oder Recruiter handelt
 			if(applicant != null) {
 				mv.addObject("applicant", applicant);
 				
@@ -92,6 +93,8 @@ public class UserProfileController {
 		String email = (String) session.getAttribute("userEmail");
 		
 		ModelAndView mv = new ModelAndView();
+		
+		// Überprüfen ob User ein Applicant oder Recruiter ist
 		if((boolean) session.getAttribute("isApplicant"))
 		{
 			Applicant applicant = userDao.showApplicantProfile(email);

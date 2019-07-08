@@ -39,6 +39,7 @@ public class SkillsController {
 	@Autowired
 	private SkillsDao skillsDao;
 	
+	// Speichern der Fähigkeiten
 	@RequestMapping(value = "/userSkills", method = RequestMethod.POST)
 	public ModelAndView processRequest(HttpServletRequest request, HttpSession session)
 		throws ServletException, IOException{

@@ -46,6 +46,7 @@ public class ApplicantManager {
 				resultEntrydate = true;
 			}
 			
+			// Speichern der Ergebnisse in einer Map
 			myMap.put("name", resultName);
 			myMap.put("surname", resultSurname);
 			myMap.put("birthday", resultBirthday);

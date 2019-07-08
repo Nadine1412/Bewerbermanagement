@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class UserLogoutController {
 
+	// Logout des Users
 	@RequestMapping(value="/logout",method = RequestMethod.GET)
     public ModelAndView logout(HttpSession session){
 		ModelAndView mv = new ModelAndView();

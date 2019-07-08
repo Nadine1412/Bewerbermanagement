@@ -31,6 +31,7 @@ public class EmailController {
 	@Autowired
 	private Session getEmailSession;
 	
+	// Mappen des HTTP-Request mit dem Controller und setzen der Parameter
 	@RequestMapping(value="/sendEmailForm", method = RequestMethod.POST)
 	public ModelAndView sendEmail(@RequestParam("mailReceiver") String mailReceiver, 
 			@RequestParam("mailSubject") String mailSubject,
@@ -65,7 +66,8 @@ public class EmailController {
 		return mv;
 		
 	}
-
+	
+	// Versenden der Email
 	private void sendMail(Mail mail) throws IOException {
 				
 		Message msg = new MimeMessage(getEmailSession);
@@ -96,7 +98,7 @@ public class EmailController {
 		}	
 	}
 	
-	// Senden der ausgewählten Emailadresse
+	// Mappen der ausgewählten Emailadresse
 	@RequestMapping(value="/getEmail", method = RequestMethod.POST)
 	public ModelAndView selectedEmail(@RequestParam("mailReceiver") String mailReceiver) {
 		

@@ -28,7 +28,7 @@ import org.springframework.jdbc.core.RowMapper;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-
+// Klasse für Datenbankzugriffe für die Anhänge
 public class FileDao{
 	
 	private JdbcTemplate jdbcTemplate;
@@ -36,7 +36,7 @@ public class FileDao{
 	@Autowired
 	private JsonNode jsonNode;
 	
-	
+	// Aufrufen des jdbcTemplate
 	public FileDao(DataSource dataSource) {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
@@ -71,6 +71,7 @@ public class FileDao{
 			try {
 				statement = statement + a_id;
 				
+					// Speicherung der Ergebnisse aus der Datenbankabfrage
 					List<Map <String, Object>> resultList = jdbcTemplate.queryForList(statement);
 					List<de.hfu.bewerbermanagement.file.model.File> fileList =  new ArrayList<de.hfu.bewerbermanagement.file.model.File>();
 				    for(Map<String, Object> map : resultList) {
