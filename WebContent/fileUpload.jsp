@@ -15,8 +15,8 @@
 	<div class="page">
 		<div class="form">
 			<form action="uploadFile" method="POST" enctype="multipart/form-data">
-				<input type="text" name="name" placeholder="Name"/>
-				<textarea id="description" cols="30" rows="10" name="description"></textarea>
+				<!-- <input type="text" name="name" placeholder="Name"/> -->
+				<p class="header-change"> Beschreibung: </p><textarea id="description" cols="30" rows="10" name="description"></textarea>
 				<br><br>
 				<input type="file" name="file" />
 				<button type="submit">upload</button>

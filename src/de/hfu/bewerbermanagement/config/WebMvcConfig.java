@@ -102,7 +102,7 @@ public class WebMvcConfig {
 		return session;
 	}
 
-	// Beans für den File Upload (Florian Möhrle 13.06.2019)
+	// Beans für den File Upload
 	@Bean(name = "multipartResolver")
 	public CommonsMultipartResolver multipartResolver() {
 		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();

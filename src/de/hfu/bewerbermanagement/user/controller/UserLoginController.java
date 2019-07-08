@@ -41,11 +41,11 @@ public class UserLoginController {
 		user.setEmail(email);
 		user.setPassword(password);
 		
-		//Selektierung des Nachnamens (Nadine Jakob 07.06.2019)
+		//Selektierung des Nachnamens
 		String name = userDao.loginUser(user);
 		// Setzen der A_ID
 		int a_id = userDao.isApplicant(email);
-		//Überprüfung des UserTyps(Applicant oder Recruiter
+		//Überprüfung des UserTyps(Applicant oder Recruiter)
 		boolean isApplicant;
 		if(a_id > 0) {
 			isApplicant = true;

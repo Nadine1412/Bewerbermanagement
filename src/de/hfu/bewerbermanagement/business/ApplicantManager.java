@@ -25,7 +25,6 @@ public class ApplicantManager {
 			Map<String, Boolean> myMap = new HashMap<String, Boolean>();
 			
 			//Regular Expressions
-			//boolean result = Pattern.matches("^[A-Z][a-z]+$", userName);
 			boolean resultName = Pattern.matches("^[A-Z][a-z]+$", applicant.getUserName()); //Keine Zahlen im Namen
 			boolean resultSurname = Pattern.matches("^[A-Z][a-z]+$", applicant.getUserSurname()); //Keine Zahlen im Nachnamen	
 			boolean resultSubject = Pattern.matches("^[A-Z][A-Z0-9a-z.\\/_%+-]+", applicant.getSubject()); // Groﬂer Anfangsbuchstabe

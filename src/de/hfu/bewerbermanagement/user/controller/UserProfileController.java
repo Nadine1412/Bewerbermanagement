@@ -28,9 +28,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 public class UserProfileController {
-	
-	//private ArrayList<Bewerber> bewerberList = new ArrayList<Bewerber>();
-	
+		
 	@Autowired
 	private UserDao userDao;
 	

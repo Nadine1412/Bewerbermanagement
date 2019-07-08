@@ -23,6 +23,7 @@ public class UserRegistrationController {
 	@Autowired
 	private UserDao userDao;
 
+	// Methode, um den Recruiter zu registrieren
 	@RequestMapping(value = "/registerRecruiter", method = RequestMethod.POST)
 	public ModelAndView recruiterRegistration(
 			@RequestParam("password") String password, @RequestParam("email") String email,
@@ -42,7 +43,7 @@ public class UserRegistrationController {
 				recruiter.setEnterprise(enterprise);
 				recruiter.setPosition(position);
 			
-				//Aufruf der Methode ExpressionApplicant
+				//Aufruf der Methode ExpressionRecruiter
 				RecruiterManager rm = new RecruiterManager();
 				Map<String, Boolean> map = rm.expressionRecruiter(recruiter);
 				
@@ -92,6 +93,7 @@ public class UserRegistrationController {
 	}
 	
 	
+	// Methode, um Applicant zu registrieren
 	@RequestMapping(value = "/registerApplicant", method = RequestMethod.POST)
 	public ModelAndView applicantRegistration(
 			@RequestParam("password") String password, @RequestParam("email") String email,

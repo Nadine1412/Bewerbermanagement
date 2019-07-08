@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import de.hfu.bewerbermanagement.mail.model.Mail;
+import de.hfu.bewerbermanagement.email.model.Mail;
 import resources.Constants;
 
 @Controller
@@ -34,8 +34,9 @@ public class EmailController {
 	@RequestMapping(value="/sendEmailForm", method = RequestMethod.POST)
 	public ModelAndView sendEmail(@RequestParam("mailReceiver") String mailReceiver, 
 			@RequestParam("mailSubject") String mailSubject,
-			@RequestParam("message") String message, 
-			@RequestParam("mailAttachment") CommonsMultipartFile attachment) {
+			@RequestParam("message") String message 
+			//@RequestParam("mailAttachment") CommonsMultipartFile attachment
+			) {
 		
 		ModelAndView mv = new ModelAndView();
 		
@@ -43,7 +44,7 @@ public class EmailController {
 		mail.setMailReceiver(mailReceiver);
 		mail.setMailSubject(mailSubject);
 		mail.setMessage(message);
-		mail.setAttachment(attachment);
+		//mail.setAttachment(attachment);
 		
 		//String uploadURL = mail.getAttachment().getOriginalFilename();
 		//String file = mail.getAttachment().getName();
@@ -95,6 +96,7 @@ public class EmailController {
 		}	
 	}
 	
+	// Senden der ausgewählten Emailadresse
 	@RequestMapping(value="/getEmail", method = RequestMethod.POST)
 	public ModelAndView selectedEmail(@RequestParam("mailReceiver") String mailReceiver) {
 		
