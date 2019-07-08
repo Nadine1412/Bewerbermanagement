@@ -30,18 +30,15 @@ import de.hfu.bewerbermanagement.user.dao.UserDao;
 import de.hfu.bewerbermanagement.user.model.Applicant;
 import de.hfu.bewerbermanagement.user.model.Recruiter;
 
-//Controller fÃ¼r den Upload der File (Florian MÃ¶hrle 14.06.2019)
+//Controller fÃ¼r den Upload der Files
 @Controller
 public class FileController {
 	@Autowired
-	private UserDao userDao;
-	@Autowired
 	private FileDao fileDao;
-	@Autowired
-	private SkillsDao skillsDao;
+	
 
 	@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
-	public ModelAndView upload(@RequestParam("name") String name, 
+	public ModelAndView upload(//@RequestParam("name") String name, 
 			@RequestParam("file") MultipartFile file,
 			@RequestParam("description") String description,
 			HttpSession session) {
@@ -110,57 +107,57 @@ public class FileController {
 		}
 		
 		//Files von der JSP downloaden
-				@RequestMapping(value = {"/downloadFile"}, method = RequestMethod.POST)
-				public void downloadFile(@RequestParam("filename") String filename, HttpServletResponse response, HttpSession session) throws IOException {
+	@RequestMapping(value = {"/downloadFile"}, method = RequestMethod.POST)
+	public void downloadFile(@RequestParam("filename") String filename, HttpServletResponse response, HttpSession session) throws IOException {
 
-					
-					
-					List<de.hfu.bewerbermanagement.file.model.File> downloadList = (List<File>) session.getAttribute("files");
-					
-					byte[] fileData = null;
-					for(File file:downloadList) {
-						if (file.getFilename().equals(filename)) {
-				           fileData = file.getFile();
-						}
-					}
-					
-					InputStream in = new ByteArrayInputStream(fileData);
-					ServletOutputStream out = response.getOutputStream();
-					
-					byte[] outputByte = new byte[fileData.length];
-					//copy binary context to output stream
-					while(in.read(outputByte, 0, fileData.length) != -1)
-					{
-						out.write(outputByte, 0, fileData.length);
-					}
-					in.close();
-					out.flush();
-					out.close();
-				}
-				
-				//Files von der Datenbank(dao) an den View weitergeben (Recruiter)
-				@RequestMapping(value = {"getSearchedFiles"}, method = RequestMethod.GET)
-				public ModelAndView showSearchedFiles(HttpServletRequest request, HttpSession session) {
-					
-					int a_id = Integer.parseInt(request.getParameter("paramAid"));
-					
-					ModelAndView mv = new ModelAndView();
-										
-					//Aufrufen der Files
-					List<de.hfu.bewerbermanagement.file.model.File> filesList = fileDao.showFiles(a_id);
-					// Sessionattribute für Files setzten
-					session.setAttribute("files", filesList);
-					
-						if(filesList.size() > 0) {
-							mv.addObject("filesList", filesList);
-							mv.setViewName("applicantFiles");
-						} else {
-							mv.addObject("msg", "Keine Files für diesen Bewerber vorhanden.");
-							mv.setViewName("applicantFiles");
-						}
-				
-					return mv;		
-				}
+		
+		
+		List<de.hfu.bewerbermanagement.file.model.File> downloadList = (List<File>) session.getAttribute("files");
+		
+		byte[] fileData = null;
+		for(File file:downloadList) {
+			if (file.getFilename().equals(filename)) {
+	           fileData = file.getFile();
+			}
+		}
+		
+		InputStream in = new ByteArrayInputStream(fileData);
+		ServletOutputStream out = response.getOutputStream();
+		
+		byte[] outputByte = new byte[fileData.length];
+		//copy binary context to output stream
+		while(in.read(outputByte, 0, fileData.length) != -1)
+		{
+			out.write(outputByte, 0, fileData.length);
+		}
+		in.close();
+		out.flush();
+		out.close();
+	}
+	
+	//Files von der Datenbank(dao) an den View weitergeben (Recruiter)
+	@RequestMapping(value = {"getSearchedFiles"}, method = RequestMethod.GET)
+	public ModelAndView showSearchedFiles(HttpServletRequest request, HttpSession session) {
+		
+		int a_id = Integer.parseInt(request.getParameter("paramAid"));
+		
+		ModelAndView mv = new ModelAndView();
+							
+		//Aufrufen der Files
+		List<de.hfu.bewerbermanagement.file.model.File> filesList = fileDao.showFiles(a_id);
+		// Sessionattribute für Files setzten
+		session.setAttribute("files", filesList);
+		
+			if(filesList.size() > 0) {
+				mv.addObject("filesList", filesList);
+				mv.setViewName("applicantFiles");
+			} else {
+				mv.addObject("msg", "Keine Files für diesen Bewerber vorhanden.");
+				mv.setViewName("applicantFiles");
+			}
+	
+		return mv;		
+	}
 				
 }
 

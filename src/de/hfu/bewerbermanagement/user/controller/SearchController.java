@@ -38,6 +38,7 @@ public class SearchController {
 	public ModelAndView processRequest(HttpServletRequest request, HttpSession session)
 		throws ServletException, IOException{
 			
+		// Auslesen der Checkboxen aus der searchApplicant.jsp
 			String java = request.getParameter("chkJava");
 			String javaScript =request.getParameter("chkJavaScript");
 			String cPlusPlus =request.getParameter("chkC++");
@@ -56,63 +57,65 @@ public class SearchController {
 			String french =request.getParameter("chkFrench");
 			String chinese =request.getParameter("chkChinese");
 
-
+			// Anlegen des ModelAndView Objektes
 			ModelAndView mv = new ModelAndView();
 			
 			//Erzeugen der Liste für die Ausgabe der Skills
-			List<String> allSkills = new ArrayList<String>();
+			List<String> searchedSkills = new ArrayList<String>();
 			
-			
+			//Schreiben der gecheckten Skills in die searchedSkills Liste
 			if(java != null) {
-				allSkills.add(java);
+				searchedSkills.add(java);
 			}
 			if(javaScript != null) {
-				allSkills.add(javaScript);
+				searchedSkills.add(javaScript);
 			}
 			if(cPlusPlus != null) {
-				allSkills.add(cPlusPlus);
+				searchedSkills.add(cPlusPlus);
 			}
 			if(python != null) {
-				allSkills.add(python);
+				searchedSkills.add(python);
 			}
 			if(html != null) {
-				allSkills.add(html);
+				searchedSkills.add(html);
 			}
 			
 			if(word != null) {
-				allSkills.add(word);
+				searchedSkills.add(word);
 			}
 			if(excel != null) {
-				allSkills.add(excel);
+				searchedSkills.add(excel);
 			}
 			if(powerpoint != null) {
-				allSkills.add(powerpoint);
+				searchedSkills.add(powerpoint);
 			}
 			if(git != null) {
-				allSkills.add(git);
+				searchedSkills.add(git);
 			}
 			if(jira != null) {
-				allSkills.add(jira);
+				searchedSkills.add(jira);
 			}
 			
 			if(german != null) {
-				allSkills.add(german);
+				searchedSkills.add(german);
 			}
 			if(english != null) {
-				allSkills.add(english);
+				searchedSkills.add(english);
 			}
 			if(spanish != null) {
-				allSkills.add(spanish);
+				searchedSkills.add(spanish);
 			}
 			if(french != null) {
-				allSkills.add(french);
+				searchedSkills.add(french);
 			}
 			if(chinese != null) {
-				allSkills.add(chinese);
+				searchedSkills.add(chinese);
 			}
 						
+			//Weiterleiten der Liste an userDao und Liste mit zutreffenden Applicants von userDao erhalten
+			List<Applicant> list = userDao.searchApplicantswithSkills(searchedSkills);
 			
-			List<Applicant> list = userDao.searchApp(allSkills);
+			//Check ob Applicants mit gewünschten Skills vorhanden
 			if(list.size()!= 0) {
 				mv.addObject("applicants", list);
 				mv.setViewName("searchApplicants");

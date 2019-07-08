@@ -29,7 +29,7 @@
 <p><strong>SSL- bzw. TLS-Verschluesselung</strong></p>
 <p>Aus Sicherheitsgruenden und zum Schutz der uebertragung vertraulicher Inhalte, die Sie an uns als Seitenbetreiber senden, nutzt unsere Website eine SSL-bzw. TLS-Verschluesselung. Damit sind Daten, die Sie ueber diese Website uebermitteln, fuer Dritte nicht mitlesbar. Sie erkennen eine verschluesselte Verbindung an der „https://“ Adresszeile Ihres Browsers und am Schloss-Symbol in der Browserzeile.</p>
 
-<p><strong>Server-Log-Dateien</strong></p>
+<!-- <p><strong>Server-Log-Dateien</strong></p>
 <p>In Server-Log-Dateien erhebt und speichert der Provider der Website automatisch Informationen, die Ihr Browser automatisch an uns uebermittelt. Dies sind:</p>
 <ul>
     <li>Besuchte Seite auf unserer Domain</li>
@@ -39,7 +39,7 @@
     <li>Referrer URL</li>
     <li>Hostname des zugreifenden Rechners</li>
     <li>IP-Adresse</li>
-</ul>
+</ul> -->
 <p>Es findet keine Zusammenfuehrung dieser Daten mit anderen Datenquellen statt. Grundlage der Datenverarbeitung bildet Art. 6 Abs. 1 lit. b DSGVO, der die Verarbeitung von Daten zur Erfuellung eines Vertrags oder vorvertraglicher Massnahmen gestattet.</p>
             
 <p><strong>Registrierung auf dieser Website</strong></p>
@@ -48,17 +48,17 @@
 <p>Die Verarbeitung der bei der Registrierung eingegebenen Daten erfolgt auf Grundlage Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO). Ein Widerruf Ihrer bereits erteilten Einwilligung ist jederzeit moeglich. Fuer den Widerruf genuegt eine formlose Mitteilung per E-Mail. Die Rechtmaessigkeit der bereits erfolgten Datenverarbeitung bleibt vom Widerruf unberuehrt.</p>
 <p>Wir speichern die bei der Registrierung erfassten Daten waehrend des Zeitraums, den Sie auf unserer Website registriert sind. Ihren Daten werden geloescht, sollten Sie Ihre Registrierung aufheben. Gesetzliche Aufbewahrungsfristen bleiben unberuehrt.</p>
             
-<p><strong>Kontaktformular</strong></p>
+<!-- <p><strong>Kontaktformular</strong></p>
 <p>Per Kontaktformular uebermittelte Daten werden einschliesslich Ihrer Kontaktdaten gespeichert, um Ihre Anfrage bearbeiten zu koennen oder um fuer Anschlussfragen bereitzustehen. Eine Weitergabe dieser Daten findet ohne Ihre Einwilligung nicht statt.</p>
 <p>Die Verarbeitung der in das Kontaktformular eingegebenen Daten erfolgt ausschliesslich auf Grundlage Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO). Ein Widerruf Ihrer bereits erteilten Einwilligung ist jederzeit moeglich. Fuer den Widerruf genuegt eine formlose Mitteilung per E-Mail. Die Rechtmaessigkeit der bis zum Widerruf erfolgten Datenverarbeitungsvorgaenge bleibt vom Widerruf unberuehrt.</p>
 <p>ueber das Kontaktformular uebermittelte Daten verbleiben bei uns, bis Sie uns zur Loeschung auffordern, Ihre Einwilligung zur Speicherung widerrufen oder keine Notwendigkeit der Datenspeicherung mehr besteht. Zwingende gesetzliche Bestimmungen - insbesondere Aufbewahrungsfristen - bleiben unberuehrt.</p>
-            
+ -->            
 <p><strong>Speicherdauer von Beitraegen und Kommentaren</strong></p>
 <p>Beitraege und Kommentare sowie damit in Verbindung stehende Daten, wie beispielsweise IP-Adressen, werden gespeichert. Der Inhalt verbleibt auf unserer Website, bis er vollstaendig geloescht wurde oder aus rechtlichen Gruenden geloescht werden musste.</p>
 <p>Die Speicherung der Beitraege und Kommentare erfolgt auf Grundlage Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO). Ein Widerruf Ihrer bereits erteilten Einwilligung ist jederzeit moeglich. Fuer den Widerruf genuegt eine formlose Mitteilung per E-Mail. Die
 	Rechtmaessigkeit bereits erfolgter Datenverarbeitungsvorgaenge bleibt vom Widerruf unberuehrt.</p>
             
-<p><strong>Cookies</strong></p>
+<!-- <p><strong>Cookies</strong></p>
 <p>Unsere Website verwendet Cookies. Das sind kleine Textdateien, die Ihr Webbrowser auf Ihrem Endgeraet speichert. Cookies helfen uns dabei, unser Angebot nutzerfreundlicher, effektiver und sicherer zu machen. </p>
 <p>Einige Cookies sind “Session-Cookies.” Solche Cookies werden nach Ende Ihrer Browser-Sitzung von selbst geloescht. Hingegen bleiben andere Cookies auf Ihrem Endgeraet bestehen, bis Sie diese selbst loeschen. Solche Cookies helfen uns, Sie bei Rueckkehr auf
 	unserer Website wiederzuerkennen.</p>
@@ -71,6 +71,6 @@
 <p><strong>XING Plugin</strong></p>
 <p>Unsere Website verwendet Funktionen des Netzwerks XING. Anbieter ist die XING AG, Dammtorstrasse 29-32, 20354 Hamburg, Deutschland.</p>
 <p>Bei Aufruf einer Seite mit integrierten Xing-Funktionen wird eine Verbindung zu den Servern von Xing hergestellt. Eine Speicherung personenbezogener Daten erfolgt dabei nach unserem Kenntnisstand nicht. IP-Adressen werden nicht gespeichert, ebenso erfolgt
-	keine Auswertung des Nutzungsverhaltens.</p>
+	keine Auswertung des Nutzungsverhaltens.</p> -->
 </body>
 </html>

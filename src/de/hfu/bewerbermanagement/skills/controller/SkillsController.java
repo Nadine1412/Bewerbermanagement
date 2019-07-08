@@ -128,13 +128,13 @@ public class SkillsController {
 			skills.setOffice(office);
 			skills.setLanguage(language);
 			
-			// Updaten der Skills in der Datenbank
-			int counter = skillsDao.addSkills(skills, a_id);
-			
 			// Updaten der Skills im lokalen File
 			ObjectMapper mapper = new ObjectMapper();
 			mapper.writeValue(new File(System.getProperty("user.dir") + "/skills.json"), skills);
-					
+			
+			// Updaten der Skills in der Datenbank
+			int counter = skillsDao.addSkills(skills, a_id);
+						
 			if (counter > 0) {
 				String programmingStr = programmingLanguage.toString();
 				String officeStr = office.toString();
@@ -144,7 +144,7 @@ public class SkillsController {
 				String subOffice = officeStr.substring(1, officeStr.length()-1);
 				String subLanguage = languageStr.substring(1, languageStr.length()-1);
 						
-			mv.addObject("msg", "Skills successfully added.");
+			mv.addObject("msg", "F‰igkeiten erfolgreich hinzugef¸gt.");
 			mv.addObject("programmingLanguage", subProgramming);
 			mv.addObject("office", subOffice);
 			mv.addObject("language", subLanguage);
@@ -158,79 +158,5 @@ public class SkillsController {
 			return mv;	
 	}
 	
-//	@RequestMapping(value = "/userSkills", method = RequestMethod.POST)
-//	public ModelAndView recruiterRegistration(
-//			@RequestParam("selectJava") String java, @RequestParam("selectJavaScript") String javaScript, 
-//			@RequestParam("selectC++") String cpp, @RequestParam("selectPython") String python, 
-//			@RequestParam("selectHTML") String html,  
-//			
-//			@RequestParam("selectWord") String word, @RequestParam("selectExcel") String excel,
-//			@RequestParam("selectPowerpoint") String powerpoint, @RequestParam("selectGit") String gitHub,
-//			@RequestParam("selectJira") String jira,
-//			
-//			@RequestParam("selectDeutsch") String deutsch, @RequestParam("selectEnglisch") String englisch,
-//			@RequestParam("selectSpanisch") String spanisch, @RequestParam("selectFranzoesisch") String franzoesisch,
-//			@RequestParam("selectChinesisch") String chinesisch) {
-//		
-//		ModelAndView mv = new ModelAndView();
-//
-//				//Aufruf der Methode ExpressionApplicant
-//				Map<String, String> map = new HashMap<String, String>();
-//				
-//				map.put("programmingLanguage", java + "," + javaScript + "," + cpp + "," + python + "," + html);
-//				map.put("office", word + "," + excel + "," + powerpoint + "," + gitHub + "," + jira);
-//				map.put("language", deutsch + "," + englisch + "," + spanisch + "," + franzoesisch + "," + chinesisch);
-//				
-//				System.out.println("programmingLanguage: "+ java + "," + javaScript + "," + cpp + "," + python + "," + html);
-//				System.out.println("office: "+ word + "," + excel + "," + powerpoint + "," + gitHub + "," + jira);
-//				System.out.println("language: "+ deutsch + "," + englisch + "," + spanisch + "," + franzoesisch + "," + chinesisch);
-////				if(map.get("name") && map.get("surname") && map.get("birthday") && map.get("enterprise") && map.get("position") && map.get("email") && map.get("password"))
-////				{
-////					System.out.println("Richtige Eingabe." + " Name: " + map.get("name") + " Nachname: " + map.get("surname") + " Geburtstag: " + map.get("birthday") + " Unternehmen: " + map.get("enterprise") + " Position: " + map.get("position") + " EMail: " + map.get("email") + " Passwort: " + map.get("password"));
-////					int counter = userDao.registerRecruiter(recruiter);
-////		
-////						if (counter > 0) {
-////							mv.addObject("msg", "User registration successful.");
-////							mv.setViewName("login");
-////						} else {
-////							mv.addObject("msg", "Error - check the console log");
-////							mv.setViewName("registrationRecruiter");
-////						}
-////				} else {
-////					System.out.println("Falsche Eingabe." + " Name: " + map.get("name") + " Nachname: " + map.get("surname") + " Geburtstag: " + map.get("birthday") + " Unternehmen: " + map.get("enterprise") + " Position: " + map.get("position") + " EMail: " + map.get("email") + " Passwort: " + map.get("password"));
-////
-////					if(!map.get("name")) {
-////						mv.addObject("errorName", "Falsche Eingabe. Bitte mit einem Groﬂbuchstaben beginnen.");
-////					}
-////					if(!map.get("surname")) {
-////						mv.addObject("errorSurname", "Falsche Eingabe. Bitte mit einem Groﬂbuchstaben beginnen.");
-////					}
-////					if(!map.get("birthday")) {
-////						mv.addObject("errorBirthday", "Bitte geben Sie ein Datum ein.");
-////					}
-////					if(!map.get("enterprise")) {
-////						mv.addObject("errorEnterprise", "Falsche Eingabe. Bitte ein Unternehmen eintragen.");
-////					}
-////					if(!map.get("position")) {
-////						mv.addObject("errorPosition", "Falsche Eingabe. Bitte mit einem Groﬂbuchstaben beginnen.");
-////					}
-////					if(!map.get("email")) {
-////						mv.addObject("errorEmail", "Bitte eine richtige E-Mailadresse eingeben.");
-////					}
-////					if(!map.get("password")) {
-////						mv.addObject("errorPassword", "Das Passwort muss mind. 4 Zeichen enthalten.");
-////					}
-////					
-////					mv.addObject("recruiter",recruiter);
-////					mv.setViewName("registrationRecruiter");
-////							
-////				}
-//				
-//				return mv;
-//	}
-	
-	
-	
-	
-	
+
 }

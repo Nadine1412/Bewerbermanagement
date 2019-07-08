@@ -22,7 +22,7 @@
 					<input type="text" placeholder="Betreff" name="mailSubject"/>
 					<textarea id="mailMessage" cols="30" rows="10" name="message"></textarea>
 					<br><br>
-					<input type="file" placeholder="Anhang" name="mailAttachment"/>
+					<!-- <input type="file" placeholder="Anhang" name="mailAttachment"/> -->
 					<button type="submit">Email senden</button>
 				</form>
 				<p class="message" color="RED">${msg}</p>

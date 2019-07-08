@@ -23,28 +23,64 @@
 			<h2>Gewünschte Fähigkeiten angeben: </h2>
 			
 				<table>
-					<tr> <td class="header-skills"> Programmier-Kenntnisse:</td> </tr>
-					<tr> <td class="skills"> <input type="checkbox" name="chkJava" value="java"> Java </td> </tr>
-					<tr> <td class="skills"> <input type="checkbox" name="chkJavaScript" value="javaScript"> JavaScript </td> </tr>
-					<tr> <td class="skills"> <input type="checkbox" name="chkC++" value="cPlusPlus"> C++ <td> </tr>
-					<tr> <td class="skills"> <input type="checkbox" name="chkPython" value="python"> Python <td> </tr>
-					<tr> <td class="skills"> <input type="checkbox" name="chkHtml" value="html"> HTML/CSS <td> </tr>
+					<tr> 
+						<td class="header-skills"> Programmier-Kenntnisse:</td> 
+					</tr>
+					<tr> 
+						<td class="skills"> <input type="checkbox" name="chkJava" value="java"> Java </td> 
+					</tr>
+					<tr> 
+						<td class="skills"> <input type="checkbox" name="chkJavaScript" value="javaScript"> JavaScript </td> 
+					</tr>
+					<tr> 
+						<td class="skills"> <input type="checkbox" name="chkC++" value="cPlusPlus"> C++ <td> 
+					</tr>
+					<tr> 
+						<td class="skills"> <input type="checkbox" name="chkPython" value="python"> Python <td> 
+					</tr>
+					<tr> 
+						<td class="skills"> <input type="checkbox" name="chkHtml" value="html"> HTML/CSS <td> 
+					</tr>
 			    </table>  
 			    <table>
-			      	<tr> <td class="header-skills"> Office-Kenntnisse: </td> </tr>
-			       	<tr> <td class="skills"> <input type="checkbox" name="chkWord" value="word"> Word </td> </tr>
-			       	<tr> <td class="skills"> <input type="checkbox" name="chkExcel" value="excel"> Excel </td> </tr>
-					<tr> <td class="skills"> <input type="checkbox" name="chkPowerpoint" value="powerpoint"> PowerPoint <td> </tr>
-					<tr> <td class="skills"> <input type="checkbox" name="chkGit" value="git"> GitHub <td> </tr>
-					<tr> <td class="skills"> <input type="checkbox" name="chkJira" value="jira"> Jira <td> </tr>
+			      	<tr> 
+			      		<td class="header-skills"> Office-Kenntnisse: </td> 
+			      	</tr>
+			       	<tr> 
+			       		<td class="skills"> <input type="checkbox" name="chkWord" value="word"> Word </td> 
+			       	</tr>
+			       	<tr> 
+			       		<td class="skills"> <input type="checkbox" name="chkExcel" value="excel"> Excel </td> 
+			       	</tr>
+					<tr> 
+						<td class="skills"> <input type="checkbox" name="chkPowerpoint" value="powerpoint"> PowerPoint <td> 
+					</tr>
+					<tr> 
+						<td class="skills"> <input type="checkbox" name="chkGit" value="git"> GitHub <td> 
+					</tr>
+					<tr> 
+						<td class="skills"> <input type="checkbox" name="chkJira" value="jira"> Jira <td> 
+					</tr>
 				</table>
 				<table>	
-					<tr> <td class="header-skills"> Sprach-Kenntnisse: </td> </tr>
-			       	<tr> <td class="skills"> <input type="checkbox" name="chkGerman" value="german"> Deutsch </td> </tr>
-			       	<tr> <td class="skills"> <input type="checkbox" name="chkEnglish" value="english"> Englisch </td> </tr>
-					<tr> <td class="skills"> <input type="checkbox" name="chkSpanish" value="spanish"> Spanisch </td> </tr>
-					<tr> <td class="skills"> <input type="checkbox" name="chkFrench" value="french"> Französisch </td> </tr>
-					<tr> <td class="skills"> <input type="checkbox" name="chkChinese" value="chinese"> Chinesisch </td> </tr>
+					<tr> 
+						<td class="header-skills"> Sprach-Kenntnisse: </td> 
+					</tr>
+			       	<tr> 
+			       		<td class="skills"> <input type="checkbox" name="chkGerman" value="german"> Deutsch </td> 
+			       	</tr>
+			       	<tr> 
+			       		<td class="skills"> <input type="checkbox" name="chkEnglish" value="english"> Englisch </td> 
+			       	</tr>
+					<tr> 
+						<td class="skills"> <input type="checkbox" name="chkSpanish" value="spanish"> Spanisch </td> 
+					</tr>
+					<tr> 
+						<td class="skills"> <input type="checkbox" name="chkFrench" value="french"> Französisch </td> 
+					</tr>
+					<tr> 
+						<td class="skills"> <input type="checkbox" name="chkChinese" value="chinese"> Chinesisch </td> 
+					</tr>
 				</table>	
 					<br>
 					<button type="submit"> Bestätigen </button>

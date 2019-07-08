@@ -43,7 +43,7 @@ public class UserDao{
 
 	// Applicant registrieren
 	public int registerApplicant(Applicant applicant) {
-		// SQL Statement aus json lesen (Nadine Jakob 07.06.2019)
+		// SQL Statement aus json lesen
 		String keyUser = "user.register";
 		String keyApplicant = "applicant.register";
 		String statementUser = jsonNode.get(keyUser).asText();
@@ -91,7 +91,7 @@ public class UserDao{
 	public String loginUser(User user) {
 		
 		
-		// SQL Statement aus json lesen (Nadine Jakob 07.06.2019)
+		// SQL Statement aus json lesen
 		String key = "user.login";
 		String statement = jsonNode.get(key).asText();
 		
@@ -251,18 +251,20 @@ public class UserDao{
 		}
 	}
 
-	public List<Applicant> searchApp(List<String> skills) {
+	// Suche der Bewerber anhand ausgewählter Skills
+	public List<Applicant> searchApplicantswithSkills(List<String> skills) {
 		String key = "applicant.search";
 		String statement = jsonNode.get(key).asText();
 		
 		if(statement != null) {
 			try {
-				//List<Applicant> applicantList= jdbcTemplate.queryForList(statement, Applicant.class);
+				// Erweitern des SQL-Statements, um dynamische Abfrage zu ermöglichen
 				for(String skill: skills) {
 					statement = statement + skill +"=1 AND "; 
 				}
 				statement = statement.substring(0, statement.length()-4);
 
+				// Speichern der zutreffenden Applicants
 				List<Map <String, Object>> resultList = jdbcTemplate.queryForList(statement);
 				List<Applicant> applicantList =  new ArrayList<Applicant>();
 			    for(Map<String, Object> map : resultList) {
